@@ -51,7 +51,7 @@
   abstract: |
       Static site generators like Jekyll, Zola, and Hugo are effective, but fall short for complex sites like personal encyclopedias, wikis, or sites with rich content. Features like *backlinks* and *transclusions* require richer context and efficient builds. This talk explores the theory behind static site generation (as a case of *build systems*) and shows how to implement advanced features inspired by [Project Xanadu](https://www.xanadu.net/) using [YOCaml](https://github.com/xhtmlboi/yocaml), a static site framework based on functional abstractions (such as strong profunctors) in OCaml.
   links: []
-  slides: null
+  slides: "static-websites-functional-programming.pdf"
   youtube_video: null
   watch_ocaml_org_video: null
 
