@@ -32,8 +32,12 @@ let string_opt = function
   | None -> string ""
 
 let hero_section =
-  <div id="event" class_="bg-[url('/2025/img/hero-background.jpg')] bg-center bg-cover py-60">
-    <div class_="container mx-auto px-6">
+  <div id="event" class_="relative bg-[#1A202C] py-60">
+    <picture>
+      <source srcset="/2025/img/hero-background.webp" type_="image/webp"/>
+      <img src="/2025/img/hero-background.jpg" alt="" class_="absolute inset-0 w-full h-full object-cover" width="1535" height="940"/>
+    </picture>
+    <div class_="container mx-auto px-6 relative z-10">
       <h1 class_="font-montserrat font-regular text-7xl text-white">(list [
         string "FUN ";
         <span class_="text-primary_dark">(string "OCaml")</span>
@@ -66,7 +70,10 @@ let program_section =
     (h2 "Program")
     <div class_="mt-8 grid lg:grid-cols-2 gap-6">
       <div class_="">
-        <img class_="w-full" src="/2025/img/venue1.jpg"/>
+        <picture>
+          <source srcset="/2025/img/venue1.webp" type_="image/webp"/>
+          <img class_="w-full" src="/2025/img/venue1.jpg" alt="Digital Knowledge Village venue interior" width="800" height="600"/>
+        </picture>
       </div>
       <div class_="prose prose-xl">
       ({|
@@ -118,7 +125,7 @@ Talks are live-streamed and will appear on [watch.ocaml.org](https://watch.ocaml
         )
           </div>
         </div>
-        <img class_="hidden md:block" src="/2025/img/separator.svg"/>
+        <img class_="hidden md:block" src="/2025/img/separator.svg" alt="" width="50" height="200"/>
         <div class_="grow">
           (h2 "Day 2")
           (tag ~classes:"text-2xl mt-2" "September 16 - 9:00-22:00")
@@ -151,7 +158,7 @@ let community_section =
 
 let avatar_maybe_you ~title ~subtitle =
   <div class_="flex flex-col items-center text-lg">
-    <img class_="rounded-full w-48" src="/2025/img/maybe-you.svg" alt=""/>
+    <img class_="rounded-full w-48" src="/2025/img/maybe-you.svg" alt="Your photo here" width="192" height="192"/>
     (<div class_="font-bold mt-2">(string title)</div>)
     (<div class_="">(string subtitle)</div>)
     (button ~classes:"mt-4" ~href:cfp_url "Submit your Proposal")
@@ -258,8 +265,12 @@ let schedule_day_two_section =
 
 
 let venue_section =
-  <div id="venue" class_="bg-[url('/2025/img/venue2.jpg')] relative bg-center bg-cover items-center py-32">
-    <div class_="max-w-full w-96 bg-white border-primary_dark border-4 mx-auto px-12 py-6">
+  <div id="venue" class_="relative bg-center bg-cover items-center py-32">
+    <picture>
+      <source srcset="/2025/img/venue2.webp" type_="image/webp"/>
+      <img src="/2025/img/venue2.jpg" alt="" class_="absolute inset-0 w-full h-full object-cover" width="1200" height="800"/>
+    </picture>
+    <div class_="max-w-full w-96 bg-white border-primary_dark border-4 mx-auto px-12 py-6 relative z-10">
       (h2 "Venue")
       <div class_="mt-6 prose prose-lg">
         (string "Digital Knowledge Village")<br/>
@@ -294,8 +305,10 @@ let sponsors_section =
             <div class_="h-24 flex items-center">
                 <img
                     class_="object-contain max-h-24 mx-auto w-3xs max-w-full"
-                        alt=sponsor.name
-                            src=sponsor.logo_url
+                    alt=(sponsor.name ^ " logo")
+                    src=sponsor.logo_url
+                    width="200"
+                    height="96"
                 />
             </div>
             <div class_="font-bold">
@@ -336,8 +349,10 @@ let recommended_events_section =
           <a href=(event.url) target="_blank" class_="mx-auto">
             <img
               class_="object-contain h-24"
-              alt=event.name
+              alt=(event.name ^ " logo")
               src=event.logo_url
+              width="200"
+              height="96"
             />
           </a>
         )
@@ -361,3 +376,4 @@ let make () =
      recommended_events_section;
     ])
   </Layout>
+

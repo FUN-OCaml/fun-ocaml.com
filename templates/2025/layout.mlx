@@ -12,7 +12,7 @@ let navigation_button ~href ~title =
 let navigation children =
   <nav class_="bg-[#1A202C] overflow-hiddne max-w-screen text-white">
     <div class_="md:container flex flex-col gap-2 items-start mx-auto py-2 lg:py-0 px-6 md:flex-row md:items-center">
-      <a class_="px-2 pt-3 hidden md:inline" href="/#event"><img src="/2025/img/fun-ocaml-logo.svg"/></a>
+      <a class_="px-2 pt-3 hidden md:inline" href="/#event"><img src="/2025/img/fun-ocaml-logo.svg" alt="Fun OCaml Logo" width="120" height="50"/></a>
       (list children)
     </div>
   </nav>
@@ -39,9 +39,23 @@ let make ~title ~children () =
     <head>
       <meta charset="utf-8"/>
       <title>(string title)</title>
-      <link rel="stylesheet" href="/css/main.css"/>
-      <link rel="stylesheet" href="font-files/inter.css"/>
-      <link rel="stylesheet" href="font-files/Montserrat.css"/>
+      <meta name="description" content=(description)/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+      (* Preload critical resources for LCP optimization *)
+      <link rel="preload" href="/2025/img/hero-background.webp" as_="image" type_="image/webp"/>
+      <link rel="preload" href="font-files/Inter-Bold.woff2" as_="font" type_="font/woff2" crossorigin="anonymous"/>
+      <link rel="preload" href="font-files/Montserrat-Bold.woff2" as_="font" type_="font/woff2" crossorigin="anonymous"/>
+      
+      (* Async load CSS to avoid render blocking *)
+      <link rel="preload" href="/css/main.css" as_="style" onload="this.onload=null;this.rel='stylesheet'"/>
+      <noscript><link rel="stylesheet" href="/css/main.css"/></noscript>
+      
+      <link rel="preload" href="font-files/inter.css" as_="style" onload="this.onload=null;this.rel='stylesheet'"/>
+      <noscript><link rel="stylesheet" href="font-files/inter.css"/></noscript>
+      
+      <link rel="preload" href="font-files/Montserrat.css" as_="style" onload="this.onload=null;this.rel='stylesheet'"/>
+      <noscript><link rel="stylesheet" href="font-files/Montserrat.css"/></noscript>
 
       <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
       <link rel="icon" type_="image/png" sizes="32x32" href="/favicon-32x32.png"/>
@@ -50,7 +64,6 @@ let make ~title ~children () =
       <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"/>
       <meta name="msapplication-TileColor" content="#da532c"/>
       <meta name="theme-color" content="#ffffff"/>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
       <meta property="og:title" content=(title)/>
       <meta property="og:description" content=(description)/>
@@ -65,10 +78,13 @@ let make ~title ~children () =
       <script src="https://analytics.ahrefs.com/analytics.js" dataKey="INJ8YGRMW+NCMPy+IEhl+g" async=(true)></script>
     </head>
     <body>
-      (list children)
+      <main>
+        (list children)
+      </main>
       (navigation [
         navigation_link ~href:"/privacy" ~title:"Privacy Policy";
         navigation_link ~href:"/2024" ~title:"FUN OCaml 2024"
       ])
     </body>
   </html>
+
