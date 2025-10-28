@@ -88,7 +88,15 @@
   speakers: ["thibaut"]
   kind: talk
   abstract: |
-      No info yet!
+      AI is reshaping software development, yet OCaml's adoption in AI workflows remains limited. This talk explores how the OCaml community can proactively embrace AI to make OCaml a productive language in the AI era—both for writing AI applications and for AI-assisted development. We examine two critical questions:
+
+      First, how can OCaml become a viable alternative to Python for machine learning? By addressing ecosystem breadth and developer experience, we can solve real problems—from unifying research and production codebases to enabling scalable deployment with OCaml's performance guarantees.
+
+      Second, how can we make OCaml more productive for AI-assisted development? Strong type systems and integrated tooling give OCaml a natural advantage for coding agents, but we need specialized, open-source tools built for the OCaml ecosystem.
+
+      This talk introduces Raven, a modern scientific computing ecosystem for OCaml that mirrors Python's ML stack, and Spice, an upcoming local-first, OCaml-native coding agent.
+
+      Beyond tooling, we'll discuss how the community can anticipate changes in onboarding, documentation, and workflows to ensure OCaml thrives in an AI-driven future—while maintaining equal opportunity and access for all developers.
   links: []
   slides: null
   youtube_video: null
