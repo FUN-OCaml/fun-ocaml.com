@@ -130,14 +130,28 @@ let make () =
   <Layout title=("Privacy Policy")>
     ([
       top_navigation;
-      <div class_="mx-auto container px-6 py-20 min-h-screen">
-        <div class_="prose prose-xl">
-        <p>
-          (string "Privacy contact: ")
-          (Layout.email_link ~id:"privacy_email" ~user:"privacy" "fun-ocaml.com")
-        </p>
-        (privacy |> unsafe)
+      <div class_="bg-gradient-to-br from-gray-50 to-sand py-16 md:py-20">
+        <div class_="container mx-auto px-6">
+          <div class_="max-w-4xl">
+            <h1 class_="font-bold text-4xl md:text-5xl text-gray-900 mb-4">(string "Privacy Policy")</h1>
+            <p class_="text-lg md:text-xl text-gray-600">
+              (string "Last updated: September 12, 2025")
+            </p>
+          </div>
         </div>
-      </div>
+      </div>;
+      <div class_="mx-auto container px-6 py-12 md:py-16 min-h-screen">
+        <div class_="max-w-4xl">
+          <div class_="bg-blue-50 border-l-4 border-primary_light p-6 rounded-r-lg mb-8">
+            <p class_="text-gray-800">
+              <span class_="font-semibold">(string "Privacy contact: ")</span>
+              (Layout.email_link ~id:"privacy_email" ~user:"privacy" "fun-ocaml.com")
+            </p>
+          </div>
+          <div class_="prose prose-lg max-w-none">
+            (privacy |> unsafe)
+          </div>
+        </div>
+      </div>;
     ])
   </Layout>

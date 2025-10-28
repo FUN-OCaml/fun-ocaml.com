@@ -6,61 +6,69 @@ let top_navigation =
   ]
 
 let button ?(classes="") ~href title =
-  <a class_=("inline-block bg-gradient-to-r from-primary_dark to-primary_light hover:from-black hover:to-black text-white font-semibold px-8 py-3 rounded-full " ^ classes)
+  <a class_=("inline-block bg-gradient-to-r from-primary_dark to-primary_light hover:from-primary_light hover:to-primary_dark text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-lg " ^ classes)
     href=(href) target="_blank">(string title)</a>
 
 let h2 ?(classes="") title =
-  <h2 class_=("font-bold text-primary_light text-4xl " ^ classes)>(title |> String.uppercase_ascii |> string)</h2>
+  <h2 class_=("font-bold text-primary_light text-3xl md:text-4xl mb-4 " ^ classes)>(title |> String.uppercase_ascii |> string)</h2>
 
 let tag ?(classes="") title =
-   <div class_=(classes ^ " inline-flex font-montserrat text-white bg-primary_light px-4 py-2")>(string title)</div>
+   <div class_=(classes ^ " inline-flex font-montserrat text-white bg-primary_light px-4 py-2 rounded-md shadow-md")>(string title)</div>
 
 let render (s: Data2025.Sessions.t) =
   <Layout title=(s.title)>
-    [
+    ([
       top_navigation;
-      <div class_="container mx-auto px-6 py-12">
-        <div class_="max-w-4xl">
-          <h1 class_="font-bold text-4xl">(string s.title)</h1>
-          <div class_="mt-4">
-            (tag (match s.kind with | Workshop -> "Workshop" | Talk -> "Talk"))
+      <div class_="bg-gradient-to-br from-gray-50 to-sand py-16 md:py-24">
+        <div class_="container mx-auto px-6">
+          <div class_="max-w-4xl">
+            <div class_="mb-6">
+              (tag (match s.kind with | Workshop -> "Workshop" | Talk -> "Talk"))
+            </div>
+            <h1 class_="font-bold text-4xl md:text-5xl lg:text-6xl text-gray-900 leading-tight">(string s.title)</h1>
           </div>
+        </div>
+      </div>;
+      <div class_="container mx-auto px-6 py-12 md:py-16">
+        <div class_="max-w-4xl">
 
-          (h2 ~classes:"mt-8" "Speakers")
-          <div class_="mt-6 flex flex-wrap gap-10">
+          (h2 ~classes:"mt-0" "Speakers")
+          <div class_="mt-8 flex flex-wrap gap-8 md:gap-10">
             (list (List.map Avatar.render s.speakers))
           </div>
 
-          (h2 ~classes:"mt-12" "Abstract")
-          <div class_="mt-6 prose prose-lg">
-            (s.abstract |> unsafe)
+          <div class_="mt-12 md:mt-16">
+            (h2 "Abstract")
+            <div class_="mt-6 prose prose-lg max-w-none">
+              (s.abstract |> unsafe)
+            </div>
           </div>
 
           (match (s.youtube_video, s.watch_ocaml_org_video) with
            | (None, None) -> JSX.null
            | _ ->
-             <div>
-               (h2 ~classes:"mt-12" "Video Recording")
+             <div class_="mt-12 md:mt-16">
+               (h2 "Video Recording")
                <div class_="mt-6 space-y-3">
                  (match s.youtube_video with
                   | None -> JSX.null
                   | Some video_url ->
-                    <a class_="text-primary_light hover:text-primary_dark flex items-center gap-2"
+                    <a class_="text-primary_light hover:text-primary_dark flex items-center gap-2 transition-colors duration-200 p-3 rounded-lg hover:bg-gray-50 -ml-3"
                        href=(video_url) target="_blank" rel="noopener noreferrer">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-5 h-5">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-5 h-5 flex-shrink-0">
                         <path strokeLinecap="round" strokeLinejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
                       </svg>
-                      (string "Watch on YouTube")
+                      <span class_="font-medium">(string "Watch on YouTube")</span>
                     </a>)
                  (match s.watch_ocaml_org_video with
                   | None -> JSX.null
                   | Some video_url ->
-                    <a class_="text-primary_light hover:text-primary_dark flex items-center gap-2"
+                    <a class_="text-primary_light hover:text-primary_dark flex items-center gap-2 transition-colors duration-200 p-3 rounded-lg hover:bg-gray-50 -ml-3"
                        href=(video_url) target="_blank" rel="noopener noreferrer">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-5 h-5">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-5 h-5 flex-shrink-0">
                         <path strokeLinecap="round" strokeLinejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
                       </svg>
-                      (string "Watch on watch.ocaml.org")
+                      <span class_="font-medium">(string "Watch on watch.ocaml.org")</span>
                     </a>)
                </div>
              </div>)
@@ -68,28 +76,28 @@ let render (s: Data2025.Sessions.t) =
           (match s.slides with
            | None -> JSX.null
            | Some (Data2025.Sessions.LocalFile filename) ->
-             <div>
-               (h2 ~classes:"mt-12" "Slides")
+             <div class_="mt-12 md:mt-16">
+               (h2 "Slides")
                <div class_="mt-6">
-                 <a class_="text-primary_light hover:text-primary_dark flex items-center gap-2"
+                 <a class_="text-primary_light hover:text-primary_dark flex items-center gap-2 transition-colors duration-200 p-3 rounded-lg hover:bg-gray-50 -ml-3"
                     href=("/2025/slides/" ^ filename) target="_blank">
-                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-5 h-5">
+                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-5 h-5 flex-shrink-0">
                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
                    </svg>
-                   (string ("Download slides (" ^ filename ^ ")"))
+                   <span class_="font-medium">(string ("Download slides (" ^ filename ^ ")"))</span>
                  </a>
                </div>
              </div>
            | Some (Data2025.Sessions.ExternalUrl url) ->
-             <div>
-               (h2 ~classes:"mt-12" "Slides")
+             <div class_="mt-12 md:mt-16">
+               (h2 "Slides")
                <div class_="mt-6">
-                 <a class_="text-primary_light hover:text-primary_dark flex items-center gap-2"
+                 <a class_="text-primary_light hover:text-primary_dark flex items-center gap-2 transition-colors duration-200 p-3 rounded-lg hover:bg-gray-50 -ml-3"
                     href=(url) target="_blank" rel="noopener noreferrer">
-                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-5 h-5">
+                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-5 h-5 flex-shrink-0">
                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
                    </svg>
-                   (string "View slides")
+                   <span class_="font-medium">(string "View slides")</span>
                  </a>
                </div>
              </div>)
@@ -97,18 +105,18 @@ let render (s: Data2025.Sessions.t) =
           (match s.links with
            | [] -> JSX.null
            | links ->
-             <div>
-               (h2 ~classes:"mt-12" "Resources")
+             <div class_="mt-12 md:mt-16">
+               (h2 "Resources")
                <div class_="mt-6">
-                 <ul class_="space-y-3">
+                 <ul class_="space-y-2">
                    (list (List.map (fun (link : Data2025.Sessions.link) ->
                      <li>
-                       <a class_="text-primary_light hover:text-primary_dark flex items-center gap-2"
+                       <a class_="text-primary_light hover:text-primary_dark flex items-center gap-2 transition-colors duration-200 p-3 rounded-lg hover:bg-gray-50 -ml-3"
                           href=(link.url) target="_blank" rel="noopener noreferrer">
-                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-5 h-5">
+                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-5 h-5 flex-shrink-0">
                            <path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
                          </svg>
-                         (string link.title)
+                         <span class_="font-medium">(string link.title)</span>
                        </a>
                      </li>
                    ) links))
@@ -118,15 +126,15 @@ let render (s: Data2025.Sessions.t) =
 
 
 
-          <div class_="mt-12 pt-8 border-t border-gray-200">
-            <a class_="text-primary_light hover:text-primary_dark flex items-center gap-2" href="/">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-6 h-6">
+          <div class_="mt-16 md:mt-20 pt-8 border-t border-gray-200">
+            <a class_="inline-flex items-center gap-2 text-primary_light hover:text-primary_dark transition-colors duration-200 font-semibold" href="/">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" class_="w-5 h-5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
               </svg>
               (string "Back to Conference")
             </a>
           </div>
         </div>
-      </div>
-    ]
+      </div>;
+    ])
   </Layout>
