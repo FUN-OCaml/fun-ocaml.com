@@ -4,16 +4,18 @@ let description = "Fun OCaml 2025 is a 2 days open source hacking event dedicate
 let social_media_preview_src = "https://fun-ocaml.com/2025/social-media-preview.png?1"
 
 let navigation_link ~href ~title =
-  <a class_="px-4 h-full items-center hover:text-primary_dark" href=(href)>(string title)</a>
+  <a class_="px-4 py-2 items-center hover:text-primary_light transition-colors duration-200 hover:bg-white/10 rounded-md" href=(href)>(string title)</a>
 
 let navigation_button ~href ~title =
   <a class_="inline-flex font-montserrat text-white bg-primary_light px-4 py-2" href=(href)>(string title)</a>
 
 let navigation children =
-  <nav class_="bg-[#1A202C] overflow-hiddne max-w-screen text-white">
-    <div class_="md:container flex flex-col gap-2 items-start mx-auto py-2 lg:py-0 px-6 md:flex-row md:items-center">
-      <a class_="px-2 pt-3 hidden md:inline" href="/#event"><img src="/2025/img/fun-ocaml-logo.svg" alt="Fun OCaml Logo" width="120" height="50"/></a>
-      (list children)
+  <nav class_="sticky top-0 z-50 bg-[#1A202C]/95 backdrop-blur-md border-b border-gray-800 overflow-hidden max-w-screen text-white shadow-lg">
+    <div class_="md:container flex flex-col gap-2 items-start mx-auto py-3 lg:py-0 px-6 md:flex-row md:items-center md:justify-between">
+      <a class_="px-2 py-3 hidden md:inline transition-transform hover:scale-105 duration-200" href="/#event"><img src="/2025/img/fun-ocaml-logo.svg" alt="Fun OCaml Logo" width="120" height="50"/></a>
+      <div class_="flex flex-wrap gap-1 md:gap-2 items-center">
+        (list children)
+      </div>
     </div>
   </nav>
 

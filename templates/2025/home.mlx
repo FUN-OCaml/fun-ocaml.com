@@ -18,37 +18,38 @@ let top_navigation =
   ]
 
 let button ?(classes="") ~href title =
-  <a class_=("inline-block bg-gradient-to-r from-primary_dark to-primary_light hover:from-black hover:to-black text-white font-semibold px-8 py-3 rounded-full " ^ classes)
+  <a class_=("inline-block bg-gradient-to-r from-primary_dark to-primary_light hover:from-primary_light hover:to-primary_dark text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-lg " ^ classes)
     href=(href) target="_blank">(string title)</a>
 
 let h2 ?(classes="") title =
-  <h2 class_=("font-bold text-primary_light text-4xl " ^ classes)>(title |> String.uppercase_ascii |> string)</h2>
+  <h2 class_=("font-bold text-primary_light text-4xl md:text-5xl mb-4 " ^ classes)>(title |> String.uppercase_ascii |> string)</h2>
 
 let tag ?(classes="") title =
-   <div class_=(classes ^ " inline-flex font-montserrat text-white bg-primary_light px-4 py-2")>(string title)</div>
+   <div class_=(classes ^ " inline-flex font-montserrat text-white bg-primary_light px-4 py-2 rounded-md shadow-md")>(string title)</div>
 
 let string_opt = function
   | Some s -> string s
   | None -> string ""
 
 let hero_section =
-  <div id="event" class_="relative bg-[#1A202C] py-60">
+  <div id="event" class_="relative bg-[#1A202C] py-32 md:py-60 overflow-hidden">
     <picture>
       <source srcset="/2025/img/hero-background.webp" type_="image/webp"/>
-      <img src="/2025/img/hero-background.jpg" alt="" class_="absolute inset-0 w-full h-full object-cover" width="1535" height="940"/>
+      <img src="/2025/img/hero-background.jpg" alt="" class_="absolute inset-0 w-full h-full object-cover opacity-40" width="1535" height="940"/>
     </picture>
+    <div class_="absolute inset-0 bg-gradient-to-b from-transparent via-[#1A202C]/50 to-[#1A202C]"></div>
     <div class_="container mx-auto px-6 relative z-10">
-      <h1 class_="font-montserrat font-regular text-7xl text-white">(list [
+      <h1 class_="font-montserrat font-regular text-5xl md:text-7xl lg:text-8xl text-white animate-fade-in">(list [
         string "FUN ";
-        <span class_="text-primary_dark">(string "OCaml")</span>
+        <span class_="text-primary_light">(string "OCaml")</span>
       ])
       </h1>
-      <div class_="mt-6 text-7xl font-bold text-white font-montserrat">(string "WARSAW")</div>
-      (tag ~classes:"text-3xl mt-6" "September 15 & 16, 2025")
+      <div class_="mt-4 md:mt-6 text-5xl md:text-7xl lg:text-8xl font-bold text-white font-montserrat">(string "WARSAW")</div>
+      (tag ~classes:"text-2xl md:text-3xl mt-6" "September 15 & 16, 2025")
 
-      <a class_="flex items-center gap-2 text-white underline hover:no-underline text-xl mt-6" href=(registration_url)>
+      <a class_="inline-flex items-center gap-2 text-white bg-primary_light hover:bg-primary_dark px-6 py-3 rounded-full text-lg md:text-xl mt-8 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl font-semibold" href=(registration_url)>
         (string ("Register for free here"))
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-6 h-6">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-5 h-5 transition-transform group-hover:translate-x-1">
           <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
         </svg>
       </a>
@@ -66,16 +67,16 @@ let hero_section =
 
 let program_section =
   [
-  <div id="program" class_="container mx-auto px-6 py-20">
+  <div id="program" class_="container mx-auto px-6 py-20 md:py-32">
     (h2 "Program")
-    <div class_="mt-8 grid lg:grid-cols-2 gap-6">
-      <div class_="">
+    <div class_="mt-12 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div class_="order-2 lg:order-1">
         <picture>
           <source srcset="/2025/img/venue1.webp" type_="image/webp"/>
-          <img class_="w-full" src="/2025/img/venue1.jpg" alt="Digital Knowledge Village venue interior" width="800" height="600"/>
+          <img class_="w-full rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow duration-300" src="/2025/img/venue1.jpg" alt="Digital Knowledge Village venue interior" width="800" height="600"/>
         </picture>
       </div>
-      <div class_="prose prose-xl">
+      <div class_="prose prose-xl order-1 lg:order-2 max-w-none">
       ({|
 **Fun OCaml 2025** is a **2 days open source hacking event**
 dedicated to OCaml enthusiasts and professionals around the globe!
@@ -97,23 +98,23 @@ Talks are live-streamed and will appear on [watch.ocaml.org](https://watch.ocaml
     </div>
   </div>;
   <div class_="bg-[url('/2025/img/blue-bg.svg')] bg-center bg-cover text-white">
-    <div class_="py-20 text-center">
-      (<h3 class_="text-3xl font-semibold">(string "Watch the live stream")</h3>)
-      (<p class_="text-gray-400 mt-2">(string "The talks from the event will be live streamed free of a charge. We recommend subscribing to FUN OCaml's YouTube channel!")</p>)
+    <div class_="py-20 md:py-32 text-center">
+      (<h3 class_="text-3xl md:text-4xl font-bold mb-4">(string "Watch the live stream")</h3>)
+      (<p class_="text-gray-300 mt-4 text-lg md:text-xl max-w-3xl mx-auto px-6">(string "The talks from the event will be live streamed free of a charge. We recommend subscribing to FUN OCaml's YouTube channel!")</p>)
 
-
-      (button ~classes:"mt-4 text-xl no-underline" ~href:youtube_url "Watch on FUN OCaml's YouTube Channel")
-
-      (button ~classes:"ml-8 mt-4 text-xl no-underline" ~href:twitch_url "Watch the live stream on Sabine's Twitch")
+      <div class_="flex flex-col md:flex-row gap-4 md:gap-6 justify-center items-center mt-8 px-6">
+        (button ~classes:"text-lg md:text-xl no-underline w-full md:w-auto" ~href:youtube_url "Watch on FUN OCaml's YouTube Channel")
+        (button ~classes:"text-lg md:text-xl no-underline w-full md:w-auto" ~href:twitch_url "Watch the live stream on Sabine's Twitch")
+      </div>
     </div>
   </div>;
   <div class_="bg-sand">
-    <div id="program" class_="container mx-auto px-6 py-20">
-      <div class_="flex flex-col gap-20 md:flex-row">
-        <div class_="grow">
+    <div id="program" class_="container mx-auto px-6 py-20 md:py-32">
+      <div class_="flex flex-col gap-12 md:gap-20 md:flex-row">
+        <div class_="grow bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
           (h2 "Day 1")
-          (tag ~classes:"text-2xl mt-2" "September 15 - 9:00-24:00")
-          <div class_="prose prose-lg">
+          (tag ~classes:"text-xl md:text-2xl mt-2" "September 15 - 9:00-24:00")
+          <div class_="prose prose-lg mt-6">
         ({|
   * **Keynote**
   * **Talks**
@@ -125,11 +126,11 @@ Talks are live-streamed and will appear on [watch.ocaml.org](https://watch.ocaml
         )
           </div>
         </div>
-        <img class_="hidden md:block" src="/2025/img/separator.svg" alt="" width="50" height="200"/>
-        <div class_="grow">
+        <img class_="hidden md:block self-center" src="/2025/img/separator.svg" alt="" width="50" height="200"/>
+        <div class_="grow bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
           (h2 "Day 2")
-          (tag ~classes:"text-2xl mt-2" "September 16 - 9:00-22:00")
-          <div class_="prose prose-lg">
+          (tag ~classes:"text-xl md:text-2xl mt-2" "September 16 - 9:00-22:00")
+          <div class_="prose prose-lg mt-6">
           ({|
   * **Workshops**
   * **Hacking:** Contribute to OCaml projects and understand their internals
@@ -147,11 +148,11 @@ Talks are live-streamed and will appear on [watch.ocaml.org](https://watch.ocaml
   ]
 
 let community_section =
-  <div id="community" class_="container mx-auto px-6 py-20">
+  <div id="community" class_="container mx-auto px-6 py-20 md:py-32">
     (h2 "Community")
-    <div class_="mt-8 gap-6">
+    <div class_="mt-12 gap-6">
       <div class_="flex flex-col justify-center items-center">
-        (button ~classes:"text-xl no-underline" ~href:discord_url "Join the FUN OCaml Discord")
+        (button ~classes:"text-lg md:text-xl no-underline" ~href:discord_url "Join the FUN OCaml Discord")
       </div>
     </div>
   </div>
@@ -177,20 +178,20 @@ let speakers_section =
 let render_schedule_slot_cell (slot: Data2025.Schedule.event option) =
   match slot with
   | Some slot ->
-      <td>
+      <td class_="transition-all duration-200">
       (match slot.slug with
        | Some slug ->
-         <a href=(Data2025.Sessions.url slug) class_="block px-4 py-2 rounded transition-colors hover:bg-primary_dark">
+         <a href=(Data2025.Sessions.url slug) class_="block px-4 py-3 rounded-lg transition-all duration-200 hover:bg-primary_light hover:shadow-md">
            <div class_="font-medium text-white underline">(string slot.event)</div>
            (match slot.speaker with
-            | Some speaker -> <div class_="text-sm text-gray-300">(string speaker)</div>
+            | Some speaker -> <div class_="text-sm text-gray-300 mt-1">(string speaker)</div>
             | None -> JSX.null)
          </a>
        | None ->
-         <div class_="px-4 py-2">
+         <div class_="px-4 py-3">
            <div class_="font-medium">(string slot.event)</div>
            (match slot.speaker with
-            | Some speaker -> <div class_="text-sm text-gray-300">(string speaker)</div>
+            | Some speaker -> <div class_="text-sm text-gray-300 mt-1">(string speaker)</div>
             | None -> JSX.null)
          </div>
       )
@@ -199,18 +200,18 @@ let render_schedule_slot_cell (slot: Data2025.Schedule.event option) =
     <td class_="py-2"></td>
 
 let render_schedule_table ~headers ~schedule =
-  <div class_="px-8 w-full overflow-x-auto">
+  <div class_="px-4 md:px-8 w-full overflow-x-auto">
     <div class_="inline-block min-w-full py-2 align-middle">
-      <table class_="mt-6 table-auto divide-y divide-gray-200 w-full">
-        <thead>
-          <tr class_="divide-x divide-gray-200">
-            <th class_="text-left px-4 pb-2 w-32">"Time"</th>
+      <table class_="mt-8 table-auto divide-y divide-gray-700 w-full rounded-lg overflow-hidden">
+        <thead class_="bg-gray-900/50">
+          <tr class_="divide-x divide-gray-700">
+            <th class_="text-left px-4 py-4 font-semibold text-lg w-32">"Time"</th>
             (list (headers |> List.map (fun header ->
-              <th class_="text-left px-4 pb-2">(string header)</th>
+              <th class_="text-left px-4 py-4 font-semibold text-lg">(string header)</th>
             )))
           </tr>
         </thead>
-        <tbody class_="divide-y divide-gray-200">
+        <tbody class_="divide-y divide-gray-700 bg-gray-900/30">
           (list (
             schedule
             |> List.map (fun (row: Data2025.Schedule.schedule_row) ->
@@ -241,9 +242,9 @@ let render_schedule_table ~headers ~schedule =
 
 let schedule_day_one_section =
   <div class_="bg-center bg-gradient-to-br from-[#0F254F] to-[#0B1228] bg-cover text-white w-full">
-    <div id="schedule" class_="container mx-auto py-20">
+    <div id="schedule" class_="container mx-auto py-20 md:py-32">
       (h2 ~classes:"text-white text-center" "Day One")
-      (tag ~classes:"text-xl mt-4 mx-auto text-center block w-fit" "September 15 - 9:00-18:15")
+      (tag ~classes:"text-lg md:text-xl mt-4 mx-auto text-center block w-fit" "September 15 - 9:00-18:15")
 
       (render_schedule_table
         ~headers:["Great Hall"; "Foyer"]
@@ -253,9 +254,9 @@ let schedule_day_one_section =
 
 let schedule_day_two_section =
   <div class_="bg-center bg-gradient-to-tr from-[#4A1500] to-[#8B4000] bg-cover text-white w-full">
-    <div class_="container mx-auto py-20">
+    <div class_="container mx-auto py-20 md:py-32">
       (h2 ~classes:"text-white text-center" "Day Two")
-      (tag ~classes:"text-xl mt-4 mx-auto text-center block w-fit" "September 16 - 9:00-22:00")
+      (tag ~classes:"text-lg md:text-xl mt-4 mx-auto text-center block w-fit" "September 16 - 9:00-22:00")
 
       (render_schedule_table
         ~headers:["Workshop A"; "Workshop B"; "Foyer"]
@@ -265,22 +266,24 @@ let schedule_day_two_section =
 
 
 let venue_section =
-  <div id="venue" class_="relative bg-center bg-cover items-center py-32">
+  <div id="venue" class_="relative bg-center bg-cover items-center py-32 md:py-48">
     <picture>
       <source srcset="/2025/img/venue2.webp" type_="image/webp"/>
-      <img src="/2025/img/venue2.jpg" alt="" class_="absolute inset-0 w-full h-full object-cover" width="1200" height="800"/>
+      <img src="/2025/img/venue2.jpg" alt="" class_="absolute inset-0 w-full h-full object-cover brightness-75" width="1200" height="800"/>
     </picture>
-    <div class_="max-w-full w-96 bg-white border-primary_dark border-4 mx-auto px-12 py-6 relative z-10">
+    <div class_="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+    <div class_="max-w-full w-full md:w-auto mx-6 md:mx-auto bg-white border-primary_light border-4 px-8 md:px-12 py-8 md:py-10 relative z-10 rounded-2xl shadow-2xl backdrop-blur-sm">
       (h2 "Venue")
       <div class_="mt-6 prose prose-lg">
-        (string "Digital Knowledge Village")<br/>
-        (string "457 Puławska St.")<br/>
-        (string "02-844 Warsaw")<br/>
-        <a href="https://maps.app.goo.gl/2ZgApqZhyt1EFYCn7" target="_blank">
-        (string "on Google Maps")
+        <p class_="font-semibold text-xl mb-2">(string "Digital Knowledge Village")</p>
+        <p class_="text-gray-700">(string "457 Puławska St.")<br/>
+        (string "02-844 Warsaw")</p>
+        <a href="https://maps.app.goo.gl/2ZgApqZhyt1EFYCn7" target="_blank" class_="inline-flex items-center gap-2 mt-4 text-primary_light hover:text-primary_dark transition-colors duration-200 font-semibold">
+        (string "Open in Google Maps")
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" class_="w-5 h-5">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+        </svg>
         </a>
-      </div>
-      <div class_="absolute bottom-0 right-0 px-4 bg-blur bg-white/80">
       </div>
     </div>
 
@@ -294,42 +297,44 @@ let sponsors_section =
   | BronzeSponsor -> "Bronze Sponsor"
   | VolunteerOrOrganizer -> "Volunteer / organizer commitment"
   in
-  <div id="sponsors" class_="container mx-auto px-6 py-20">
+  <div id="sponsors" class_="container mx-auto px-6 py-20 md:py-32">
     (h2 ~classes:"text-center" "Sponsors & Partners")
 
-    <div style="gap:2rem" class_="mt-8 grid grid-rows-5 grid-cols-1 md:grid-rows-2 md:grid-cols-3">
+    <div style="gap:2rem" class_="mt-12 grid grid-rows-5 grid-cols-1 md:grid-rows-2 md:grid-cols-3">
       (list (
         Data2025.Sponsors.all
         |> List.map (fun (sponsor: Data2025.Sponsors.sponsor) ->
-          <a href=(sponsor.url) target="_blank" class_="mx-auto text-center">
-            <div class_="h-24 flex items-center">
+          <a href=(sponsor.url) target="_blank" class_="mx-auto text-center p-6 rounded-xl hover:bg-gray-50 transition-all duration-300 hover:shadow-lg group">
+            <div class_="h-24 flex items-center mb-4">
                 <img
-                    class_="object-contain max-h-24 mx-auto w-3xs max-w-full"
+                    class_="object-contain max-h-24 mx-auto w-3xs max-w-full transition-transform duration-300 group-hover:scale-110"
                     alt=(sponsor.name ^ " logo")
                     src=sponsor.logo_url
                     width="200"
                     height="96"
                 />
             </div>
-            <div class_="font-bold">
+            <div class_="font-bold text-lg mb-1">
                 (string sponsor.name)
             </div>
-            (string (render_sponsor_reason sponsor.reason))
+            <div class_="text-sm text-gray-600">
+              (string (render_sponsor_reason sponsor.reason))
+            </div>
           </a>
         )
       ))
     </div>
-    <div class_="text-center mt-6">
+    <div class_="text-center mt-12">
     (button ~href:"mailto:info@sabineschmaltz.de?subject=Sponsoring%20FUN%20OCaml&body=Hi%20Sabine,%0D%0A%0D%0Aplease%20give%20me%20an%20overview%20of%20sponsorship%20opportunities!" "Sponsor FUN OCaml?")
     </div>
   </div>
 
 let organizers_section =
   <div id="organizers" class_="bg-[url('/2025/img/blue-bg.svg')] bg-center bg-cover text-white">
-    <div class_="container mx-auto px-6 py-20">
+    <div class_="container mx-auto px-6 py-20 md:py-32">
       (h2 ~classes:"text-white" "Organizers & Volunteers")
-      (<p class_="text-xl my-4">(string "Want to help? Contact any of the organizers!")</p>)
-      <div class_="flex flex-wrap gap-10 mt-8">
+      (<p class_="text-lg md:text-xl my-6 text-gray-200">(string "Want to help? Contact any of the organizers!")</p>)
+      <div class_="flex flex-wrap gap-8 md:gap-10 mt-12 justify-center">
         (Avatar.render (Data2025.People.get_by_slug "sabine"))
         (Avatar.render (Data2025.People.get_by_slug "ivan"))
         (Avatar.render (Data2025.People.get_by_slug "davesnx"))
@@ -339,16 +344,16 @@ let organizers_section =
   </div>
 
 let recommended_events_section =
-  <div id="recommended-events" class_="container mx-auto px-6 py-20">
+  <div id="recommended-events" class_="container mx-auto px-6 py-20 md:py-32">
     (h2 ~classes:"text-center" "Other Recommended Events")
 
-    <div style="gap:2rem" class_="mt-8 grid grid-rows-5 grid-cols-1 md:grid-rows-2 md:grid-cols-3">
+    <div style="gap:2rem" class_="mt-12 grid grid-rows-5 grid-cols-1 md:grid-rows-2 md:grid-cols-3">
       (list (
         Data2025.RecommendedEvents.all
         |> List.map (fun (event: Data2025.RecommendedEvents.event) ->
-          <a href=(event.url) target="_blank" class_="mx-auto">
+          <a href=(event.url) target="_blank" class_="mx-auto p-6 rounded-xl hover:bg-gray-50 transition-all duration-300 hover:shadow-lg group">
             <img
-              class_="object-contain h-24"
+              class_="object-contain h-24 transition-transform duration-300 group-hover:scale-110"
               alt=(event.name ^ " logo")
               src=event.logo_url
               width="200"
