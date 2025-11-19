@@ -19,7 +19,7 @@
       Terrateam is an open source infrastructure management product written in OCaml. In order to stay lean and flexible, Terrateam has developed almost all of its own frameworks and tooling. With a small team, the Terrateam product punches well above its weight compared to its competition. This talk will cover the choice to develop their own frameworks, the good, the bad, and how OCaml has been instrumental in being able to achieve so much despite being a two person company.
   links: []
   slides: null
-  youtube_video: null
+  youtube_video: "https://www.youtube.com/watch?v=0Hwd7NxQ8_c&list=PLP3MfTGqcNVJHMuI9javghhPwGNEBGXMA&index=3"
   watch_ocaml_org_video: null
 
 - slug: "oxcaml-system-engineers-pov"
@@ -30,7 +30,7 @@
       I do a lot of Rust, C, Zig and whatever else cursed systems programming languages are there. So recently 0xCaml popped out and I was def interested if I can finally use it. So I did some research on how it actually works comparing to native OCaml and other languages and try to build odiff (the fastest image comparison lib in the world) with 0xCaml. Here is what I learned.
   links: []
   slides: null
-  youtube_video: null
+  youtube_video: "https://www.youtube.com/watch?v=iQc5fHW5SZA&list=PLP3MfTGqcNVJHMuI9javghhPwGNEBGXMA&index=7"
   watch_ocaml_org_video: null
 
 - slug: "reinforcement-learning-workshop"
@@ -52,7 +52,7 @@
       Static site generators like Jekyll, Zola, and Hugo are effective, but fall short for complex sites like personal encyclopedias, wikis, or sites with rich content. Features like *backlinks* and *transclusions* require richer context and efficient builds. This talk explores the theory behind static site generation (as a case of *build systems*) and shows how to implement advanced features inspired by [Project Xanadu](https://www.xanadu.net/) using [YOCaml](https://github.com/xhtmlboi/yocaml), a static site framework based on functional abstractions (such as strong profunctors) in OCaml.
   links: []
   slides: "static-websites-functional-programming.pdf"
-  youtube_video: null
+  youtube_video: "https://www.youtube.com/watch?v=rHGMD49eb_k&list=PLP3MfTGqcNVJHMuI9javghhPwGNEBGXMA&index=9"
   watch_ocaml_org_video: null
 
 - slug: "slipshow"
@@ -67,7 +67,7 @@
       If you are reading this far into the abstract, I suspect you are going to FUN OCaml? Are you giving a talk? If so, consider (re)writing your presentation in Slipshow!
   links: []
   slides: "https://choum.net/panglesd/slides/funocaml.html"
-  youtube_video: null
+  youtube_video: "https://www.youtube.com/watch?v=5HMpiGKHu9A&list=PLP3MfTGqcNVJHMuI9javghhPwGNEBGXMA&index=6"
   watch_ocaml_org_video: null
 
 - slug: "compiler-hacking-101"
@@ -99,7 +99,7 @@
       Beyond tooling, we'll discuss how the community can anticipate changes in onboarding, documentation, and workflows to ensure OCaml thrives in an AI-driven future—while maintaining equal opportunity and access for all developers.
   links: []
   slides: null
-  youtube_video: null
+  youtube_video: "https://www.youtube.com/watch?v=BAvXqd0QeVM&list=PLP3MfTGqcNVJHMuI9javghhPwGNEBGXMA"
   watch_ocaml_org_video: null
 
 - slug: "production-grade-network-protocols"
@@ -110,7 +110,7 @@
       No info yet!
   links: []
   slides: "purely-functional-grpc-and-http2-with-ocaml.pdf"
-  youtube_video: null
+  youtube_video: "https://www.youtube.com/watch?v=exR5eWSQ_8o&list=PLP3MfTGqcNVJHMuI9javghhPwGNEBGXMA&index=4"
   watch_ocaml_org_video: null
 
 - slug: "from-ocaml-4-to-5"
@@ -121,7 +121,7 @@
       OCaml 5's support for shared memory parallelism and effects-based concurrency opens up new ways for developers to build new OCaml programs for modern hardware, but it isn't trivial to migrate existing software to this new world.  We've spent the last few months porting a large (~3MM LoC) OCaml codebase from process-based parallelism to multi-domain Eio, and learned a lot along the way.  In this talk, we'll discuss the fundamentals of shared-memory parallism, our incremental migration approach which used a combination of static and dynamic analysis, the pitfalls (both expected and unexpected) that we encountered along the way, and some lessons that others can adopt for their own journey.
   links: []
   slides: "from-ocaml-4-to-5.pdf"
-  youtube_video: null
+  youtube_video: "https://www.youtube.com/watch?v=zfGlQZ2pkss&list=PLP3MfTGqcNVJHMuI9javghhPwGNEBGXMA&index=10"
   watch_ocaml_org_video: null
 
 - slug: "vif-hurl-web-framework-for-ocaml-5"
@@ -160,7 +160,7 @@
       Semgrep is a tool that enables developers to search their code for security vulnerabilities, built with an OCaml engine and a Python frontend. This has come with a fair amount of performance pain. In this talk, I'll share some of the worst problems we ran into, how we found them, and how we solved them (mostly, rewriting Python code in OCaml).
   links: []
   slides: null
-  youtube_video: null
+  youtube_video: "https://www.youtube.com/watch?v=UfrryqltZUQ&list=PLP3MfTGqcNVJHMuI9javghhPwGNEBGXMA&index=8"
   watch_ocaml_org_video: null
 
 - slug: "i-can-see-the-pixels"
@@ -171,7 +171,7 @@
       I was unsatisfied with existing cross-stitch pattern generating software, which was mostly structured like pixel-based paint programs. Those programs with support for very common operations like tiling borders were locked behind paywalls. I decided to write my own in OCaml, and I've been using it to design cross-stitch patterns since 2019. I'll talk a bit about the joy of making the Exact Right Tool, the anguish of abandoned experiments, and the ambiguous pleasure of monetizing art.
   links: []
   slides: "cross-stitch.pdf"
-  youtube_video: null
+  youtube_video: "https://www.youtube.com/watch?v=Q2-qIrYzSXw&list=PLP3MfTGqcNVJHMuI9javghhPwGNEBGXMA&index=2"
   watch_ocaml_org_video: null
 
 - slug: "ocaml-at-lexifi"
@@ -182,7 +182,7 @@
       [LexiFi](https://www.lexifi.com/) is likely to have been the first real industrial user of OCaml, back when it was funded in 2000. In this talk, I will present some of the things we have learned along the way. Some of the points I will address: our technology stack (development environment, deployment and distribution, cloud infrastructure, etc), tooling, strong and weak points of OCaml, people aspects (hiring and training), etc. If there is time, I will also present one of our key technical innovations: extending the OCaml compiler with type reflection (this topic will be explored further in the dedicated Workshop).
   links: []
   slides: "ocaml-at-lexifi.pdf"
-  youtube_video: null
+  youtube_video: "https://www.youtube.com/watch?v=_uwvra1NFJg&list=PLP3MfTGqcNVJHMuI9javghhPwGNEBGXMA&index=1"
   watch_ocaml_org_video: null
 
 - slug: "mlx-melange-react-server-components"
@@ -220,5 +220,5 @@
       perfect fit for this kind of work.
   links: []
   slides: null
-  youtube_video: null
+  youtube_video: "https://www.youtube.com/watch?v=BL8bmtBfd7E&list=PLP3MfTGqcNVJHMuI9javghhPwGNEBGXMA&index=5"
   watch_ocaml_org_video: null
