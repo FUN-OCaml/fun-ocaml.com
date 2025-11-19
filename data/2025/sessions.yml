@@ -107,7 +107,7 @@
   speakers: ["adam"]
   kind: talk
   abstract: |
-      No info yet!
+      Let me present you a from-scratch, purely functional implementations of HTTP/2 and gRPC in OCaml - desined around Eio's effect-based concurrency and immutable internal state in mind for clean code and easy iterations. Motived by real-world memory leaks in high loads at Dialo, I rewrote the entire HTTP/2 implementation to satisfy the needs for streaming-based performance in gRPC. Let me show you how to design a network protocol's API the right way - the functional way!
   links: []
   slides: "purely-functional-grpc-and-http2-with-ocaml.pdf"
   youtube_video: null
