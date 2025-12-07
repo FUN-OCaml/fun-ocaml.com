@@ -6,11 +6,24 @@ let navigation_link ~href ~title =
 let navigation_button ~href ~title =
   <a class_="inline-flex font-montserrat text-white bg-primary_light px-4 py-2" href=(href)>(string title)</a>
 
+let social_link ~href ~label icon =
+  <a class_="text-gray-400 hover:text-white transition-colors" href=(href) target="_blank" rel="noopener noreferrer" aria_label=(label)>
+    (icon "w-6 h-6")
+  </a>
+
 let navigation children =
   <nav class_="bg-[#1A202C] overflow-hiddne max-w-screen text-white">
-    <div class_="md:container flex flex-col gap-2 items-start mx-auto py-2 lg:py-0 px-6 md:flex-row md:items-center">
-      <a class_="px-2 pt-3 hidden md:inline" href="/2024/#event"><img src="/2024/img/fun-ocaml-logo.svg"/></a>
-      (list children)
+    <div class_="md:container flex flex-col gap-4 items-start mx-auto py-4 lg:py-4 px-6 md:flex-row md:items-center md:justify-between">
+      <div class_="flex flex-col gap-2 items-start md:flex-row md:items-center">
+        <a class_="px-2 pt-3 hidden md:inline" href="/2024/#event"><img src="/2024/img/fun-ocaml-logo.svg"/></a>
+        (list children)
+      </div>
+      <div class_="flex items-center gap-4">
+        (social_link ~href:"https://bsky.app/profile/fun-ocaml.com" ~label:"FUN OCaml on Bluesky" Social_icons.bluesky)
+        (social_link ~href:"https://x.com/FunOCaml" ~label:"FUN OCaml on X" Social_icons.twitter)
+        (social_link ~href:"https://www.youtube.com/@FUNOCaml" ~label:"FUN OCaml on YouTube" Social_icons.youtube)
+        (social_link ~href:"https://watch.ocaml.org/c/funocaml/videos" ~label:"FUN OCaml on watch.ocaml.org" Social_icons.other)
+      </div>
     </div>
   </nav>
 
