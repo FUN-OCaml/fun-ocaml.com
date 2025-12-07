@@ -20,7 +20,7 @@
   links: []
   slides: null
   youtube_video: "https://www.youtube.com/watch?v=0Hwd7NxQ8_c&list=PLP3MfTGqcNVJHMuI9javghhPwGNEBGXMA&index=3"
-  watch_ocaml_org_video: null
+  watch_ocaml_org_video: "https://watch.ocaml.org/w/arLEkYE7NC4fdCcWz2LBLt"
 
 - slug: "oxcaml-system-engineers-pov"
   title: "0xCaml From a System Engineer's Point of View"
@@ -31,7 +31,7 @@
   links: []
   slides: null
   youtube_video: "https://www.youtube.com/watch?v=iQc5fHW5SZA&list=PLP3MfTGqcNVJHMuI9javghhPwGNEBGXMA&index=7"
-  watch_ocaml_org_video: null
+  watch_ocaml_org_video: "https://watch.ocaml.org/w/a1aMiaWYLXVxU2Yf3iGFFE"
 
 - slug: "reinforcement-learning-workshop"
   title: "Train a Reinforcement Learning Agent for the Box-Pushing Game Sokoban in OCANNL or Raven"
@@ -53,7 +53,7 @@
   links: []
   slides: "static-websites-functional-programming.pdf"
   youtube_video: "https://www.youtube.com/watch?v=rHGMD49eb_k&list=PLP3MfTGqcNVJHMuI9javghhPwGNEBGXMA&index=9"
-  watch_ocaml_org_video: null
+  watch_ocaml_org_video: "https://watch.ocaml.org/w/uSaQB8ejXBUdJGgUBfHCW8"
 
 - slug: "slipshow"
   title: "Slipshow: A Full-Featured Presentation Tool in OCaml"
@@ -68,7 +68,7 @@
   links: []
   slides: "https://choum.net/panglesd/slides/funocaml.html"
   youtube_video: "https://www.youtube.com/watch?v=5HMpiGKHu9A&list=PLP3MfTGqcNVJHMuI9javghhPwGNEBGXMA&index=6"
-  watch_ocaml_org_video: null
+  watch_ocaml_org_video: "https://watch.ocaml.org/w/2oY2gmi7Dtfgb58iv4Ww7J"
 
 - slug: "compiler-hacking-101"
   title: "Hacking the OCaml Compiler to Add Type Reflection"
@@ -100,7 +100,7 @@
   links: []
   slides: null
   youtube_video: "https://www.youtube.com/watch?v=BAvXqd0QeVM&list=PLP3MfTGqcNVJHMuI9javghhPwGNEBGXMA"
-  watch_ocaml_org_video: null
+  watch_ocaml_org_video: "https://watch.ocaml.org/w/oTv8j7T7eGrtHxpzaRe1LZ"
 
 - slug: "production-grade-network-protocols"
   title: "Purely functional gRPC and HTTP/2 with OCaml"
@@ -111,7 +111,7 @@
   links: []
   slides: "purely-functional-grpc-and-http2-with-ocaml.pdf"
   youtube_video: "https://www.youtube.com/watch?v=exR5eWSQ_8o&list=PLP3MfTGqcNVJHMuI9javghhPwGNEBGXMA&index=4"
-  watch_ocaml_org_video: null
+  watch_ocaml_org_video: "https://watch.ocaml.org/w/1crzn8PE9UGcyPErYE6QYd"
 
 - slug: "from-ocaml-4-to-5"
   title: "From OCaml 4 to 5 and from Parmap to Effects: A legacy code transition story"
@@ -122,7 +122,7 @@
   links: []
   slides: "from-ocaml-4-to-5.pdf"
   youtube_video: "https://www.youtube.com/watch?v=zfGlQZ2pkss&list=PLP3MfTGqcNVJHMuI9javghhPwGNEBGXMA&index=10"
-  watch_ocaml_org_video: null
+  watch_ocaml_org_video: "https://watch.ocaml.org/w/x5XKaNB7Z2zyaFQWPBU2ZL"
 
 - slug: "vif-hurl-web-framework-for-ocaml-5"
   title: "Vif & Hurl, a Web Framework for OCaml 5"
@@ -161,7 +161,7 @@
   links: []
   slides: null
   youtube_video: "https://www.youtube.com/watch?v=UfrryqltZUQ&list=PLP3MfTGqcNVJHMuI9javghhPwGNEBGXMA&index=8"
-  watch_ocaml_org_video: null
+  watch_ocaml_org_video: "https://watch.ocaml.org/w/4FDjm7yK4KsiXxN8fjV7ZW"
 
 - slug: "i-can-see-the-pixels"
   title: "I Can See The Pixels: Designing Cross-Stitch Patterns in OCaml"
@@ -172,7 +172,7 @@
   links: []
   slides: "cross-stitch.pdf"
   youtube_video: "https://www.youtube.com/watch?v=Q2-qIrYzSXw&list=PLP3MfTGqcNVJHMuI9javghhPwGNEBGXMA&index=2"
-  watch_ocaml_org_video: null
+  watch_ocaml_org_video: "https://watch.ocaml.org/w/ewpvKhPvKhrKmvQ35N42kx"
 
 - slug: "ocaml-at-lexifi"
   title: "OCaml at LexiFi"
@@ -183,7 +183,7 @@
   links: []
   slides: "ocaml-at-lexifi.pdf"
   youtube_video: "https://www.youtube.com/watch?v=_uwvra1NFJg&list=PLP3MfTGqcNVJHMuI9javghhPwGNEBGXMA&index=1"
-  watch_ocaml_org_video: null
+  watch_ocaml_org_video: "https://watch.ocaml.org/w/62JkXM1mcVRAjX6k4xwfVk"
 
 - slug: "mlx-melange-react-server-components"
   title: "mlx, Melange, React and Server Components"
@@ -221,4 +221,4 @@
   links: []
   slides: null
   youtube_video: "https://www.youtube.com/watch?v=BL8bmtBfd7E&list=PLP3MfTGqcNVJHMuI9javghhPwGNEBGXMA&index=5"
-  watch_ocaml_org_video: null
+  watch_ocaml_org_video: "https://watch.ocaml.org/w/aTPecM67BvKkb3fmdct4WB"
