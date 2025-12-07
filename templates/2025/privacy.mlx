@@ -127,7 +127,7 @@ Our legitimate interest follows from the data collection purposes described abov
     |> Cmarkit_html.of_doc ~safe:false
 
 let make () =
-  <Layout title=("Privacy Policy")>
+  <Layout title=("Privacy Policy") description="Privacy Policy for Fun OCaml Conference. Learn how we collect, use, and protect your information in accordance with GDPR.">
     ([
       top_navigation;
       <div class_="mx-auto container px-6 py-20 min-h-screen">

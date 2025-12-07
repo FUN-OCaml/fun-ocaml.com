@@ -119,6 +119,7 @@ module Sessions = struct
     slides : string option;
     youtube_video : string option;
     watch_ocaml_org_video : string option;
+    meta_description : string option; [@default None]
   }
   [@@deriving of_yaml]
 
@@ -130,11 +131,13 @@ module Sessions = struct
     title : string;
     speakers : People.t list;
     abstract : string;
+    abstract_plain : string;
     kind : kind;
     links : link list;
     slides : slide_source option;
     youtube_video : string option;
     watch_ocaml_org_video : string option;
+    meta_description : string option;
   }
 
   let of_metadata (m : metadata) : t =
@@ -146,6 +149,7 @@ module Sessions = struct
         m.abstract
         |> Cmarkit.Doc.of_string ~strict:true
         |> Cmarkit_html.of_doc ~safe:false;
+      abstract_plain = m.abstract;
       kind =
         (match m.kind with
         | "talk" -> Talk
@@ -162,6 +166,7 @@ module Sessions = struct
         | Some s -> Some (LocalFile s));
       youtube_video = m.youtube_video;
       watch_ocaml_org_video = m.watch_ocaml_org_video;
+      meta_description = m.meta_description;
     }
 
   let decode data =

@@ -15,8 +15,24 @@ let h2 ?(classes="") title =
 let tag ?(classes="") title =
    <div class_=(classes ^ " inline-flex font-montserrat text-white bg-primary_light px-4 py-2")>(string title)</div>
 
+let truncate_string max_len str =
+  let str = String.trim str in
+  if String.length str <= max_len then str
+  else
+    let truncated = String.sub str 0 max_len in
+    (* Try to cut at last space to avoid cutting words *)
+    match String.rindex_opt truncated ' ' with
+    | Some i when i > max_len - 30 -> String.sub truncated 0 i ^ "..."
+    | _ -> truncated ^ "..."
+
 let render (s: Data2025.Sessions.t) =
-  <Layout title=(s.title)>
+  let speaker_names = s.speakers |> List.map (fun (p: Data2025.People.t) -> p.name) |> String.concat ", " in
+  let description = match s.meta_description with
+    | Some d -> d
+    | None -> truncate_string 160 s.abstract_plain
+  in
+  let description = Printf.sprintf "%s by %s. %s" s.title speaker_names description in
+  <Layout title=(s.title) description=(description)>
     [
       top_navigation;
       <div class_="container mx-auto px-6 py-12">

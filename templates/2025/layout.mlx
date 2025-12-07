@@ -33,13 +33,14 @@ let email_link ~id ~user host =
     </script>
   ]
 
-let make ~title ~children () =
+let make ~title ?description:desc ~children () =
   let title = "Fun OCaml 2025: " ^ title in
+  let page_description = match desc with Some d -> d | None -> description in
   <html lang="en">
     <head>
       <meta charset="utf-8"/>
       <title>(string title)</title>
-      <meta name="description" content=(description)/>
+      <meta name="description" content=(page_description)/>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       
       (* Preload critical resources for LCP optimization *)
@@ -66,13 +67,13 @@ let make ~title ~children () =
       <meta name="theme-color" content="#ffffff"/>
 
       <meta property="og:title" content=(title)/>
-      <meta property="og:description" content=(description)/>
+      <meta property="og:description" content=(page_description)/>
       <meta property="og:image" content=(social_media_preview_src)/>
       <meta property="og:site_name" content=(title)/>
       <meta property="og:url" content="https://fun-ocaml.com"/>
       <meta name="twitter:card" content="summary_large_image"/>
       <meta name="twitter:title" content=(title)/>
-      <meta name="twitter:description" content=(description)/>
+      <meta name="twitter:description" content=(page_description)/>
       <meta name="twitter:image" content=(social_media_preview_src)/>
       (* <meta name="twitter:site" content="@fun_ocaml"> *)
       <script src="https://analytics.ahrefs.com/analytics.js" dataKey="INJ8YGRMW+NCMPy+IEhl+g" async=(true)></script>

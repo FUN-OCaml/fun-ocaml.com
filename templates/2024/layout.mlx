@@ -30,11 +30,15 @@ let email_link ~id ~user host =
     </script>
   ]
 
-let make ~title ~children () =
+let description = "Fun OCaml 2024 is a 2 days open source hacking event dedicated to OCaml enthusiasts and professionals around the globe! Let's get together for an exhilarating event packed with creativity, innovation, and learning!"
+
+let make ~title ?description:desc ~children () =
+  let page_description = match desc with Some d -> d | None -> description in
   <html lang="en">
     <head>
       <meta charset="utf-8"/>
       <title>(string title)</title>
+      <meta name="description" content=(page_description)/>
       <link rel="stylesheet" href="/css/main.css"/>
       <link rel="stylesheet" href="font-files/inter.css"/>
       <link rel="stylesheet" href="font-files/Montserrat.css"/>
@@ -49,13 +53,13 @@ let make ~title ~children () =
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
       <meta property="og:title" content="Fun OCaml 2024 - Berlin - September 16+17, 2024"/>
-      <meta property="og:description" content="Fun OCaml 2024 is a 2 days open source hacking event dedicated to OCaml enthusiasts and professionals around the globe! Let's get together for an exhilarating event packed with creativity, innovation, and learning!"/>
+      <meta property="og:description" content=(page_description)/>
       <meta property="og:image" content="https://fun-ocaml.com/2024/social-media-preview.png?1"/>
       <meta property="og:site_name" content="Fun OCaml 2024 - Berlin - September 16+17, 2024"/>
       <meta property="og:url" content="https://fun-ocaml.com"/>
       <meta name="twitter:card" content="summary_large_image"/>
       <meta name="twitter:title" content="Fun OCaml 2024 - Berlin - September 16+17, 2024"/>
-      <meta name="twitter:description" content="Fun OCaml 2024 is a 2 days open source hacking event dedicated to OCaml enthusiasts and professionals around the globe! Let's get together for an exhilarating event packed with creativity, innovation, and learning!"/>
+      <meta name="twitter:description" content=(page_description)/>
       <meta name="twitter:image" content="https://fun-ocaml.com/2024/social-media-preview.png?1"/>
       (* <meta name="twitter:site" content="@fun_ocaml"> *)
       <script src="https://analytics.ahrefs.com/analytics.js" dataKey="INJ8YGRMW+NCMPy+IEhl+g" async=(true)></script>
