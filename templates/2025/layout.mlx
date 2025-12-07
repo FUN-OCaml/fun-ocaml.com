@@ -45,18 +45,18 @@ let make ~title ?description:desc ~children () =
       
       (* Preload critical resources for LCP optimization *)
       <link rel="preload" href="/2025/img/hero-background.webp" as_="image" type_="image/webp"/>
-      <link rel="preload" href="font-files/Inter-Bold.woff2" as_="font" type_="font/woff2" crossorigin="anonymous"/>
-      <link rel="preload" href="font-files/Montserrat-Bold.woff2" as_="font" type_="font/woff2" crossorigin="anonymous"/>
+      <link rel="preload" href="/2025/font-files/Inter-Bold.woff2" as_="font" type_="font/woff2" crossorigin="anonymous"/>
+      <link rel="preload" href="/2025/font-files/Montserrat-Bold.woff2" as_="font" type_="font/woff2" crossorigin="anonymous"/>
       
       (* Async load CSS to avoid render blocking *)
       <link rel="preload" href="/css/main.css" as_="style" onload="this.onload=null;this.rel='stylesheet'"/>
       <noscript><link rel="stylesheet" href="/css/main.css"/></noscript>
       
-      <link rel="preload" href="font-files/inter.css" as_="style" onload="this.onload=null;this.rel='stylesheet'"/>
-      <noscript><link rel="stylesheet" href="font-files/inter.css"/></noscript>
+      <link rel="preload" href="/2025/font-files/inter.css" as_="style" onload="this.onload=null;this.rel='stylesheet'"/>
+      <noscript><link rel="stylesheet" href="/2025/font-files/inter.css"/></noscript>
       
-      <link rel="preload" href="font-files/Montserrat.css" as_="style" onload="this.onload=null;this.rel='stylesheet'"/>
-      <noscript><link rel="stylesheet" href="font-files/Montserrat.css"/></noscript>
+      <link rel="preload" href="/2025/font-files/Montserrat.css" as_="style" onload="this.onload=null;this.rel='stylesheet'"/>
+      <noscript><link rel="stylesheet" href="/2025/font-files/Montserrat.css"/></noscript>
 
       <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
       <link rel="icon" type_="image/png" sizes="32x32" href="/favicon-32x32.png"/>

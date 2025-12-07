@@ -40,8 +40,8 @@ let make ~title ?description:desc ~children () =
       <title>(string title)</title>
       <meta name="description" content=(page_description)/>
       <link rel="stylesheet" href="/css/main.css"/>
-      <link rel="stylesheet" href="font-files/inter.css"/>
-      <link rel="stylesheet" href="font-files/Montserrat.css"/>
+      <link rel="stylesheet" href="/2024/font-files/inter.css"/>
+      <link rel="stylesheet" href="/2024/font-files/Montserrat.css"/>
 
       <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
       <link rel="icon" type_="image/png" sizes="32x32" href="/favicon-32x32.png"/>
