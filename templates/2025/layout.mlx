@@ -4,7 +4,7 @@ let description = "Fun OCaml 2025 is a 2 days open source hacking event dedicate
 let social_media_preview_src = "https://fun-ocaml.com/2025/social-media-preview.png?1"
 
 let navigation_link ~href ~title =
-  <a class_="px-4 h-full items-center hover:text-primary_dark" href=(href)>(string title)</a>
+  <a class_="px-4 py-2 lg:py-0 h-full items-center hover:text-primary_dark block" href=(href)>(string title)</a>
 
 let navigation_button ~href ~title =
   <a class_="inline-flex font-montserrat text-white bg-primary_light px-4 py-2" href=(href)>(string title)</a>
@@ -14,20 +14,94 @@ let social_link ~href ~label icon =
     (icon "w-6 h-6")
   </a>
 
+let social_links =
+  list [
+    social_link ~href:"https://bsky.app/profile/fun-ocaml.com" ~label:"FUN OCaml on Bluesky" Social_icons.bluesky;
+    social_link ~href:"https://x.com/FunOCaml" ~label:"FUN OCaml on X" Social_icons.twitter;
+    social_link ~href:"https://www.youtube.com/@FUNOCaml" ~label:"FUN OCaml on YouTube" Social_icons.youtube;
+    social_link ~href:"https://watch.ocaml.org/c/funocaml/videos" ~label:"FUN OCaml on watch.ocaml.org" Social_icons.other;
+  ]
+
+let hamburger_icon =
+  <svg class_="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+  </svg>
+
+let close_icon =
+  <svg class_="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+  </svg>
+
+let mobile_nav_script =
+  <script>
+    ({|
+      (function() {
+        const toggle = document.getElementById('mobile-nav-toggle');
+        const menu = document.getElementById('mobile-nav-menu');
+        const openIcon = document.getElementById('mobile-nav-open');
+        const closeIcon = document.getElementById('mobile-nav-close');
+        
+        if (toggle && menu) {
+          toggle.addEventListener('click', function() {
+            const isOpen = menu.classList.contains('hidden');
+            menu.classList.toggle('hidden');
+            openIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+          });
+          
+          // Close menu when clicking a link
+          menu.querySelectorAll('a').forEach(function(link) {
+            link.addEventListener('click', function() {
+              menu.classList.add('hidden');
+              openIcon.classList.remove('hidden');
+              closeIcon.classList.add('hidden');
+            });
+          });
+        }
+      })();
+    |} |> unsafe)
+  </script>
+
 let navigation children =
-  <nav class_="bg-[#1A202C] overflow-hiddne max-w-screen text-white">
-    <div class_="md:container flex flex-col gap-4 items-start mx-auto py-4 lg:py-4 px-6 md:flex-row md:items-center md:justify-between">
-      <div class_="flex flex-col gap-2 items-start md:flex-row md:items-center">
-        <a class_="px-2 pt-3 hidden md:inline" href="/#event"><img src="/2025/img/fun-ocaml-logo.svg" alt="Fun OCaml Logo" width="120" height="50"/></a>
-        (list children)
+  <nav class_="bg-[#1A202C] overflow-hidden max-w-screen text-white">
+    <div class_="container mx-auto px-6">
+      (* Desktop navigation *)
+      <div class_="hidden lg:flex items-center justify-between py-4">
+        <div class_="flex items-center">
+          <a class_="px-2 pt-3" href="/#event">
+            <img src="/2025/img/fun-ocaml-logo.svg" alt="Fun OCaml Logo" width="120" height="50"/>
+          </a>
+          (list children)
+        </div>
+        <div class_="flex items-center gap-4">
+          (social_links)
+        </div>
       </div>
-      <div class_="flex items-center gap-4">
-        (social_link ~href:"https://bsky.app/profile/fun-ocaml.com" ~label:"FUN OCaml on Bluesky" Social_icons.bluesky)
-        (social_link ~href:"https://x.com/FunOCaml" ~label:"FUN OCaml on X" Social_icons.twitter)
-        (social_link ~href:"https://www.youtube.com/@FUNOCaml" ~label:"FUN OCaml on YouTube" Social_icons.youtube)
-        (social_link ~href:"https://watch.ocaml.org/c/funocaml/videos" ~label:"FUN OCaml on watch.ocaml.org" Social_icons.other)
+
+      (* Mobile navigation *)
+      <div class_="lg:hidden">
+        <div class_="flex items-center justify-between py-4">
+          <a href="/#event">
+            <img src="/2025/img/fun-ocaml-logo.svg" alt="Fun OCaml Logo" width="100" height="42"/>
+          </a>
+          <button id="mobile-nav-toggle" class_="p-2 text-white hover:text-primary_dark focus:outline-none" aria_label="Toggle navigation menu">
+            <span id="mobile-nav-open">(hamburger_icon)</span>
+            <span id="mobile-nav-close" class_="hidden">(close_icon)</span>
+          </button>
+        </div>
+
+        (* Mobile menu dropdown *)
+        <div id="mobile-nav-menu" class_="hidden pb-4">
+          <div class_="flex flex-col border-t border-gray-700 pt-4">
+            (list children)
+          </div>
+          <div class_="flex items-center gap-4 mt-4 pt-4 border-t border-gray-700">
+            (social_links)
+          </div>
+        </div>
       </div>
     </div>
+    (mobile_nav_script)
   </nav>
 
 let email_link ~id ~user host =
