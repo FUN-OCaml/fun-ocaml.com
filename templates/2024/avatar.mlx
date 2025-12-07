@@ -39,7 +39,7 @@ let render_social (social: Data2024.People.social) =
 
 let render ?tag_title (person : Data2024.People.t) =
   <div class_="flex flex-col items-center text-lg">
-    <img class_="bg-[#666] rounded-full w-48 h-48 object-cover" src=(person.img_src) alt=""/>
+    <img class_="bg-[#666] rounded-full w-48 h-48 object-cover" src=(person.img_src) alt=(person.name)/>
     (match tag_title with | Some tag_title -> tag ~classes:"px-4 mt-4" tag_title | None -> JSX.null)
     (<div class_="font-bold mt-2">(string person.name)</div>)
     (<div class_="">(string person.affiliation)</div>)
