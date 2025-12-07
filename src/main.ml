@@ -48,10 +48,47 @@ let render_privacy_policy () =
     Printf.printf "Error rendering privacy policy: %s\n" (Printexc.to_string e);
     raise e
 
+let base_url = "https://fun-ocaml.com"
+
+let render_sitemap () =
+  try
+    let urls =
+      (* Static pages *)
+      [ "/"; "/2024/"; "/2025/"; "/privacy/" ]
+      (* 2024 session pages *)
+      @ List.map
+          (fun (s : Data2024.Sessions.t) -> "/2024/" ^ s.slug ^ "/")
+          Data2024.Sessions.all
+      (* 2025 session pages *)
+      @ List.map
+          (fun (s : Data2025.Sessions.t) -> "/2025/" ^ s.slug ^ "/")
+          Data2025.Sessions.all
+    in
+    let xml_urls =
+      urls
+      |> List.map (fun path ->
+             Printf.sprintf "  <url>\n    <loc>%s%s</loc>\n  </url>" base_url
+               path)
+      |> String.concat "\n"
+    in
+    let sitemap =
+      Printf.sprintf
+        {|<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+%s
+</urlset>|}
+        xml_urls
+    in
+    write_file "output/sitemap.xml" sitemap
+  with e ->
+    Printf.printf "Error rendering sitemap: %s\n" (Printexc.to_string e);
+    raise e
+
 let () =
   try
     render_homepage ();
     render_privacy_policy ();
+    render_sitemap ();
     Data2024.Sessions.all
     |> List.iter (fun (s : Data2024.Sessions.t) -> render_session_page s);
     Data2025.Sessions.all
