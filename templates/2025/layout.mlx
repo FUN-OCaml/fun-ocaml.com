@@ -146,8 +146,8 @@ let make ~title ?description:desc ~children () =
       
       (* Preload critical resources for LCP optimization *)
       <link rel="preload" href="/2025/img/hero-background.webp" as_="image" type_="image/webp"/>
-      <link rel="preload" href="/2025/font-files/Inter-Bold.woff2" as_="font" type_="font/woff2" crossorigin="anonymous"/>
-      <link rel="preload" href="/2025/font-files/Montserrat-Bold.woff2" as_="font" type_="font/woff2" crossorigin="anonymous"/>
+      (* Only preload the most critical font - Inter variable font for body text *)
+      <link rel="preload" href="/2025/font-files/Inter-roman.var.woff2" as_="font" type_="font/woff2" crossorigin="anonymous"/>
       
       (* Async load CSS to avoid render blocking *)
       <link rel="preload" href="/css/main.css" as_="style" onload="this.onload=null;this.rel='stylesheet'"/>
@@ -177,7 +177,8 @@ let make ~title ?description:desc ~children () =
       <meta name="twitter:description" content=(page_description)/>
       <meta name="twitter:image" content=(social_media_preview_src)/>
       (* <meta name="twitter:site" content="@fun_ocaml"> *)
-      <script src="https://analytics.ahrefs.com/analytics.js" dataKey="INJ8YGRMW+NCMPy+IEhl+g" async=(true)></script>
+      (* Load analytics with defer for better performance *)
+      <script src="https://analytics.ahrefs.com/analytics.js" dataKey="INJ8YGRMW+NCMPy+IEhl+g" defer=(true)></script>
     </head>
     <body>
       (navigation [
