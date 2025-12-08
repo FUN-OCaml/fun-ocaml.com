@@ -82,7 +82,7 @@ let navigation children =
       <div class_="lg:hidden">
         <div class_="flex items-center justify-between py-4">
           <a href="/#event">
-            <img src="/2025/img/fun-ocaml-logo.svg" alt="Fun OCaml Logo" width="100" height="42"/>
+            <img src="/2025/img/fun-ocaml-logo.svg" alt="Fun OCaml Logo" width="140" height="58"/>
           </a>
           <button id="mobile-nav-toggle" class_="p-2 text-white hover:text-primary_dark focus:outline-none" aria_label="Toggle navigation menu">
             <span id="mobile-nav-open">(hamburger_icon)</span>
@@ -119,6 +119,20 @@ let email_link ~id ~user host =
   |} user host id |> unsafe)
     </script>
   ]
+
+let footer children =
+  <footer class_="bg-[#1A202C] text-white">
+    <div class_="container mx-auto px-6 py-4">
+      <div class_="flex flex-col gap-4 items-start md:flex-row md:items-center md:justify-between">
+        <div class_="flex flex-col gap-2 items-start md:flex-row md:items-center">
+          (list children)
+        </div>
+        <div class_="flex items-center gap-4">
+          (social_links)
+        </div>
+      </div>
+    </div>
+  </footer>
 
 let make ~title ?description:desc ~children () =
   let title = "Fun OCaml 2025: " ^ title in
@@ -166,10 +180,17 @@ let make ~title ?description:desc ~children () =
       <script src="https://analytics.ahrefs.com/analytics.js" dataKey="INJ8YGRMW+NCMPy+IEhl+g" async=(true)></script>
     </head>
     <body>
+      (navigation [
+        navigation_link ~href:"/#event" ~title:"Event";
+        navigation_link ~href:"/#about" ~title:"About";
+        navigation_link ~href:"/#schedule" ~title:"Schedule";
+        navigation_link ~href:"/#venue" ~title:"Venue";
+        navigation_link ~href:"/#sponsors" ~title:"Sponsors"
+      ])
       <main>
         (list children)
       </main>
-      (navigation [
+      (footer [
         navigation_link ~href:"/privacy" ~title:"Privacy Policy";
         navigation_link ~href:"/2024" ~title:"FUN OCaml 2024"
       ])

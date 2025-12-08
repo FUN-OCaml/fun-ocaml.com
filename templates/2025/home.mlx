@@ -7,15 +7,7 @@ let discord_url = "https://discord.gg/B9cM6DSWVW"
 
 let registration_url = "https://tickets.fun-ocaml.com/fun-ocaml/2025/"
 
-let top_navigation =
-  Layout.navigation [
-      Layout.navigation_link ~href:"#program" ~title:"Program";
-      (*Layout.navigation_link ~href:"#speakers" ~title:"Speakers";*)
-      Layout.navigation_link ~href:"#schedule" ~title:"Schedule";
-      Layout.navigation_link ~href:"#venue" ~title:"Venue";
-      Layout.navigation_link ~href:"#sponsors" ~title:"Sponsors";
-      Layout.navigation_link ~href:"#organizers" ~title:"Organizers";
-  ]
+
 
 let button ?(classes="") ~href title =
   <a class_=("inline-block bg-gradient-to-r from-primary_dark to-primary_light hover:from-black hover:to-black text-white font-semibold px-8 py-3 rounded-full " ^ classes)
@@ -361,7 +353,6 @@ let recommended_events_section =
 let make () =
   <Layout title=("Warsaw - September 15+16, 2025")>
     ([
-     top_navigation;
      hero_section;
      list program_section;
      community_section;
