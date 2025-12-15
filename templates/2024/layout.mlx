@@ -43,7 +43,7 @@ let email_link ~id ~user host =
     </script>
   ]
 
-let description = "Fun OCaml 2024 was a 2-day open source hacking event for OCaml enthusiasts worldwide. Talks, workshops, and collaboration in Berlin."
+let description = "FUN OCaml 2024 was a 2-day open source OCaml conference in Berlin with talks, workshops, and collaborative hacking. Watch talk recordings and explore session materials."
 
 let make ~title ?description:desc ?canonical:canon ~children () =
   let page_description = match desc with Some d -> d | None -> description in

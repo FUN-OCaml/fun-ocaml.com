@@ -1,0 +1,218 @@
+open JSX
+
+let make () =
+  <Layout title=("About FUN OCaml: Open Source OCaml Conference") canonical=("https://fun-ocaml.com/about/") 
+    description=("Learn about FUN OCaml, the premier open source OCaml conference featuring workshops, talks, and collaborative hacking for functional programming enthusiasts worldwide.")>
+    ([
+      <nav class_="bg-[#1A202C] overflow-hidden max-w-screen text-white">
+        <div class_="container mx-auto px-6 py-4">
+          <a class_="text-white hover:text-primary_dark" href="/">(string "← Back to Conference")</a>
+        </div>
+      </nav>;
+      
+      <div class_="container mx-auto px-6 py-20">
+        <div class_="max-w-4xl mx-auto">
+          <h1 class_="font-bold text-5xl text-primary_light mb-8">(string "About FUN OCaml")</h1>
+          
+          <div class_="prose prose-lg max-w-none">
+            (unsafe {|
+<h2>The Premier OCaml Conference for Open Source Developers</h2>
+
+<p>FUN OCaml is an annual <strong>functional programming conference</strong> dedicated to the <strong>OCaml programming language</strong> and its thriving ecosystem. Since our inception, we've brought together developers, researchers, and enthusiasts from around the globe to celebrate the power of type-safe, functional programming.</p>
+
+<h2>Why Attend FUN OCaml?</h2>
+
+<p>FUN OCaml stands out as <strong>the conference for OCaml developers</strong> who want to deepen their expertise, contribute to open source, and connect with the community. Whether you're building production systems, exploring cutting-edge research, or just getting started with functional programming, FUN OCaml offers something unique:</p>
+
+<h3>1. Hands-On Workshops</h3>
+<p>Learn directly from experts in functional programming through intensive, practical workshops. Our sessions cover everything from beginner-friendly introductions to advanced topics like:</p>
+<ul>
+  <li><strong>Effect Systems</strong> in OCaml 5</li>
+  <li><strong>Multicore Programming</strong> and parallelism</li>
+  <li><strong>Machine Learning and AI</strong> with OCaml</li>
+  <li><strong>Type-Level Programming</strong> with GADTs and advanced type features</li>
+  <li><strong>Web Development</strong> using modern OCaml frameworks</li>
+  <li><strong>Systems Programming</strong> and performance optimization</li>
+</ul>
+
+<h3>2. Production Use Cases</h3>
+<p>Discover how companies worldwide use OCaml for mission-critical applications:</p>
+<ul>
+  <li>Financial technology and trading systems</li>
+  <li>Static analysis and security tools</li>
+  <li>Compilers and programming language implementation</li>
+  <li>High-performance web services</li>
+  <li>Infrastructure and cloud systems</li>
+</ul>
+
+<h3>3. Open Source Collaboration</h3>
+<p>FUN OCaml dedicates significant time to <strong>collaborative open source hacking</strong>. Work alongside maintainers and contributors on popular OCaml projects, understand internals, and make meaningful contributions to the ecosystem.</p>
+
+<h3>4. Community Building</h3>
+<p>Network with fellow <strong>functional programming enthusiasts</strong>, OCaml developers, and industry professionals. Our relaxed, inclusive atmosphere encourages knowledge sharing and lasting connections.</p>
+
+<h2>What Makes OCaml Special?</h2>
+
+<p>OCaml is a <strong>functional programming language</strong> that combines:</p>
+<ul>
+  <li><strong>Type Safety</strong>: A powerful static type system that catches errors at compile time</li>
+  <li><strong>Performance</strong>: Native code compilation delivering speed comparable to C/C++</li>
+  <li><strong>Expressiveness</strong>: Elegant syntax and abstractions for complex problems</li>
+  <li><strong>Reliability</strong>: Used in production by companies like Jane Street, Facebook, and Bloomberg</li>
+  <li><strong>Modern Features</strong>: Effects-based concurrency, multicore support, and a growing ecosystem</li>
+</ul>
+
+<h2>Topics Covered at FUN OCaml</h2>
+
+<p>Our <strong>conference program</strong> features talks and workshops covering the full spectrum of OCaml development:</p>
+
+<h3>Type Systems & Type Safety</h3>
+<ul>
+  <li>GADTs (Generalized Algebraic Data Types)</li>
+  <li>Type reflection and metaprogramming</li>
+  <li>Advanced type engineering</li>
+  <li>Type-driven development</li>
+</ul>
+
+<h3>Concurrency & Parallelism</h3>
+<ul>
+  <li>OCaml 5 effects and algebraic effects</li>
+  <li>Multicore programming patterns</li>
+  <li>Async systems and Eio</li>
+  <li>Performance optimization</li>
+</ul>
+
+<h3>Web Development</h3>
+<ul>
+  <li>Full-stack OCaml with Melange and js_of_ocaml</li>
+  <li>Dream and modern web frameworks</li>
+  <li>React integration</li>
+  <li>Server-side rendering</li>
+</ul>
+
+<h3>Systems Programming</h3>
+<ul>
+  <li>Low-level OCaml and FFI (Foreign Function Interface)</li>
+  <li>Performance profiling and optimization</li>
+  <li>Memory management</li>
+  <li>OS development with MirageOS</li>
+</ul>
+
+<h3>Tooling & Developer Experience</h3>
+<ul>
+  <li>Dune build system</li>
+  <li>OCaml Platform tools</li>
+  <li>LSP (Language Server Protocol)</li>
+  <li>Development workflows and best practices</li>
+</ul>
+
+<h3>Machine Learning & Scientific Computing</h3>
+<ul>
+  <li>Neural networks in OCaml</li>
+  <li>Tensor operations and automatic differentiation</li>
+  <li>Scientific computing libraries</li>
+  <li>Reinforcement learning</li>
+</ul>
+
+<h2>Our Format: Learn, Build, Connect</h2>
+
+<p>FUN OCaml follows a unique <strong>2-day format</strong> designed to maximize learning and collaboration:</p>
+
+<h3>Day 1: Talks & Keynotes</h3>
+<ul>
+  <li>Morning keynote from industry leaders</li>
+  <li>Technical talks from experts</li>
+  <li>Lightning talks and demos</li>
+  <li>Evening: Social time and informal hacking</li>
+</ul>
+
+<h3>Day 2: Workshops & Hacking</h3>
+<ul>
+  <li>Parallel workshop tracks</li>
+  <li>Hands-on coding sessions</li>
+  <li>Open source contribution time</li>
+  <li>Project collaboration</li>
+</ul>
+
+<h2>Who Should Attend?</h2>
+
+<p>FUN OCaml welcomes everyone interested in OCaml and functional programming:</p>
+<ul>
+  <li><strong>Beginners</strong>: Learn OCaml from scratch in beginner-friendly workshops</li>
+  <li><strong>Intermediate Developers</strong>: Deepen your knowledge of advanced OCaml features</li>
+  <li><strong>Experts</strong>: Share your experience, contribute to projects, and shape the future of OCaml</li>
+  <li><strong>Researchers</strong>: Explore academic work and collaborate on research projects</li>
+  <li><strong>Industry Professionals</strong>: Learn about production use cases and best practices</li>
+</ul>
+
+<h2>Free and Open to All</h2>
+
+<p>FUN OCaml is <strong>free to attend</strong> with registration. We believe in making functional programming education and community accessible to everyone. All talks are live-streamed and recorded, with videos published on our YouTube channel and watch.ocaml.org.</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>What is functional programming?</h3>
+<p>Functional programming is a programming paradigm that treats computation as the evaluation of mathematical functions and avoids changing state and mutable data. Languages like OCaml, Haskell, and F# emphasize pure functions, immutability, and powerful type systems.</p>
+
+<h3>Why should I learn OCaml?</h3>
+<p>OCaml offers a unique combination of practical benefits:</p>
+<ul>
+  <li>Strong type safety prevents entire classes of bugs</li>
+  <li>Performance comparable to C/C++ through native compilation</li>
+  <li>Elegant syntax that makes complex code readable</li>
+  <li>Production-proven in finance, tech, and research</li>
+  <li>Growing ecosystem with modern tooling</li>
+  <li>Excellent for compiler development, static analysis, and more</li>
+</ul>
+
+<h3>Is FUN OCaml suitable for beginners?</h3>
+<p>Absolutely! We offer beginner-friendly workshops and talks designed for those new to OCaml or functional programming. Many attendees use FUN OCaml as their entry point into the language.</p>
+
+<h3>What's the difference between OCaml and other functional languages?</h3>
+<p>While languages like Haskell and Elixir are also functional, OCaml stands out for:</p>
+<ul>
+  <li>Strict evaluation by default (easier to reason about performance)</li>
+  <li>Excellent C interoperability</li>
+  <li>Mature ecosystem for production use</li>
+  <li>Balance between functional purity and pragmatism</li>
+  <li>State-of-the-art type inference</li>
+</ul>
+
+<h3>How much does FUN OCaml cost?</h3>
+<p>FUN OCaml is <strong>completely free</strong> to attend. We only ask that you register to help us plan for capacity and catering.</p>
+
+<h3>Can I watch remotely?</h3>
+<p>Yes! All talks are live-streamed, and recordings are published shortly after the conference. However, workshops and hacking sessions are in-person only for the best collaborative experience.</p>
+
+<h3>How can I submit a talk or workshop proposal?</h3>
+<p>We open our Call for Proposals (CFP) several months before each conference. Watch our website and social media for announcements. We welcome proposals from speakers of all experience levels.</p>
+
+<h2>Past Conferences</h2>
+
+<p>Explore our previous conferences to see the quality of content and community:</p>
+<ul>
+  <li><a href="/2024/">FUN OCaml 2024 - Berlin</a>: Featuring talks on OCaml 5, multicore programming, and production use cases</li>
+  <li><a href="/2025/">FUN OCaml 2025 - Warsaw</a>: Upcoming conference with expanded workshop tracks</li>
+</ul>
+
+<h2>Join the Community</h2>
+
+<p>Stay connected with the FUN OCaml community year-round:</p>
+<ul>
+  <li><a href="https://discord.gg/B9cM6DSWVW" target="_blank">Join our Discord</a> for discussions and announcements</li>
+  <li>Follow us on <a href="https://x.com/FunOCaml" target="_blank">X/Twitter</a> and <a href="https://bsky.app/profile/fun-ocaml.com" target="_blank">Bluesky</a></li>
+  <li>Subscribe to our <a href="https://www.youtube.com/@FUNOCaml" target="_blank">YouTube channel</a> for talk recordings</li>
+  <li>Watch videos on <a href="https://watch.ocaml.org/c/funocaml/videos" target="_blank">watch.ocaml.org</a></li>
+</ul>
+
+<h2>Get Involved</h2>
+
+<p>FUN OCaml is organized by community volunteers passionate about OCaml and functional programming. If you'd like to help organize future events, sponsor the conference, or contribute in other ways, please reach out to our organizing team.</p>
+
+<p class="mt-8"><a href="/" class="inline-block bg-gradient-to-r from-primary_dark to-primary_light hover:from-black hover:to-black text-white font-semibold px-8 py-3 rounded-full">Register for FUN OCaml 2025</a></p>
+            |})
+          </div>
+        </div>
+      </div>
+    ])
+  </Layout>

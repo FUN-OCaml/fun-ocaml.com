@@ -1,0 +1,14 @@
+# Blog posts for FUN OCaml
+# Add new posts here - they will be displayed in chronological order (newest first)
+
+# Example post structure:
+# - slug: "getting-started-with-ocaml"
+#   title: "Getting Started with OCaml: A Functional Programming Guide"
+#   author: "Your Name"
+#   date: "2025-01-15"
+#   excerpt: "A beginner-friendly introduction to OCaml and functional programming concepts."
+#   content: |
+#     Full markdown content goes here...
+#   tags: ["ocaml", "tutorial", "functional-programming"]
+
+# Placeholder - add your first blog post here!

@@ -27,15 +27,17 @@ let hero_section =
   <div id="event" class_="relative bg-[#1A202C] py-60">
     <picture>
       <source srcset="/2025/img/hero-background.webp" type_="image/webp"/>
-      <img src="/2025/img/hero-background.jpg" alt="" class_="absolute inset-0 w-full h-full object-cover" width="1535" height="940"/>
+      <img src="/2025/img/hero-background.jpg" alt="FUN OCaml 2025 conference venue in Warsaw - Digital Knowledge Village interior" class_="absolute inset-0 w-full h-full object-cover" width="1535" height="940"/>
     </picture>
     <div class_="container mx-auto px-6 relative z-10">
-      <h1 class_="font-montserrat font-regular text-7xl text-white">(list [
+      <h1 class_="font-montserrat font-regular text-5xl lg:text-7xl text-white">(list [
         string "FUN ";
-        <span class_="text-primary_dark">(string "OCaml")</span>
+        <span class_="text-primary_dark">(string "OCaml")</span>;
+        string " 2025"
       ])
       </h1>
-      <div class_="mt-6 text-7xl font-bold text-white font-montserrat">(string "WARSAW")</div>
+      <div class_="mt-2 text-2xl lg:text-3xl text-white font-montserrat">(string "Conference & Workshops")</div>
+      <div class_="mt-4 text-5xl lg:text-7xl font-bold text-white font-montserrat">(string "WARSAW")</div>
       (tag ~classes:"text-3xl mt-6" "September 15 & 16, 2025")
 
       <a class_="flex items-center gap-2 text-white underline hover:no-underline text-xl mt-6" href=(registration_url)>
@@ -64,7 +66,7 @@ let program_section =
       <div class_="">
         <picture>
           <source srcset="/2025/img/venue1.webp" type_="image/webp"/>
-          <img class_="w-full" src="/2025/img/venue1.jpg" alt="Digital Knowledge Village venue interior" width="800" height="600"/>
+          <img class_="w-full" src="/2025/img/venue1.jpg" alt="FUN OCaml 2025 conference and workshop venue - Digital Knowledge Village Warsaw" width="800" height="600"/>
         </picture>
       </div>
       <div class_="prose prose-xl">
@@ -148,7 +150,7 @@ let community_section =
 
 let avatar_maybe_you ~title ~subtitle =
   <div class_="flex flex-col items-center text-lg">
-    <img class_="rounded-full w-48" src="/2025/img/maybe-you.svg" alt="Your photo here" width="192" height="192"/>
+        <img class_="rounded-full w-48" src="/2025/img/maybe-you.svg" alt="Submit your OCaml workshop or talk proposal for FUN OCaml 2025" width="192" height="192"/>
     (<div class_="font-bold mt-2">(string title)</div>)
     (<div class_="">(string subtitle)</div>)
     (button ~classes:"mt-4" ~href:cfp_url "Submit your Proposal")
@@ -258,7 +260,7 @@ let venue_section =
   <div id="venue" class_="relative bg-center bg-cover items-center py-32">
     <picture>
       <source srcset="/2025/img/venue2.webp" type_="image/webp"/>
-      <img src="/2025/img/venue2.jpg" alt="" class_="absolute inset-0 w-full h-full object-cover" width="1200" height="800"/>
+      <img src="/2025/img/venue2.jpg" alt="OCaml conference venue Digital Knowledge Village - modern coworking space in Warsaw" class_="absolute inset-0 w-full h-full object-cover" width="1200" height="800"/>
     </picture>
     <div class_="max-w-full w-96 bg-white border-primary_dark border-4 mx-auto px-12 py-6 relative z-10">
       (h2 "Venue")
@@ -351,7 +353,7 @@ let recommended_events_section =
   </div>
 
 let make () =
-  <Layout title=("Warsaw - September 15+16, 2025") canonical=("https://fun-ocaml.com/")>
+  <Layout title=("FUN OCaml 2025: OCaml Conference & Workshops | Warsaw Sept 15-16") canonical=("https://fun-ocaml.com/") include_event_schema=(true)>
     ([
      hero_section;
      list program_section;

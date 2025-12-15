@@ -1,6 +1,7 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "FUN OCaml Conference - Open Source OCaml Workshops & Talks",
+    "short_name": "FUN OCaml",
+    "description": "Annual OCaml conference featuring workshops, talks, and collaborative open source hacking",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
@@ -15,5 +16,7 @@
     ],
     "theme_color": "#ffffff",
     "background_color": "#ffffff",
-    "display": "standalone"
+    "display": "standalone",
+    "start_url": "/",
+    "scope": "/"
 }

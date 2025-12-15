@@ -1,6 +1,6 @@
 open JSX
 
-let description = "Fun OCaml 2025 was a 2-day open source hacking event for OCaml enthusiasts worldwide. Talks, workshops, and collaboration in Warsaw."
+let description = "Join FUN OCaml 2025: a 2-day open source OCaml conference in Warsaw with talks, hands-on workshops, and collaborative hacking. Free registration for OCaml developers worldwide."
 let social_media_preview_src = "https://fun-ocaml.com/2025/social-media-preview.png?1"
 
 let navigation_link ~href ~title =
@@ -59,6 +59,63 @@ let mobile_nav_script =
           });
         }
       })();
+    |} |> unsafe)
+  </script>
+
+let event_schema_script =
+  <script type_="application/ld+json">
+    ({|
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "FUN OCaml 2025",
+  "description": "A 2-day open source OCaml conference featuring talks, hands-on workshops, and collaborative hacking for OCaml developers worldwide",
+  "startDate": "2025-09-15T09:00:00+02:00",
+  "endDate": "2025-09-16T22:00:00+02:00",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": {
+    "@type": "Place",
+    "name": "Digital Knowledge Village",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "457 Puławska St.",
+      "addressLocality": "Warsaw",
+      "postalCode": "02-844",
+      "addressCountry": "PL"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "52.1803",
+      "longitude": "21.0330"
+    }
+  },
+  "image": [
+    "https://fun-ocaml.com/2025/social-media-preview.png",
+    "https://fun-ocaml.com/2025/img/hero-background.jpg",
+    "https://fun-ocaml.com/2025/img/venue1.jpg"
+  ],
+  "organizer": {
+    "@type": "Organization",
+    "name": "FUN OCaml",
+    "url": "https://fun-ocaml.com",
+    "logo": "https://fun-ocaml.com/2025/img/fun-ocaml-logo.svg"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock",
+    "url": "https://tickets.fun-ocaml.com/fun-ocaml/2025/",
+    "validFrom": "2024-12-01T00:00:00+01:00"
+  },
+  "performer": {
+    "@type": "Organization",
+    "name": "FUN OCaml Community"
+  },
+  "url": "https://fun-ocaml.com",
+  "keywords": "OCaml, functional programming, conference, workshop, open source, programming languages, type safety, Warsaw"
+}
     |} |> unsafe)
   </script>
 
@@ -134,7 +191,7 @@ let footer children =
     </div>
   </footer>
 
-let make ~title ?description:desc ?canonical:canon ~children () =
+let make ~title ?description:desc ?canonical:canon ?(include_event_schema=false) ~children () =
   let title = title ^ " - Fun OCaml 2025" in
   let page_description = match desc with Some d -> d | None -> description in
   <html lang="en">
@@ -178,13 +235,17 @@ let make ~title ?description:desc ?canonical:canon ~children () =
       <meta name="twitter:description" content=(page_description)/>
       <meta name="twitter:image" content=(social_media_preview_src)/>
       (* <meta name="twitter:site" content="@fun_ocaml"> *)
+      
+      (* Structured data for SEO *)
+      (if include_event_schema then event_schema_script else null)
+      
       (* Load analytics with defer for better performance *)
       <script src="https://analytics.ahrefs.com/analytics.js" dataKey="INJ8YGRMW+NCMPy+IEhl+g" defer=(true)></script>
     </head>
     <body>
       (navigation [
         navigation_link ~href:"/#event" ~title:"Event";
-        navigation_link ~href:"/#about" ~title:"About";
+        navigation_link ~href:"/about/" ~title:"About";
         navigation_link ~href:"/#schedule" ~title:"Schedule";
         navigation_link ~href:"/#venue" ~title:"Venue";
         navigation_link ~href:"/#sponsors" ~title:"Sponsors"
@@ -193,6 +254,7 @@ let make ~title ?description:desc ?canonical:canon ~children () =
         (list children)
       </main>
       (footer [
+        navigation_link ~href:"/about/" ~title:"About";
         navigation_link ~href:"/privacy" ~title:"Privacy Policy";
         navigation_link ~href:"/2024" ~title:"FUN OCaml 2024"
       ])

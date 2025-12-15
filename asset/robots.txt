@@ -1,0 +1,20 @@
+# Robots.txt for FUN OCaml Conference Website
+# Last updated: December 15, 2025
+
+User-agent: *
+Allow: /
+
+# Disallow external subdomains (these are on different hosts)
+# Note: Subdomains need their own robots.txt files
+# Listed here for documentation purposes
+# - cfp.fun-ocaml.com (Call for Papers)
+# - tickets.fun-ocaml.com (Ticketing System)
+
+# Disallow legal/privacy pages from indexing
+Disallow: /privacy/
+
+# Sitemap location
+Sitemap: https://fun-ocaml.com/sitemap.xml
+
+# Crawl-delay (optional, adjust if needed)
+# Crawl-delay: 1
