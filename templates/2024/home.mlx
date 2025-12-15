@@ -31,8 +31,12 @@ let string_opt = function
   | None -> string ""
 
 let hero_section =
-  <div id="event" class_="bg-[url('/2024/img/hero-background.webp')] bg-center bg-cover py-60">
-    <div class_="container mx-auto px-6">
+  <div id="event" class_="relative bg-[#1A202C] bg-center bg-cover py-60">
+    <picture>
+      <source srcset="/2024/img/hero-background.webp" type_="image/webp"/>
+      <img src="/2024/img/hero-background.jpg" alt="FUN OCaml 2024 conference venue in Berlin - Space Shack Coworking interior" class_="absolute inset-0 w-full h-full object-cover" width="1535" height="940"/>
+    </picture>
+    <div class_="container mx-auto px-6 relative z-10">
       <h1 class_="font-montserrat font-regular text-7xl text-white">(list [
         string "FUN ";
         <span class_="text-primary_dark">(string "OCaml")</span>

@@ -30,14 +30,12 @@ let hero_section =
       <img src="/2025/img/hero-background.jpg" alt="FUN OCaml 2025 conference venue in Warsaw - Digital Knowledge Village interior" class_="absolute inset-0 w-full h-full object-cover" width="1535" height="940"/>
     </picture>
     <div class_="container mx-auto px-6 relative z-10">
-      <h1 class_="font-montserrat font-regular text-5xl lg:text-7xl text-white">(list [
+      <h1 class_="font-montserrat font-regular text-7xl text-white">(list [
         string "FUN ";
-        <span class_="text-primary_dark">(string "OCaml")</span>;
-        string " 2025"
+        <span class_="text-primary_dark">(string "OCaml")</span>
       ])
       </h1>
-      <div class_="mt-2 text-2xl lg:text-3xl text-white font-montserrat">(string "Conference & Workshops")</div>
-      <div class_="mt-4 text-5xl lg:text-7xl font-bold text-white font-montserrat">(string "WARSAW")</div>
+      <div class_="mt-6 text-7xl font-bold text-white font-montserrat">(string "WARSAW")</div>
       (tag ~classes:"text-3xl mt-6" "September 15 & 16, 2025")
 
       <a class_="flex items-center gap-2 text-white underline hover:no-underline text-xl mt-6" href=(registration_url)>
