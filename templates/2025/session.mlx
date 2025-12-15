@@ -186,9 +186,9 @@ let render (s: Data2025.Sessions.t) =
                   in
                   if video_id <> "" then
                     <div class_="mt-6">
-                      <div class_="aspect-video">
+                      <div class_="relative aspect-video">
                         <iframe 
-                          class_="w-full h-full"
+                          class_="absolute inset-0 w-full h-full"
                           src=("https://www.youtube-nocookie.com/embed/" ^ video_id ^ "?rel=0")
                           title=("YouTube video: " ^ s.title)
                           frameborder="0"
