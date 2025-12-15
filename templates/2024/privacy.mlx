@@ -10,14 +10,19 @@ let privacy =
   {|
 # Privacy Policy
 
-**Last updated:** September 12, 2025
+**Last updated:** December 15, 2025
 
 This Privacy Policy describes how Fun OCaml Conference ("we," "us," or "our") collects, uses, and protects your information when you visit our website [fun-ocaml.com](https://fun-ocaml.com) and its subdomains, in accordance with the European Union General Data Protection Regulation (GDPR) and German data protection laws (BDSG).
 
-## 1. Data Controller
+## 1. Data Controller / Imprint
 
 The data controller responsible for your personal data is:
-Fun OCaml Conference
+
+**Sabine Schmaltz**
+Halbergstr. 4 c/o Halle4
+66121 Saarbruecken
+Germany
+
 Contact: privacy@fun-ocaml.com
 
 ## 2. Data We Collect
@@ -28,20 +33,22 @@ We collect and retain as little data about you as possible, and make the retenti
 When you visit our website, we automatically collect certain technical information as described in the "Server Logs" section below.
 
 ### 2.2 Analytics Data
-We use Ahrefs analytics services to understand website usage and improve our services. Ahrefs may collect:
+We use Ahrefs analytics to understand website usage and improve our services. Ahrefs may collect:
 - IP addresses (anonymized)
 - Browser type and version
 - Pages visited and time spent on pages
 - Referring websites
 - Device and screen information
 
-Ahrefs processes this data in accordance with their privacy policy. You can opt out of Ahrefs tracking by using browser settings or privacy tools.
+**Important:** Analytics is only loaded after you give your consent via our cookie banner. You can change your cookie preferences at any time using the "Cookie Settings" link in the footer.
+
+Ahrefs processes data in accordance with [Ahrefs' Privacy Policy](https://ahrefs.com/privacy).
 
 ## 3. Legal Basis for Processing
 
 We process your personal data based on:
-- **Legitimate interests** (Article 6(1)(f) GDPR) for website functionality, security, and analytics
-- **Consent** (Article 6(1)(a) GDPR) where explicitly given
+- **Legitimate interests** (Article 6(1)(f) GDPR) for website functionality and security
+- **Consent** (Article 6(1)(a) GDPR) for analytics tracking
 - **Contract performance** (Article 6(1)(b) GDPR) for event registration and participation
 
 ## 4. Data Security and Transfer
@@ -67,7 +74,7 @@ To exercise these rights, please contact us at privacy@fun-ocaml.com.
 
 As a visitor to the [fun-ocaml.com](https://fun-ocaml.com) website:
 
-* No personal information is shared with, sent to, or sold to third-parties (except for Ahrefs analytics as disclosed above)
+* No personal information is shared with, sent to, or sold to third-parties (except for analytics services as disclosed above, and only with your consent)
 * No information is shared with advertising companies
 * No information is mined or harvested for personal and behavioral trends
 * No information is monetized

@@ -239,8 +239,53 @@ let make ~title ?description:desc ?canonical:canon ?(include_event_schema=false)
       (* Structured data for SEO *)
       (if include_event_schema then event_schema_script else null)
       
-      (* Load analytics with defer for better performance *)
-      <script src="https://analytics.ahrefs.com/analytics.js" dataKey="INJ8YGRMW+NCMPy+IEhl+g" defer=(true)></script>
+      (* Cookie consent and analytics scripts *)
+      <script>
+        ({|
+          // Cookie consent management
+          function getCookieConsent() {
+            return localStorage.getItem('cookie-consent');
+          }
+          
+          function loadAnalytics() {
+            // Ahrefs Analytics
+            var ahrefsScript = document.createElement('script');
+            ahrefsScript.async = true;
+            ahrefsScript.src = 'https://analytics.ahrefs.com/analytics.js';
+            ahrefsScript.dataset.key = 'INJ8YGRMW+NCMPy+IEhl+g';
+            document.head.appendChild(ahrefsScript);
+          }
+          
+          // Check consent on page load
+          if (getCookieConsent() === 'accepted') {
+            loadAnalytics();
+          }
+          
+          // Handle consent
+          window.acceptCookies = function() {
+            localStorage.setItem('cookie-consent', 'accepted');
+            loadAnalytics();
+            document.getElementById('cookie-banner').style.display = 'none';
+          };
+          
+          window.declineCookies = function() {
+            localStorage.setItem('cookie-consent', 'declined');
+            document.getElementById('cookie-banner').style.display = 'none';
+          };
+          
+          window.reopenCookieBanner = function() {
+            localStorage.removeItem('cookie-consent');
+            document.getElementById('cookie-banner').style.display = 'block';
+          };
+          
+          // Show banner if no consent yet
+          document.addEventListener('DOMContentLoaded', function() {
+            if (!getCookieConsent()) {
+              document.getElementById('cookie-banner').style.display = 'block';
+            }
+          });
+        |} |> unsafe)
+      </script>
     </head>
     <body>
       (navigation [
@@ -256,8 +301,26 @@ let make ~title ?description:desc ?canonical:canon ?(include_event_schema=false)
       (footer [
         navigation_link ~href:"/about/" ~title:"About";
         navigation_link ~href:"/privacy" ~title:"Privacy Policy";
-        navigation_link ~href:"/2024" ~title:"FUN OCaml 2024"
+        navigation_link ~href:"/2024" ~title:"FUN OCaml 2024";
+        <button type_="button" class_="px-4 py-2 lg:py-0 h-full items-center hover:text-primary_dark block text-left" onclick="reopenCookieBanner()">(string "Cookie Settings")</button>
       ])
+      
+      (* Cookie Banner *)
+      <div id="cookie-banner" class_="cookie-banner" style="display: none;">
+        <div class_="cookie-banner-content">
+          <div class_="cookie-banner-text">
+            <p>
+              (string "We use cookies for analytics to understand how visitors use our website. See our ")
+              <a href="/privacy">(string "privacy policy")</a>
+              (string " for details.")
+            </p>
+          </div>
+          <div class_="cookie-banner-buttons">
+            <button type_="button" class_="cookie-btn cookie-btn-decline" onclick="declineCookies()">(string "Decline")</button>
+            <button type_="button" class_="cookie-btn cookie-btn-accept" onclick="acceptCookies()">(string "Accept")</button>
+          </div>
+        </div>
+      </div>
     </body>
   </html>
 
