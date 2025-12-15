@@ -64,7 +64,7 @@ let program_section =
       <div class_="">
         <picture>
           <source srcset="/2025/img/venue1.webp" type_="image/webp"/>
-          <img class_="w-full" src="/2025/img/venue1.jpg" alt="Digital Knowledge Village venue interior" width="800" height="600" loading="lazy"/>
+          <img class_="w-full" src="/2025/img/venue1.jpg" alt="Digital Knowledge Village venue interior" width="800" height="600"/>
         </picture>
       </div>
       <div class_="prose prose-xl">
@@ -148,7 +148,7 @@ let community_section =
 
 let avatar_maybe_you ~title ~subtitle =
   <div class_="flex flex-col items-center text-lg">
-    <img class_="rounded-full w-48" src="/2025/img/maybe-you.svg" alt="Your photo here" width="192" height="192" loading="lazy"/>
+    <img class_="rounded-full w-48" src="/2025/img/maybe-you.svg" alt="Your photo here" width="192" height="192"/>
     (<div class_="font-bold mt-2">(string title)</div>)
     (<div class_="">(string subtitle)</div>)
     (button ~classes:"mt-4" ~href:cfp_url "Submit your Proposal")
@@ -258,7 +258,7 @@ let venue_section =
   <div id="venue" class_="relative bg-center bg-cover items-center py-32">
     <picture>
       <source srcset="/2025/img/venue2.webp" type_="image/webp"/>
-      <img src="/2025/img/venue2.jpg" alt="" class_="absolute inset-0 w-full h-full object-cover" width="1200" height="800" loading="lazy"/>
+      <img src="/2025/img/venue2.jpg" alt="" class_="absolute inset-0 w-full h-full object-cover" width="1200" height="800"/>
     </picture>
     <div class_="max-w-full w-96 bg-white border-primary_dark border-4 mx-auto px-12 py-6 relative z-10">
       (h2 "Venue")
@@ -299,7 +299,6 @@ let sponsors_section =
                     src=sponsor.logo_url
                     width="200"
                     height="96"
-                    loading="lazy"
                 />
             </div>
             <div class_="font-bold">
@@ -344,7 +343,6 @@ let recommended_events_section =
               src=event.logo_url
               width="200"
               height="96"
-              loading="lazy"
             />
           </a>
         )
@@ -353,7 +351,7 @@ let recommended_events_section =
   </div>
 
 let make () =
-  <Layout title=("Warsaw - September 15+16, 2025")>
+  <Layout title=("Warsaw - September 15+16, 2025") canonical=("https://fun-ocaml.com/")>
     ([
      hero_section;
      list program_section;

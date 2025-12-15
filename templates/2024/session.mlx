@@ -27,12 +27,14 @@ let truncate_string max_len str =
 
 let render (s: Data2024.Sessions.t) =
   let speaker_names = s.speakers |> List.map (fun (p: Data2024.People.t) -> p.name) |> String.concat ", " in
+  let prefix = Printf.sprintf "%s by %s. " s.title speaker_names in
+  let max_abstract_len = max 50 (155 - String.length prefix) in
   let description = match s.meta_description with
-    | Some d -> d
-    | None -> truncate_string 160 s.abstract_plain
+    | Some d -> truncate_string 155 (prefix ^ d)
+    | None -> prefix ^ (truncate_string max_abstract_len s.abstract_plain)
   in
-  let description = Printf.sprintf "%s by %s. %s" s.title speaker_names description in
-  <Layout title=(s.title ^ " - Fun OCaml 2024") description=(description)>
+  let canonical = Printf.sprintf "https://fun-ocaml.com/2024/%s/" s.slug in
+  <Layout title=(s.title ^ " - Fun OCaml 2024") description=(description) canonical=(canonical)>
     [
       top_navigation;
       <div class_="container mx-auto px-6 py-12">

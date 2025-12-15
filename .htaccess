@@ -1,5 +1,18 @@
 # Fun OCaml Performance Optimizations
 
+# Redirect www to non-www and enforce HTTPS
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Redirect www to non-www
+    RewriteCond %{HTTP_HOST} ^www\.fun-ocaml\.com [NC]
+    RewriteRule ^(.*)$ https://fun-ocaml.com/$1 [R=301,L]
+    
+    # Redirect HTTP to HTTPS
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://fun-ocaml.com/$1 [R=301,L]
+</IfModule>
+
 # Enable compression
 <IfModule mod_deflate.c>
     # Compress HTML, CSS, JavaScript, Text, XML and fonts

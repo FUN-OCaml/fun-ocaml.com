@@ -75,7 +75,7 @@ let program_section =
     (h2 "Program")
     <div class_="mt-8 grid lg:grid-cols-2 gap-6">
       <div class_="">
-        <img class_="w-full" src="/2024/img/venue1-Credit-Steve-Bergmann.jpeg"/>
+        <img class_="w-full" src="/2024/img/venue1-Credit-Steve-Bergmann.jpeg" alt="Space Shack Coworking venue interior in Berlin" width="800" height="600"/>
         <small>(string "Image: © Steve Bergmann")</small>
       </div>
       <div class_="prose prose-xl">
@@ -126,7 +126,7 @@ Talks are live-streamed and will appear on [watch.ocaml.org](https://watch.ocaml
         )
           </div>
         </div>
-        <img class_="hidden md:block" src="/img/separator.svg"/>
+        <img class_="hidden md:block" src="/img/separator.svg" alt="" width="50" height="200"/>
         <div class_="grow">
           (h2 "Day 2")
           (tag ~classes:"text-2xl mt-2" "September 17 - 9:00-22:00")
@@ -155,7 +155,7 @@ Talks are live-streamed and will appear on [watch.ocaml.org](https://watch.ocaml
 
 let avatar_maybe_you ~title ~subtitle =
   <div class_="flex flex-col items-center text-lg">
-    <img class_="rounded-full w-48" src="/img/maybe-you.svg" alt=""/>
+    <img class_="rounded-full w-48" src="/img/maybe-you.svg" alt="Your photo here" width="192" height="192"/>
     (<div class_="font-bold mt-2">(string title)</div>)
     (<div class_="">(string subtitle)</div>)
     (button ~classes:"mt-4" ~href:cfp_url "Submit your Proposal")
@@ -326,7 +326,7 @@ let recommended_events_section =
   </div>
 
 let make () =
-  <Layout title=("Fun OCaml 2024")>
+  <Layout title=("Fun OCaml 2024") canonical=("https://fun-ocaml.com/2024/")>
     ([
      top_navigation;
      hero_section;

@@ -15,7 +15,7 @@ let navigation children =
   <nav class_="bg-[#1A202C] overflow-hiddne max-w-screen text-white">
     <div class_="md:container flex flex-col gap-4 items-start mx-auto py-4 lg:py-4 px-6 md:flex-row md:items-center md:justify-between">
       <div class_="flex flex-col gap-2 items-start md:flex-row md:items-center">
-        <a class_="px-2 pt-3 hidden md:inline" href="/2024/#event"><img src="/2024/img/fun-ocaml-logo.svg"/></a>
+        <a class_="px-2 pt-3 hidden md:inline" href="/2024/#event"><img src="/2024/img/fun-ocaml-logo.svg" alt="Fun OCaml Logo" width="120" height="50"/></a>
         (list children)
       </div>
       <div class_="flex items-center gap-4">
@@ -43,15 +43,16 @@ let email_link ~id ~user host =
     </script>
   ]
 
-let description = "Fun OCaml 2024 is a 2 days open source hacking event dedicated to OCaml enthusiasts and professionals around the globe! Let's get together for an exhilarating event packed with creativity, innovation, and learning!"
+let description = "Fun OCaml 2024 was a 2-day open source hacking event for OCaml enthusiasts worldwide. Talks, workshops, and collaboration in Berlin."
 
-let make ~title ?description:desc ~children () =
+let make ~title ?description:desc ?canonical:canon ~children () =
   let page_description = match desc with Some d -> d | None -> description in
   <html lang="en">
     <head>
       <meta charset="utf-8"/>
       <title>(string title)</title>
       <meta name="description" content=(page_description)/>
+      (match canon with Some url -> <link rel="canonical" href=(url)/> | None -> null)
       <link rel="stylesheet" href="/css/main.css"/>
       <link rel="stylesheet" href="/2024/font-files/inter.css"/>
       <link rel="stylesheet" href="/2024/font-files/Montserrat.css"/>

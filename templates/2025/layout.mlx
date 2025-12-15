@@ -1,6 +1,6 @@
 open JSX
 
-let description = "Fun OCaml 2025 is a 2 days open source hacking event dedicated to OCaml enthusiasts and professionals around the globe! Let's get together for an exhilarating event packed with creativity, innovation, and learning!"
+let description = "Fun OCaml 2025 was a 2-day open source hacking event for OCaml enthusiasts worldwide. Talks, workshops, and collaboration in Warsaw."
 let social_media_preview_src = "https://fun-ocaml.com/2025/social-media-preview.png?1"
 
 let navigation_link ~href ~title =
@@ -134,8 +134,8 @@ let footer children =
     </div>
   </footer>
 
-let make ~title ?description:desc ~children () =
-  let title = "Fun OCaml 2025: " ^ title in
+let make ~title ?description:desc ?canonical:canon ~children () =
+  let title = title ^ " - Fun OCaml 2025" in
   let page_description = match desc with Some d -> d | None -> description in
   <html lang="en">
     <head>
@@ -143,6 +143,7 @@ let make ~title ?description:desc ~children () =
       <title>(string title)</title>
       <meta name="description" content=(page_description)/>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      (match canon with Some url -> <link rel="canonical" href=(url)/> | None -> null)
       
       (* Preload critical resources for LCP optimization *)
       <link rel="preload" href="/2025/img/hero-background.webp" as_="image" type_="image/webp"/>
