@@ -1,10 +1,5 @@
 open JSX
 
-let top_navigation =
-  Layout.navigation [
-      Layout.navigation_link ~href:"/" ~title:"Conference";
-  ]
-
 let button ?(classes="") ~href title =
   <a class_=("inline-block bg-gradient-to-r from-primary_dark to-primary_light hover:from-black hover:to-black text-white font-semibold px-8 py-3 rounded-full " ^ classes)
     href=(href) target="_blank">(string title)</a>
@@ -141,7 +136,6 @@ let render (s: Data2025.Sessions.t) =
   <Layout title=(s.title) description=(description) canonical=(canonical)>
     [
       (session_schema s);
-      top_navigation;
       <div class_="container mx-auto px-6 py-12">
         <div class_="max-w-4xl">
           <h1 class_="font-bold text-4xl">(string s.title)</h1>
@@ -171,16 +165,24 @@ let render (s: Data2025.Sessions.t) =
                 | Some video_url ->
                   (* Extract video ID from YouTube URL *)
                   let video_id = 
-                    if String.contains video_url '=' then
-                      let parts = String.split_on_char '=' video_url in
-                      match List.rev parts with
-                      | id :: _ -> 
-                          (* Remove any query parameters after the ID *)
-                          (match String.split_on_char '&' id with
-                           | first :: _ -> first
-                           | [] -> id)
-                      | [] -> ""
-                    else ""
+                    (* Parse the query string to find the 'v' parameter *)
+                    let find_v_param url =
+                      match String.split_on_char '?' url with
+                      | _ :: query :: _ ->
+                        let params = String.split_on_char '&' query in
+                        let rec find_v = function
+                          | [] -> None
+                          | param :: rest ->
+                            (match String.split_on_char '=' param with
+                             | ["v"; value] -> Some value
+                             | _ -> find_v rest)
+                        in
+                        find_v params
+                      | _ -> None
+                    in
+                    match find_v_param video_url with
+                    | Some id -> id
+                    | None -> ""
                   in
                   if video_id <> "" then
                     <div class_="mt-6">
