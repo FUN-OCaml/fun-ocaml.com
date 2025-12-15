@@ -189,10 +189,10 @@ let render (s: Data2025.Sessions.t) =
                       <div class_="aspect-video">
                         <iframe 
                           class_="w-full h-full"
-                          src=("https://www.youtube.com/embed/" ^ video_id)
+                          src=("https://www.youtube-nocookie.com/embed/" ^ video_id ^ "?rel=0")
                           title=("YouTube video: " ^ s.title)
                           frameborder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                           allowfullscreen=(true)>
                         </iframe>
                       </div>
