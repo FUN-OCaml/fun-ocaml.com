@@ -128,7 +128,7 @@ let make ~title ?description:desc ?canonical:canon ~children () =
     <body>
       (list children)
       (navigation [
-        navigation_link ~href:"/privacy" ~title:"Privacy Policy";
+        navigation_link ~href:"/privacy/" ~title:"Privacy Policy";
         navigation_link ~href:"/" ~title:"FUN OCaml 2025";
         <button type_="button" class_="px-4 h-full items-center hover:text-primary_dark text-left" onclick="reopenCookieBanner()">(string "Cookie Settings")</button>
       ])
@@ -139,7 +139,7 @@ let make ~title ?description:desc ?canonical:canon ~children () =
           <div class_="cookie-banner-text">
             <p>
               (string "We use cookies for analytics to understand how visitors use our website. See our ")
-              <a href="/privacy">(string "privacy policy")</a>
+              <a href="/privacy/">(string "privacy policy")</a>
               (string " for details.")
             </p>
           </div>

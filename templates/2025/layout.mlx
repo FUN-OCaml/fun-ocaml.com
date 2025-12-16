@@ -300,8 +300,8 @@ let make ~title ?description:desc ?canonical:canon ?(include_event_schema=false)
       </main>
       (footer [
         navigation_link ~href:"/about/" ~title:"About";
-        navigation_link ~href:"/privacy" ~title:"Privacy Policy";
-        navigation_link ~href:"/2024" ~title:"FUN OCaml 2024";
+        navigation_link ~href:"/privacy/" ~title:"Privacy Policy";
+        navigation_link ~href:"/2024/" ~title:"FUN OCaml 2024";
         <button type_="button" class_="px-4 py-2 lg:py-0 h-full items-center hover:text-primary_dark block text-left" onclick="reopenCookieBanner()">(string "Cookie Settings")</button>
       ])
       
@@ -311,7 +311,7 @@ let make ~title ?description:desc ?canonical:canon ?(include_event_schema=false)
           <div class_="cookie-banner-text">
             <p>
               (string "We use cookies for analytics to understand how visitors use our website. See our ")
-              <a href="/privacy">(string "privacy policy")</a>
+              <a href="/privacy/">(string "privacy policy")</a>
               (string " for details.")
             </p>
           </div>

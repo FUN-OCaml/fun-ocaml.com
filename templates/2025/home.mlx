@@ -116,7 +116,7 @@ Talks are live-streamed and will appear on [watch.ocaml.org](https://watch.ocaml
         )
           </div>
         </div>
-        <img class_="hidden md:block" src="/2025/img/separator.svg" alt="" width="50" height="200"/>
+        <img class_="hidden md:block" src="/2025/img/separator.svg" alt="" aria-hidden="true" width="50" height="200"/>
         <div class_="grow">
           (h2 "Day 2")
           (tag ~classes:"text-2xl mt-2" "September 16 - 9:00-22:00")
