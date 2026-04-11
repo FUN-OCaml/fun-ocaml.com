@@ -1,11 +1,11 @@
 open JSX
 
-let cfp_url = "https://cfp.fun-ocaml.com/fun-ocaml-2025/cfp"
+(* let cfp_url = "https://cfp.fun-ocaml.com/fun-ocaml-2025/cfp" *)
 let youtube_url = "https://www.youtube.com/watch?v=-YSXXPwAEFI"
 let twitch_url = "https://twitch.tv/sabine_sh"
 let discord_url = "https://discord.gg/B9cM6DSWVW"
 
-let registration_url = "https://tickets.fun-ocaml.com/fun-ocaml/2025/"
+(* let registration_url = "https://tickets.fun-ocaml.com/fun-ocaml/2025/" *)
 
 
 
@@ -39,12 +39,14 @@ let hero_section =
       <div class_="mt-4 text-7xl font-bold text-white font-montserrat">(string "WARSAW")</div>
       (tag ~classes:"text-3xl mt-6" "September 15 & 16, 2025")
 
+      (*
       <a class_="flex items-center gap-2 text-white underline hover:no-underline text-xl mt-6" href=(registration_url)>
         (string ("Register for free here"))
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-6 h-6">
           <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
         </svg>
       </a>
+      *)
 
       (*
       <a class_="flex items-center gap-2 text-white underline hover:no-underline text-xl mt-6" href=(cfp_url)>
@@ -147,6 +149,7 @@ let community_section =
     </div>
   </div>
 
+(*
 let avatar_maybe_you ~title ~subtitle =
   <div class_="flex flex-col items-center text-lg">
         <img class_="rounded-full w-48" src="/2025/img/maybe-you.svg" alt="Submit your OCaml workshop or talk proposal for FUN OCaml 2025" width="192" height="192"/>
@@ -154,6 +157,7 @@ let avatar_maybe_you ~title ~subtitle =
     (<div class_="">(string subtitle)</div>)
     (button ~classes:"mt-4" ~href:cfp_url "Submit your Proposal")
   </div>
+*)
 
 let speakers_section =
   <div id="speakers" class_="container mx-auto px-6 py-12">
@@ -161,8 +165,10 @@ let speakers_section =
     <div class_="flex flex-wrap gap-10 mt-8">
       (list (List.map (Avatar.render ~tag_title:"Speaker") Data2025.speakers))
 
+      (*
       (avatar_maybe_you ~title:"Propose a Talk or Workshop" ~subtitle:"")
-    </div>
+      *)
+</div>
   </div>
 
 let render_schedule_slot_cell (slot: Data2025.Schedule.event option) =
