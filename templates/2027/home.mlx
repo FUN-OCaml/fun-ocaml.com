@@ -29,8 +29,8 @@ let string_opt = function
 let hero_section =
   <div id="event" class_="relative bg-[#1A202C] py-60">
     <picture>
-      <source srcset="/2025/img/hero-background.webp" type_="image/webp"/>
-      <img src="/2025/img/hero-background.jpg" alt="FUN OCaml 2027 conference venue in Bengaluru" class_="absolute inset-0 w-full h-full object-cover" width="1535" height="940"/>
+      <source srcset="/2027/img/hero-background-darkened.webp" type_="image/webp"/>
+      <img src="/2027/img/hero-background-darkened.jpg" alt="MLR Convention Centre auditorium in Bengaluru, venue of FUN OCaml 2027" class_="absolute inset-0 w-full h-full object-cover" width="1535" height="940"/>
     </picture>
     <div class_="container mx-auto px-6 relative z-10">
       <h1 class_="font-montserrat font-regular text-7xl text-white">(list [
@@ -41,24 +41,7 @@ let hero_section =
       <div class_="mt-2 text-2xl lg:text-3xl text-white font-montserrat">(string "Conference & Workshops")</div>
       <div class_="mt-4 text-7xl font-bold text-white font-montserrat">(string "BENGALURU")</div>
       (tag ~classes:"text-3xl mt-6" "January 25 & 26, 2027")
-      <div class_="mt-4 text-xl text-white font-montserrat">(string "Organized by FP Launchpad, IIT Madras")</div>
-
-      (*
-      TODO: Re-enable these buttons once cfp_url and registration_url are set above.
-      <a class_="flex items-center gap-2 text-white underline hover:no-underline text-xl mt-6" href=(cfp_url)>
-        (string ("Apply as a speaker / FUN OCaml CFP"))
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-6 h-6">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-        </svg>
-      </a>
-
-      <a class_="flex items-center gap-2 text-white underline hover:no-underline text-xl mt-6" href=(registration_url)>
-        (string ("Register here"))
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-6 h-6">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-        </svg>
-      </a>
-      *)
+      <div class_="mt-4 text-xl text-white font-montserrat">(string "Hosted by FP Launchpad, IIT Madras")</div>
     </div>
   </div>
 
@@ -69,8 +52,8 @@ let program_section =
     <div class_="mt-8 grid lg:grid-cols-2 gap-6">
       <div class_="">
         <picture>
-          <source srcset="/2025/img/venue1.webp" type_="image/webp"/>
-          <img class_="w-full" src="/2025/img/venue1.jpg" alt="FUN OCaml 2027 conference and workshop venue" width="800" height="600"/>
+          <source srcset="/2027/img/venue1.webp" type_="image/webp"/>
+          <img class_="w-full" src="/2027/img/venue1.jpg" alt="MLR Convention Centre auditorium, Bengaluru" width="1600" height="1066"/>
         </picture>
       </div>
       <div class_="prose prose-xl">
@@ -96,13 +79,40 @@ Talks will be live-streamed and will appear on [watch.ocaml.org](https://watch.o
       </div>
     </div>
   </div>;
-  <div class_="bg-[url('/2025/img/blue-bg.svg')] bg-center bg-cover text-white">
-    <div class_="py-20 text-center">
-      (<h3 class_="text-3xl font-semibold">(string "Program & Schedule")</h3>)
-      (<p class_="text-gray-400 mt-2">(string "Details will be announced soon. Stay tuned!")</p>)
-
-
-      (button ~classes:"mt-4 text-xl no-underline" ~href:"https://www.youtube.com/@FUNOCaml" "Visit FUN OCaml's YouTube Channel")
+  <div class_="bg-sand">
+    <div id="program" class_="container mx-auto px-6 py-20">
+      <div class_="flex flex-col gap-20 md:flex-row">
+        <div class_="grow">
+          (h2 "Day 1")
+          (tag ~classes:"text-2xl mt-2" "January 25")
+          <div class_="prose prose-lg">
+        ({|
+  * **Keynote**
+  * **Talks**
+  * Open until Midnight for Socializing and Hacking!
+        |}
+        |> Cmarkit.Doc.of_string ~strict:true
+        |> Cmarkit_html.of_doc ~safe:false
+        |> unsafe
+        )
+          </div>
+        </div>
+        <img class_="hidden md:block" src="/2027/img/separator.svg"/>
+        <div class_="grow">
+          (h2 "Day 2")
+          (tag ~classes:"text-2xl mt-2" "January 26")
+          <div class_="prose prose-lg">
+          ({|
+  * **Workshops**
+  * **Hacking:** Contribute to OCaml projects and understand their internals
+        |}
+        |> Cmarkit.Doc.of_string ~strict:true
+        |> Cmarkit_html.of_doc ~safe:false
+        |> unsafe
+        )
+          </div>
+        </div>
+      </div>
     </div>
   </div>;
   ]
@@ -118,7 +128,7 @@ let community_section =
   </div>
 
 let schedule_section =
-  <div class_="bg-[url('/2025/img/blue-bg.svg')] bg-center bg-cover text-white">
+  <div class_="bg-[url('/2027/img/blue-bg.svg')] bg-center bg-cover text-white">
     <div id="schedule" class_="container mx-auto px-6 py-20">
       (h2 ~classes:"text-white" "Schedule")
 
@@ -131,8 +141,8 @@ let schedule_section =
 let venue_section =
   <div id="venue" class_="relative bg-center bg-cover items-center py-32">
     <picture>
-      <source srcset="/2025/img/venue2.webp" type_="image/webp"/>
-      <img src="/2025/img/venue2.jpg" alt="MLR Convention Centre Bengaluru venue" class_="absolute inset-0 w-full h-full object-cover" width="1200" height="800"/>
+      <source srcset="/2027/img/venue2.webp" type_="image/webp"/>
+      <img src="/2027/img/venue2.jpg" alt="MLR Convention Centre entrance, Brigade Millennium Campus, Bengaluru" class_="absolute inset-0 w-full h-full object-cover" width="1600" height="1200"/>
     </picture>
     <div class_="max-w-full w-96 bg-white border-primary_dark border-4 mx-auto px-12 py-6 relative z-10">
       (h2 "Venue")
@@ -152,6 +162,32 @@ let venue_section =
 
   </div>
 
+let travel_section =
+  <div id="travel" class_="bg-[url('/2027/img/blue-bg.svg')] bg-center bg-cover text-white">
+    <div class_="container mx-auto px-6 py-20">
+      (h2 ~classes:"text-white" "Plan Your Trip")
+
+      <div class_="mt-10 grid md:grid-cols-3 gap-10">
+        <div>
+          (h2 ~classes:"text-white text-xl" "Travel & Venue")
+          (<p class_="text-gray-300 mt-3 text-lg">(string "Bengaluru is connected by Kempegowda International Airport (BLR) and major rail links. The venue, MLR Convention Centre in JP Nagar, is accessible by metro and ride-hailing.")</p>)
+        </div>
+        <div>
+          (h2 ~classes:"text-white text-xl" "Accommodation & Food")
+          (<p class_="text-gray-300 mt-3 text-lg">(string "Recommended hotels near the venue will be listed soon. Catering at the event will include ample vegetarian and vegan options. Bengaluru has one of India's best plant-based food scenes.")</p>)
+        </div>
+        <div>
+          (h2 ~classes:"text-white text-xl" "Socialize")
+          (<p class_="text-gray-300 mt-3 text-lg">(string "After the talks, socialize and connect, or hack on projects together with fellow OCaml developers in the venue's rooftop space.")</p>)
+        </div>
+      </div>
+
+      <div class_="mt-10">
+        (button ~href:"/travel-guide/" "View the Travel Guide")
+      </div>
+    </div>
+  </div>
+
 let sponsors_section =
   <div id="sponsors" class_="container mx-auto px-6 py-20">
     (h2 ~classes:"text-center" "Sponsors & Partners")
@@ -165,12 +201,13 @@ let sponsors_section =
   </div>
 
 let organizers_section =
-  <div id="organizers" class_="bg-[url('/2025/img/blue-bg.svg')] bg-center bg-cover text-white">
+  <div id="organizers" class_="bg-[url('/2027/img/blue-bg.svg')] bg-center bg-cover text-white">
     <div class_="container mx-auto px-6 py-20">
-      (h2 ~classes:"text-white" "Organizers & Program Committee")
+      (h2 ~classes:"text-white" "Host & Program Committee")
 
       <div class_="mt-6">
-        (h2 ~classes:"text-white text-2xl" "Organizer")
+        (h2 ~classes:"text-white text-2xl" "Host")
+        (<p class_="text-lg text-gray-300 mt-2">(string "FP Launchpad is the legal entity and host of FUN OCaml 2027. They handle the venue, catering, and on-site logistics.")</p>)
         <div class_="mt-4">
           <a href="https://fplaunchpad.org" target="_blank" rel="noopener noreferrer" class_="inline-block">
             <img
@@ -187,7 +224,7 @@ let organizers_section =
 
       <div class_="mt-12">
         (h2 ~classes:"text-white text-2xl" "Program Committee")
-        (<p class_="text-xl my-4 text-gray-300">(string "Want to help? Contact any of the organizers!")</p>)
+        (<p class_="text-lg text-gray-300 mt-2">(string "Sabine Schmaltz runs the program, website, and social media promotion, supported by FP Launchpad. The program committee selects talks and workshops from the Call for Participation, organizes conference swag, and handles sponsor outreach.")</p>)
         <div class_="flex flex-wrap gap-10 mt-8">
           (Avatar.render (Data2027.People.get_by_slug "sabine"))
           (Avatar.render (Data2027.People.get_by_slug "davesnx"))
@@ -204,8 +241,9 @@ let make () =
      list program_section;
      community_section;
      schedule_section;
-     venue_section;
-     sponsors_section;
+      venue_section;
+      travel_section;
+      sponsors_section;
      organizers_section;
     ])
   </Layout>

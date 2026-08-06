@@ -20,19 +20,19 @@ let make () =
 
 <p>FUN OCaml is an annual <strong>functional programming conference</strong> dedicated to the <strong>OCaml programming language</strong> and its thriving ecosystem. Since our inception, we've brought together developers, researchers, and enthusiasts from around the globe to celebrate the power of type-safe, functional programming.</p>
 
-<h2>FUN OCaml 2027 — Bengaluru, India</h2>
+<h2>FUN OCaml 2027 in Bengaluru, India</h2>
 
 <p>The 2027 edition of FUN OCaml comes to <strong>Bengaluru, India</strong>, organized by <strong>FP Launchpad</strong>, the Centre for Functional Systems Research and Education at <a href="https://fplaunchpad.org/" target="_blank">IIT Madras</a>. Join us on <strong>January 25–26, 2027</strong> at the <strong>MLR Convention Centre</strong>, Brigade Millennium Campus, JP Nagar 7th Phase, Bengaluru.</p>
 
 <h2>Program Leadership</h2>
 <ul>
   <li><strong>Program Chair:</strong> Sabine Schmaltz (Tarides)</li>
-  <li><strong>Program Committee:</strong> David Sancho Moreno (Ahrefs), Dmitriy Kovalenko (LightSource) — more members TBA</li>
+  <li><strong>Program Committee:</strong> David Sancho Moreno (Ahrefs), Dmitriy Kovalenko (LightSource), more members TBA</li>
 </ul>
 
 <h2>Speaker Support</h2>
 <p>Limited financial support is available for accepted speakers who need assistance with travel or accommodation to attend FUN OCaml 2027 in Bengaluru.</p>
-<p><strong>Please note: we cannot reimburse speakers directly.</strong> Instead, we will book and pay for your travel and accommodation on your behalf. This policy is required due to money laundering regulations — we are unable to make exceptions or pay cash reimbursements, regardless of the amount.</p>
+<p><strong>Please note: we cannot reimburse speakers directly.</strong> Instead, we will book and pay for your travel and accommodation on your behalf. This policy is required due to money laundering regulations. We are unable to make exceptions or pay cash reimbursements, regardless of the amount.</p>
 <p>If you would like to request speaker support, please indicate this when submitting your talk or workshop proposal via the Call for Participation, and the Program Committee will follow up with you individually and confidentially.</p>
 
 <h2>Why Attend FUN OCaml?</h2>

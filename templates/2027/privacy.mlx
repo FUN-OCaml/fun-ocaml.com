@@ -122,6 +122,9 @@ let make () =
         </p>
         (privacy |> unsafe)
         </div>
+        <div class_="mt-8">
+          <button type_="button" class_="inline-block bg-gradient-to-r from-primary_dark to-primary_light hover:from-black hover:to-black text-white font-semibold px-8 py-3 rounded-full" onclick="reopenCookieBanner()">(string "Cookie Settings")</button>
+        </div>
       </div>
     ])
   </Layout>

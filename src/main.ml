@@ -67,6 +67,14 @@ let render_about_page () =
     Printf.printf "Error rendering about page: %s\n" (Printexc.to_string e);
     raise e
 
+let render_travel_guide_page () =
+  try
+    let html = Templates2027.Travel_guide.make () |> JSX.render in
+    write_file "output/travel-guide/index.html" html
+  with e ->
+    Printf.printf "Error rendering travel guide: %s\n" (Printexc.to_string e);
+    raise e
+
 let base_url = "https://fun-ocaml.com"
 
 let render_sitemap () =
@@ -98,6 +106,9 @@ let render_sitemap () =
         
         (* About page - high priority for SEO *)
         make_url ~loc:"/about/" ~priority:0.8 ~changefreq:"monthly" ~lastmod:current_date;
+        
+        (* Travel guide *)
+        make_url ~loc:"/travel-guide/" ~priority:0.7 ~changefreq:"monthly" ~lastmod:current_date;
         
         (* Privacy page - low priority *)
         make_url ~loc:"/privacy/" ~priority:0.3 ~changefreq:"yearly" ~lastmod:current_date;
@@ -146,6 +157,7 @@ let () =
     render_homepage ();
     render_privacy_policy ();
     render_about_page ();
+    render_travel_guide_page ();
     render_sitemap ();
     Data2024.Sessions.all
     |> List.iter (fun (s : Data2024.Sessions.t) -> render_session_page s);

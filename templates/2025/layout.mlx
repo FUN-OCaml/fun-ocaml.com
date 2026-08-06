@@ -125,7 +125,7 @@ let navigation children =
       (* Desktop navigation *)
       <div class_="hidden lg:flex items-center justify-between py-4">
         <div class_="flex items-center">
-          <a class_="px-2 pt-3" href="/#event">
+          <a class_="px-2 pt-3" href="/2025/#event">
             <img src="/2025/img/fun-ocaml-logo.svg" alt="Fun OCaml Logo" width="120" height="50"/>
           </a>
           (list children)
@@ -138,7 +138,7 @@ let navigation children =
       (* Mobile navigation *)
       <div class_="lg:hidden">
         <div class_="flex items-center justify-between py-4">
-          <a href="/#event">
+          <a href="/2025/#event">
             <img src="/2025/img/fun-ocaml-logo.svg" alt="Fun OCaml Logo" width="140" height="58"/>
           </a>
           <button id="mobile-nav-toggle" class_="p-2 text-white hover:text-primary_dark focus:outline-none" aria_label="Toggle navigation menu">
@@ -289,11 +289,10 @@ let make ~title ?description:desc ?canonical:canon ?(include_event_schema=false)
     </head>
     <body>
       (navigation [
-        navigation_link ~href:"/#event" ~title:"Event";
-        navigation_link ~href:"/about/" ~title:"About";
-        navigation_link ~href:"/#schedule" ~title:"Schedule";
-        navigation_link ~href:"/#venue" ~title:"Venue";
-        navigation_link ~href:"/#sponsors" ~title:"Sponsors"
+        navigation_link ~href:"/2025/#event" ~title:"Event";
+        navigation_link ~href:"/2025/#schedule" ~title:"Schedule";
+        navigation_link ~href:"/2025/#venue" ~title:"Venue";
+        navigation_link ~href:"/2025/#sponsors" ~title:"Sponsors"
       ])
       <main>
         (list children)
@@ -301,8 +300,9 @@ let make ~title ?description:desc ?canonical:canon ?(include_event_schema=false)
       (footer [
         navigation_link ~href:"/about/" ~title:"About";
         navigation_link ~href:"/privacy/" ~title:"Privacy Policy";
+        navigation_link ~href:"/" ~title:"FUN OCaml 2027";
+        navigation_link ~href:"/2025/" ~title:"FUN OCaml 2025";
         navigation_link ~href:"/2024/" ~title:"FUN OCaml 2024";
-        <button type_="button" class_="px-4 py-2 lg:py-0 h-full items-center hover:text-primary_dark block text-left" onclick="reopenCookieBanner()">(string "Cookie Settings")</button>
       ])
       
       (* Cookie Banner *)

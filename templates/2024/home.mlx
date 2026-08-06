@@ -103,7 +103,7 @@ Talks are live-streamed and will appear on [watch.ocaml.org](https://watch.ocaml
       </div>
     </div>
   </div>;
-  <div class_="bg-[url('/img/blue-bg.svg')] bg-center bg-cover text-white">
+  <div class_="bg-[url('/2024/img/blue-bg.svg')] bg-center bg-cover text-white">
     <div class_="py-20 text-center">
       (<h3 class_="text-3xl font-semibold">(string "Watch a live stream")</h3>)
       (<p class_="text-gray-400 mt-2">(string "Event is going to be live streamed free of a charge")</p>)
@@ -130,7 +130,7 @@ Talks are live-streamed and will appear on [watch.ocaml.org](https://watch.ocaml
         )
           </div>
         </div>
-        <img class_="hidden md:block" src="/img/separator.svg" alt="" aria_hidden=(true) width="50" height="200"/>
+        <img class_="hidden md:block" src="/2024/img/separator.svg" alt="" aria_hidden=(true) width="50" height="200"/>
         <div class_="grow">
           (h2 "Day 2")
           (tag ~classes:"text-2xl mt-2" "September 17 - 9:00-22:00")
@@ -159,7 +159,7 @@ Talks are live-streamed and will appear on [watch.ocaml.org](https://watch.ocaml
 
 let avatar_maybe_you ~title ~subtitle =
   <div class_="flex flex-col items-center text-lg">
-    <img class_="rounded-full w-48" src="/img/maybe-you.svg" alt="Your photo here" width="192" height="192"/>
+    <img class_="rounded-full w-48" src="/2024/img/maybe-you.svg" alt="Your photo here" width="192" height="192"/>
     (<div class_="font-bold mt-2">(string title)</div>)
     (<div class_="">(string subtitle)</div>)
     (button ~classes:"mt-4" ~href:cfp_url "Submit your Proposal")
@@ -295,7 +295,7 @@ let sponsors_section =
   </div>
 
 let organizers_section =
-  <div id="organizers" class_="bg-[url('/img/blue-bg.svg')] bg-center bg-cover text-white">
+  <div id="organizers" class_="bg-[url('/2024/img/blue-bg.svg')] bg-center bg-cover text-white">
     <div class_="container mx-auto px-6 py-20">
       (h2 ~classes:"text-white" "Organizers & Volunteers")
       (<p class_="text-xl my-4">(string "Want to help? Contact any of the organizers!")</p>)

@@ -128,9 +128,11 @@ let make ~title ?description:desc ?canonical:canon ~children () =
     <body>
       (list children)
       (navigation [
+        navigation_link ~href:"/about/" ~title:"About";
         navigation_link ~href:"/privacy/" ~title:"Privacy Policy";
-        navigation_link ~href:"/" ~title:"FUN OCaml 2025";
-        <button type_="button" class_="px-4 h-full items-center hover:text-primary_dark text-left" onclick="reopenCookieBanner()">(string "Cookie Settings")</button>
+        navigation_link ~href:"/" ~title:"FUN OCaml 2027";
+        navigation_link ~href:"/2025/" ~title:"FUN OCaml 2025";
+        navigation_link ~href:"/2024/" ~title:"FUN OCaml 2024";
       ])
       
       (* Cookie Banner *)
