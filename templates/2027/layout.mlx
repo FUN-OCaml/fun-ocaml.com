@@ -270,7 +270,6 @@ let make ~title ?description:desc ?canonical:canon ?(include_event_schema=false)
     <body>
       (navigation [
         navigation_link ~href:"/#event" ~title:"Event";
-        navigation_link ~href:"/about/" ~title:"About";
         navigation_link ~href:"/#venue" ~title:"Venue";
         navigation_link ~href:"/#sponsors" ~title:"Sponsors"
       ])
