@@ -2,7 +2,7 @@ open JSX
 
 let cfp_close_date = "June 16, 2024"
 let cfp_url = "https://cfp.fun-ocaml.com/fun-ocaml-2024/cfp"
-let twitch_url = "https://www.twitch.tv/sabine_ocaml"
+let twitch_url = "https://www.twitch.tv/sabine_sh"
 
 let registration_url = "https://tickets.fun-ocaml.com/fun-ocaml/2024/"
 
