@@ -25,6 +25,7 @@ assets:
 	cp -r asset/* output/
 	cp -r data/2024/media/* output/2024
 	cp -r data/2025/media/* output/2025
+	cp -r data/2027/media/* output/2027
 
 .PHONY: css
 css:

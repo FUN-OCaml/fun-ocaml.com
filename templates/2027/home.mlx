@@ -1,0 +1,164 @@
+open JSX
+
+let youtube_url = "https://www.youtube.com/watch?v=-YSXXPwAEFI"
+let discord_url = "https://discord.gg/B9cM6DSWVW"
+
+
+let button ?(classes="") ~href title =
+  <a class_=("inline-block bg-gradient-to-r from-primary_dark to-primary_light hover:from-black hover:to-black text-white font-semibold px-8 py-3 rounded-full " ^ classes)
+    href=(href) target="_blank">(string title)</a>
+
+let h2 ?(classes="") title =
+  <h2 class_=("font-bold text-primary_light text-4xl " ^ classes)>(title |> String.uppercase_ascii |> string)</h2>
+
+let tag ?(classes="") title =
+   <div class_=(classes ^ " inline-flex font-montserrat text-white bg-primary_light px-4 py-2")>(string title)</div>
+
+let string_opt = function
+  | Some s -> string s
+  | None -> string ""
+
+let hero_section =
+  <div id="event" class_="relative bg-[#1A202C] py-60">
+    <picture>
+      <source srcset="/2025/img/hero-background.webp" type_="image/webp"/>
+      <img src="/2025/img/hero-background.jpg" alt="FUN OCaml 2027 conference venue in Bengaluru" class_="absolute inset-0 w-full h-full object-cover" width="1535" height="940"/>
+    </picture>
+    <div class_="container mx-auto px-6 relative z-10">
+      <h1 class_="font-montserrat font-regular text-7xl text-white">(list [
+        string "FUN ";
+        <span class_="text-primary_dark">(string "OCaml")</span>
+      ])
+      </h1>
+      <div class_="mt-2 text-2xl lg:text-3xl text-white font-montserrat">(string "Conference & Workshops")</div>
+      <div class_="mt-4 text-7xl font-bold text-white font-montserrat">(string "BENGALURU")</div>
+      (tag ~classes:"text-3xl mt-6" "January 25 & 26, 2027")
+      <div class_="mt-4 text-xl text-white font-montserrat">(string "Organized by FP Launchpad India")</div>
+    </div>
+  </div>
+
+let program_section =
+  [
+  <div id="program" class_="container mx-auto px-6 py-20">
+    (h2 "Program")
+    <div class_="mt-8 grid lg:grid-cols-2 gap-6">
+      <div class_="">
+        <picture>
+          <source srcset="/2025/img/venue1.webp" type_="image/webp"/>
+          <img class_="w-full" src="/2025/img/venue1.jpg" alt="FUN OCaml 2027 conference and workshop venue" width="800" height="600"/>
+        </picture>
+      </div>
+      <div class_="prose prose-xl">
+      ({|
+**Fun OCaml 2027** is a **2 days open source hacking event**
+dedicated to OCaml enthusiasts and professionals around the globe!
+
+Let's get together for an exhilarating event packed with creativity, innovation, and learning:
+
+* Collaborate on open source projects
+* Learn through workshops, talks, and hands-on session,
+* Connect with fellow OCaml developers
+* Celebrate the impact and potential of OCaml for solving real-world problems.
+
+**Program Chair:** Sabine Schmaltz
+**Program Committee:** David Sancho Moreno, Dmitriy Kovalenko (more TBA)
+
+Talks will be live-streamed and will appear on [watch.ocaml.org](https://watch.ocaml.org/c/funocaml/videos) and [the FUN OCaml YouTube channel](https://youtube.com/@FunOCaml) after the event.
+      |}
+      |> Cmarkit.Doc.of_string ~strict:true
+      |> Cmarkit_html.of_doc ~safe:false
+      |> unsafe
+      )
+      </div>
+    </div>
+  </div>;
+  <div class_="bg-[url('/2025/img/blue-bg.svg')] bg-center bg-cover text-white">
+    <div class_="py-20 text-center">
+      (<h3 class_="text-3xl font-semibold">(string "Program & Schedule")</h3>)
+      (<p class_="text-gray-400 mt-2">(string "Details will be announced soon. Stay tuned!")</p>)
+
+
+      (button ~classes:"mt-4 text-xl no-underline" ~href:"https://www.youtube.com/@FUNOCaml" "Visit FUN OCaml's YouTube Channel")
+    </div>
+  </div>;
+  ]
+
+let community_section =
+  <div id="community" class_="container mx-auto px-6 py-20">
+    (h2 "Community")
+    <div class_="mt-8 gap-6">
+      <div class_="flex flex-col justify-center items-center">
+        (button ~classes:"text-xl no-underline" ~href:discord_url "Join the FUN OCaml Discord")
+      </div>
+    </div>
+  </div>
+
+let schedule_section =
+  <div class_="bg-[url('/2025/img/blue-bg.svg')] bg-center bg-cover text-white">
+    <div id="schedule" class_="container mx-auto px-6 py-20">
+      (h2 ~classes:"text-white" "Schedule")
+
+      <div class_="mt-6">
+        (string "TBD")
+      </div>
+    </div>
+  </div>
+
+let venue_section =
+  <div id="venue" class_="relative bg-center bg-cover items-center py-32">
+    <picture>
+      <source srcset="/2025/img/venue2.webp" type_="image/webp"/>
+      <img src="/2025/img/venue2.jpg" alt="MLR Convention Centre Bengaluru venue" class_="absolute inset-0 w-full h-full object-cover" width="1200" height="800"/>
+    </picture>
+    <div class_="max-w-full w-96 bg-white border-primary_dark border-4 mx-auto px-12 py-6 relative z-10">
+      (h2 "Venue")
+      <div class_="mt-6 prose prose-lg">
+        (string "MLR Convention Centre")<br/>
+        (string "Cassia Block, Brigade Millennium Campus")<br/>
+        (string "JP Nagar 7th Phase")<br/>
+        (string "Bengaluru, Karnataka 560078")<br/>
+        (string "India")
+      </div>
+      <div class_="absolute bottom-0 right-0 px-4 bg-blur bg-white/80">
+      </div>
+    </div>
+
+  </div>
+
+let sponsors_section =
+  <div id="sponsors" class_="container mx-auto px-6 py-20">
+    (h2 ~classes:"text-center" "Sponsors & Partners")
+
+    <div class_="text-center mt-8">
+      (<p class_="text-xl text-gray-600">(string "Sponsors will be announced soon.")</p>)
+    </div>
+    <div class_="text-center mt-6">
+    (button ~href:"mailto:info@sabineschmaltz.de?subject=Sponsoring%20FUN%20OCaml%202027&body=Hi%20Sabine,%0D%0A%0D%0Aplease%20give%20me%20an%20overview%20of%20sponsorship%20opportunities!" "Sponsor FUN OCaml?")
+    </div>
+  </div>
+
+let organizers_section =
+  <div id="organizers" class_="bg-[url('/2025/img/blue-bg.svg')] bg-center bg-cover text-white">
+    <div class_="container mx-auto px-6 py-20">
+      (h2 ~classes:"text-white" "Organizers & Program Committee")
+      (<p class_="text-xl my-4">(string "Want to help? Contact any of the organizers!")</p>)
+      <div class_="flex flex-wrap gap-10 mt-8">
+        (Avatar.render (Data2027.People.get_by_slug "sabine"))
+        (Avatar.render (Data2027.People.get_by_slug "davesnx"))
+        (Avatar.render (Data2027.People.get_by_slug "dmitriy"))
+      </div>
+    </div>
+  </div>
+
+let make () =
+  <Layout title=("FUN OCaml 2027: OCaml Conference & Workshops | Bengaluru Jan 25-26") canonical=("https://fun-ocaml.com/") include_event_schema=(true)>
+    ([
+     hero_section;
+     list program_section;
+     community_section;
+     schedule_section;
+     venue_section;
+     sponsors_section;
+     organizers_section;
+    ])
+  </Layout>

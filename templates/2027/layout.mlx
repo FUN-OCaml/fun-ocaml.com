@@ -1,0 +1,291 @@
+open JSX
+
+let description = "Join FUN OCaml 2027: a 2-day open source OCaml conference in Bengaluru, India with talks, hands-on workshops, and collaborative hacking. Organized by FP Launchpad India."
+let social_media_preview_src = "https://fun-ocaml.com/2027/social-media-preview.png"
+
+let navigation_link ~href ~title =
+  <a class_="px-4 py-2 lg:py-0 h-full items-center hover:text-primary_dark block" href=(href)>(string title)</a>
+
+let navigation_button ~href ~title =
+  <a class_="inline-flex font-montserrat text-white bg-primary_light px-4 py-2" href=(href)>(string title)</a>
+
+let social_link ~href ~label icon =
+  <a class_="text-gray-400 hover:text-white transition-colors" href=(href) target="_blank" rel="noopener noreferrer" aria_label=(label)>
+    (icon "w-6 h-6")
+  </a>
+
+let social_links =
+  list [
+    social_link ~href:"https://bsky.app/profile/fun-ocaml.com" ~label:"FUN OCaml on Bluesky" Social_icons.bluesky;
+    social_link ~href:"https://x.com/FunOCaml" ~label:"FUN OCaml on X" Social_icons.twitter;
+    social_link ~href:"https://www.youtube.com/@FUNOCaml" ~label:"FUN OCaml on YouTube" Social_icons.youtube;
+    social_link ~href:"https://watch.ocaml.org/c/funocaml/videos" ~label:"FUN OCaml on watch.ocaml.org" Social_icons.other;
+  ]
+
+let hamburger_icon =
+  <svg class_="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+  </svg>
+
+let close_icon =
+  <svg class_="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+  </svg>
+
+let mobile_nav_script =
+  <script>
+    ({|
+      (function() {
+        const toggle = document.getElementById('mobile-nav-toggle');
+        const menu = document.getElementById('mobile-nav-menu');
+        const openIcon = document.getElementById('mobile-nav-open');
+        const closeIcon = document.getElementById('mobile-nav-close');
+        
+        if (toggle && menu) {
+          toggle.addEventListener('click', function() {
+            const isOpen = menu.classList.contains('hidden');
+            menu.classList.toggle('hidden');
+            openIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+          });
+          
+          menu.querySelectorAll('a').forEach(function(link) {
+            link.addEventListener('click', function() {
+              menu.classList.add('hidden');
+              openIcon.classList.remove('hidden');
+              closeIcon.classList.add('hidden');
+            });
+          });
+        }
+      })();
+    |} |> unsafe)
+  </script>
+
+let event_schema_script =
+  <script type_="application/ld+json">
+    ({|
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "FUN OCaml 2027",
+  "description": "A 2-day open source OCaml conference featuring talks, hands-on workshops, and collaborative hacking for OCaml developers worldwide, organized by FP Launchpad India",
+  "startDate": "2027-01-25T09:00:00+05:30",
+  "endDate": "2027-01-26T22:00:00+05:30",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": {
+    "@type": "Place",
+    "name": "MLR Convention Centre",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Cassia Block, Brigade Millennium Campus, JP Nagar 7th Phase",
+      "addressLocality": "Bengaluru",
+      "addressRegion": "Karnataka",
+      "postalCode": "560078",
+      "addressCountry": "IN"
+    }
+  },
+  "image": [
+    "https://fun-ocaml.com/2027/social-media-preview.png"
+  ],
+  "organizer": {
+    "@type": "Organization",
+    "name": "FP Launchpad India",
+    "url": "https://fun-ocaml.com"
+  },
+  "performer": {
+    "@type": "Organization",
+    "name": "FUN OCaml Community"
+  },
+  "url": "https://fun-ocaml.com",
+  "keywords": "OCaml, functional programming, conference, workshop, open source, programming languages, type safety, Bengaluru, Bangalore, India, FP Launchpad"
+}
+    |} |> unsafe)
+  </script>
+
+let navigation children =
+  <nav class_="bg-[#1A202C] overflow-hidden max-w-screen text-white">
+    <div class_="container mx-auto px-6">
+      <div class_="hidden lg:flex items-center justify-between py-4">
+        <div class_="flex items-center">
+          <a class_="px-2 pt-3" href="/#event">
+            <img src="/2025/img/fun-ocaml-logo.svg" alt="Fun OCaml Logo" width="120" height="50"/>
+          </a>
+          (list children)
+        </div>
+        <div class_="flex items-center gap-4">
+          (social_links)
+        </div>
+      </div>
+
+      <div class_="lg:hidden">
+        <div class_="flex items-center justify-between py-4">
+          <a href="/#event">
+            <img src="/2025/img/fun-ocaml-logo.svg" alt="Fun OCaml Logo" width="140" height="58"/>
+          </a>
+          <button id="mobile-nav-toggle" class_="p-2 text-white hover:text-primary_dark focus:outline-none" aria_label="Toggle navigation menu">
+            <span id="mobile-nav-open">(hamburger_icon)</span>
+            <span id="mobile-nav-close" class_="hidden">(close_icon)</span>
+          </button>
+        </div>
+
+        <div id="mobile-nav-menu" class_="hidden pb-4">
+          <div class_="flex flex-col border-t border-gray-700 pt-4">
+            (list children)
+          </div>
+          <div class_="flex items-center gap-4 mt-4 pt-4 border-t border-gray-700">
+            (social_links)
+          </div>
+        </div>
+      </div>
+    </div>
+    (mobile_nav_script)
+  </nav>
+
+let email_link ~id ~user host =
+  list [
+    <a id=(id)></a>;
+    <script>
+  (Format.sprintf {|
+  (function (){
+    let user = "%s";
+    let host = "%s";
+    let elink = document.getElementById("%s");
+    elink.href = `mailto:${user}@${host}`;
+    elink.innerHTML = `${user}@${host}`;
+  })()
+|} user host id |> unsafe)
+    </script>
+  ]
+
+let footer children =
+  <footer class_="bg-[#1A202C] text-white">
+    <div class_="container mx-auto px-6 py-4">
+      <div class_="flex flex-col gap-4 items-start md:flex-row md:items-center md:justify-between">
+        <div class_="flex flex-col gap-2 items-start md:flex-row md:items-center">
+          (list children)
+        </div>
+        <div class_="flex items-center gap-4">
+          (social_links)
+        </div>
+      </div>
+    </div>
+  </footer>
+
+let make ~title ?description:desc ?canonical:canon ?(include_event_schema=false) ~children () =
+  let title = title ^ " - Fun OCaml 2027" in
+  let page_description = match desc with Some d -> d | None -> description in
+  <html lang="en">
+    <head>
+      <meta charset="utf-8"/>
+      <title>(string title)</title>
+      <meta name="description" content=(page_description)/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      (match canon with Some url -> <link rel="canonical" href=(url)/> | None -> null)
+      
+      <link rel="preload" href="/css/main.css" as_="style" onload="this.onload=null;this.rel='stylesheet'"/>
+      <noscript><link rel="stylesheet" href="/css/main.css"/></noscript>
+      
+      <link rel="preload" href="/2025/font-files/inter.css" as_="style" onload="this.onload=null;this.rel='stylesheet'"/>
+      <noscript><link rel="stylesheet" href="/2025/font-files/inter.css"/></noscript>
+      
+      <link rel="preload" href="/2025/font-files/Montserrat.css" as_="style" onload="this.onload=null;this.rel='stylesheet'"/>
+      <noscript><link rel="stylesheet" href="/2025/font-files/Montserrat.css"/></noscript>
+
+      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+      <link rel="icon" type_="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+      <link rel="icon" type_="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+      <link rel="manifest" href="/site.webmanifest"/>
+      <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"/>
+      <meta name="msapplication-TileColor" content="#da532c"/>
+      <meta name="theme-color" content="#ffffff"/>
+
+      <meta property="og:title" content=(title)/>
+      <meta property="og:description" content=(page_description)/>
+      <meta property="og:image" content=(social_media_preview_src)/>
+      <meta property="og:site_name" content=(title)/>
+      <meta property="og:url" content="https://fun-ocaml.com"/>
+      <meta name="twitter:card" content="summary_large_image"/>
+      <meta name="twitter:title" content=(title)/>
+      <meta name="twitter:description" content=(page_description)/>
+      <meta name="twitter:image" content=(social_media_preview_src)/>
+      
+      (if include_event_schema then event_schema_script else null)
+      
+      <script>
+        ({|
+          function getCookieConsent() {
+            return localStorage.getItem('cookie-consent');
+          }
+          
+          function loadAnalytics() {
+            var ahrefsScript = document.createElement('script');
+            ahrefsScript.async = true;
+            ahrefsScript.src = 'https://analytics.ahrefs.com/analytics.js';
+            ahrefsScript.dataset.key = 'INJ8YGRMW+NCMPy+IEhl+g';
+            document.head.appendChild(ahrefsScript);
+          }
+          
+          if (getCookieConsent() === 'accepted') {
+            loadAnalytics();
+          }
+          
+          window.acceptCookies = function() {
+            localStorage.setItem('cookie-consent', 'accepted');
+            loadAnalytics();
+            document.getElementById('cookie-banner').style.display = 'none';
+          };
+          
+          window.declineCookies = function() {
+            localStorage.setItem('cookie-consent', 'declined');
+            document.getElementById('cookie-banner').style.display = 'none';
+          };
+          
+          window.reopenCookieBanner = function() {
+            localStorage.removeItem('cookie-consent');
+            document.getElementById('cookie-banner').style.display = 'block';
+          };
+          
+          document.addEventListener('DOMContentLoaded', function() {
+            if (!getCookieConsent()) {
+              document.getElementById('cookie-banner').style.display = 'block';
+            }
+          });
+        |} |> unsafe)
+      </script>
+    </head>
+    <body>
+      (navigation [
+        navigation_link ~href:"/#event" ~title:"Event";
+        navigation_link ~href:"/about/" ~title:"About";
+        navigation_link ~href:"/#venue" ~title:"Venue";
+        navigation_link ~href:"/#sponsors" ~title:"Sponsors"
+      ])
+      <main>
+        (list children)
+      </main>
+      (footer [
+        navigation_link ~href:"/about/" ~title:"About";
+        navigation_link ~href:"/privacy/" ~title:"Privacy Policy";
+        navigation_link ~href:"/2025/" ~title:"FUN OCaml 2025";
+        navigation_link ~href:"/2024/" ~title:"FUN OCaml 2024";
+        <button type_="button" class_="px-4 py-2 lg:py-0 h-full items-center hover:text-primary_dark block text-left" onclick="reopenCookieBanner()">(string "Cookie Settings")</button>
+      ])
+      
+      <div id="cookie-banner" class_="cookie-banner" style="display: none;">
+        <div class_="cookie-banner-content">
+          <div class_="cookie-banner-text">
+            <p>
+              (string "We use cookies for analytics to understand how visitors use our website. See our ")
+              <a href="/privacy/">(string "privacy policy")</a>
+              (string " for details.")
+            </p>
+          </div>
+          <div class_="cookie-banner-buttons">
+            <button type_="button" class_="cookie-btn cookie-btn-decline" onclick="declineCookies()">(string "Decline")</button>
+            <button type_="button" class_="cookie-btn cookie-btn-accept" onclick="acceptCookies()">(string "Accept")</button>
+          </div>
+        </div>
+      </div>
+    </body>
+  </html>

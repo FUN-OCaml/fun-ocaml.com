@@ -1,0 +1,83 @@
+open JSX
+
+let make () =
+  <Layout title=("About FUN OCaml: Open Source OCaml Conference") canonical=("https://fun-ocaml.com/about/") 
+    description=("Learn about FUN OCaml, the premier open source OCaml conference featuring workshops, talks, and collaborative hacking for functional programming enthusiasts worldwide.")>
+    ([
+      <nav class_="bg-[#1A202C] overflow-hidden max-w-screen text-white">
+        <div class_="container mx-auto px-6 py-4">
+          <a class_="text-white hover:text-primary_dark" href="/">(string "← Back to Conference")</a>
+        </div>
+      </nav>;
+      
+      <div class_="container mx-auto px-6 py-20">
+        <div class_="max-w-4xl mx-auto">
+          <h1 class_="font-bold text-5xl text-primary_light mb-8">(string "About FUN OCaml")</h1>
+          
+          <div class_="prose prose-lg max-w-none">
+            (unsafe {|
+<h2>The Premier OCaml Conference for Open Source Developers</h2>
+
+<p>FUN OCaml is an annual <strong>functional programming conference</strong> dedicated to the <strong>OCaml programming language</strong> and its thriving ecosystem. Since our inception, we've brought together developers, researchers, and enthusiasts from around the globe to celebrate the power of type-safe, functional programming.</p>
+
+<h2>FUN OCaml 2027 — Bengaluru, India</h2>
+
+<p>The 2027 edition of FUN OCaml comes to <strong>Bengaluru, India</strong>, organized by <strong>FP Launchpad India</strong>. Join us on <strong>January 25–26, 2027</strong> at the <strong>MLR Convention Centre</strong>, Brigade Millennium Campus, JP Nagar 7th Phase, Bengaluru.</p>
+
+<h2>Program Leadership</h2>
+<ul>
+  <li><strong>Program Chair:</strong> Sabine Schmaltz (Tarides)</li>
+  <li><strong>Program Committee:</strong> David Sancho Moreno (Ahrefs), Dmitriy Kovalenko (LightSource) — more members TBA</li>
+</ul>
+
+<h2>Why Attend FUN OCaml?</h2>
+
+<p>FUN OCaml stands out as <strong>the conference for OCaml developers</strong> who want to deepen their expertise, contribute to open source, and connect with the community. Whether you're building production systems, exploring cutting-edge research, or just getting started with functional programming, FUN OCaml offers something unique:</p>
+
+<h3>1. Hands-On Workshops</h3>
+<p>Learn directly from experts in functional programming through intensive, practical workshops covering everything from beginner-friendly introductions to advanced topics.</p>
+
+<h3>2. Production Use Cases</h3>
+<p>Discover how companies worldwide use OCaml for mission-critical applications.</p>
+
+<h3>3. Open Source Collaboration</h3>
+<p>FUN OCaml dedicates significant time to <strong>collaborative open source hacking</strong>. Work alongside maintainers and contributors on popular OCaml projects.</p>
+
+<h3>4. Community Building</h3>
+<p>Network with fellow <strong>functional programming enthusiasts</strong>, OCaml developers, and industry professionals.</p>
+
+<h2>Our Format: Learn, Build, Connect</h2>
+
+<p>FUN OCaml follows a <strong>2-day format</strong> designed to maximize learning and collaboration:</p>
+<ul>
+  <li><strong>Day 1:</strong> Talks & Keynotes</li>
+  <li><strong>Day 2:</strong> Workshops & Hacking</li>
+</ul>
+
+<h2>Free and Open to All</h2>
+
+<p>FUN OCaml is <strong>free to attend</strong> with registration. All talks are live-streamed and recorded, with videos published on our YouTube channel and watch.ocaml.org.</p>
+
+<h2>Past Conferences</h2>
+
+<ul>
+  <li><a href="/2025/">FUN OCaml 2025 - Warsaw</a></li>
+  <li><a href="/2024/">FUN OCaml 2024 - Berlin</a></li>
+</ul>
+
+<h2>Join the Community</h2>
+
+<ul>
+  <li><a href="https://discord.gg/B9cM6DSWVW" target="_blank">Join our Discord</a></li>
+  <li>Follow us on <a href="https://x.com/FunOCaml" target="_blank">X/Twitter</a> and <a href="https://bsky.app/profile/fun-ocaml.com" target="_blank">Bluesky</a></li>
+  <li>Subscribe to our <a href="https://www.youtube.com/@FUNOCaml" target="_blank">YouTube channel</a></li>
+  <li>Watch videos on <a href="https://watch.ocaml.org/c/funocaml/videos" target="_blank">watch.ocaml.org</a></li>
+</ul>
+
+<p class="mt-8"><a href="/" class="inline-block bg-gradient-to-r from-primary_dark to-primary_light hover:from-black hover:to-black text-white font-semibold px-8 py-3 rounded-full">Back to FUN OCaml 2027</a></p>
+            |})
+          </div>
+        </div>
+      </div>
+    ])
+  </Layout>
