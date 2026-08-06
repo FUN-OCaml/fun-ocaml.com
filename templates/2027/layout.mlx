@@ -83,7 +83,13 @@ let event_schema_script =
       "addressRegion": "Karnataka",
       "postalCode": "560078",
       "addressCountry": "IN"
-    }
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 12.8916901,
+      "longitude": 77.5851347
+    },
+    "hasMap": "https://www.google.com/maps/place/MLR+Convention+Centre/@12.8916901,77.5825598,1421m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3bae154742e61447:0xdee3855738bcac4f!8m2!3d12.8916901!4d77.5851347!16s%2Fg%2F1tj99fq3"
   },
   "image": [
     "https://fun-ocaml.com/2027/social-media-preview.png"
@@ -98,6 +104,13 @@ let event_schema_script =
     "name": "FUN OCaml Community"
   },
   "url": "https://fun-ocaml.com",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "INR",
+    "availability": "https://schema.org/PreOrder",
+    "url": "TODO_REGISTRATION_URL"
+  },
   "keywords": "OCaml, functional programming, conference, workshop, open source, programming languages, type safety, Bengaluru, Bangalore, India, FP Launchpad"
 }
     |} |> unsafe)

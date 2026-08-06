@@ -1,7 +1,15 @@
 open JSX
 
-let youtube_url = "https://www.youtube.com/watch?v=-YSXXPwAEFI"
+let youtube_url = "https://www.youtube.com/@FUNOCaml"
 let discord_url = "https://discord.gg/B9cM6DSWVW"
+
+(* TODO: replace with the 2027 CFP URL once it is set up. *)
+let cfp_url = "TODO_CFP_URL"
+(* TODO: replace with the 2027 registration/ticketing URL once it is set up. *)
+let registration_url = "TODO_REGISTRATION_URL"
+
+let maps_url =
+  "https://www.google.com/maps/place/MLR+Convention+Centre/@12.8916901,77.5825598,1421m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3bae154742e61447:0xdee3855738bcac4f!8m2!3d12.8916901!4d77.5851347!16s%2Fg%2F1tj99fq3"
 
 
 let button ?(classes="") ~href title =
@@ -34,6 +42,23 @@ let hero_section =
       <div class_="mt-4 text-7xl font-bold text-white font-montserrat">(string "BENGALURU")</div>
       (tag ~classes:"text-3xl mt-6" "January 25 & 26, 2027")
       <div class_="mt-4 text-xl text-white font-montserrat">(string "Organized by FP Launchpad, IIT Madras")</div>
+
+      (*
+      TODO: Re-enable these buttons once cfp_url and registration_url are set above.
+      <a class_="flex items-center gap-2 text-white underline hover:no-underline text-xl mt-6" href=(cfp_url)>
+        (string ("Apply as a speaker / FUN OCaml CFP"))
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-6 h-6">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+        </svg>
+      </a>
+
+      <a class_="flex items-center gap-2 text-white underline hover:no-underline text-xl mt-6" href=(registration_url)>
+        (string ("Register here"))
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-6 h-6">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+        </svg>
+      </a>
+      *)
     </div>
   </div>
 
@@ -120,6 +145,9 @@ let venue_section =
         (string "JP Nagar 7th Phase")<br/>
         (string "Bengaluru, Karnataka 560078")<br/>
         (string "India")
+      </div>
+      <div class_="mt-6">
+        (button ~href:maps_url "View on Google Maps")
       </div>
       <div class_="absolute bottom-0 right-0 px-4 bg-blur bg-white/80">
       </div>
