@@ -63,6 +63,8 @@ Let's get together for an exhilarating event packed with creativity, innovation,
 **Program Chair:** Sabine Schmaltz
 **Program Committee:** David Sancho Moreno, Dmitriy Kovalenko (more TBA)
 
+**Speaker Support:** Limited financial support is available for accepted speakers who need assistance with travel or accommodation. **Please note: we cannot reimburse speakers directly.** Instead, we will book and pay for your travel and accommodation on your behalf. This is required due to money laundering regulations. If you would like to request speaker support, please indicate this when submitting your proposal and we will follow up with you individually.
+
 Talks will be live-streamed and will appear on [watch.ocaml.org](https://watch.ocaml.org/c/funocaml/videos) and [the FUN OCaml YouTube channel](https://youtube.com/@FunOCaml) after the event.
       |}
       |> Cmarkit.Doc.of_string ~strict:true
@@ -141,11 +143,31 @@ let organizers_section =
   <div id="organizers" class_="bg-[url('/2025/img/blue-bg.svg')] bg-center bg-cover text-white">
     <div class_="container mx-auto px-6 py-20">
       (h2 ~classes:"text-white" "Organizers & Program Committee")
-      (<p class_="text-xl my-4">(string "Want to help? Contact any of the organizers!")</p>)
-      <div class_="flex flex-wrap gap-10 mt-8">
-        (Avatar.render (Data2027.People.get_by_slug "sabine"))
-        (Avatar.render (Data2027.People.get_by_slug "davesnx"))
-        (Avatar.render (Data2027.People.get_by_slug "dmitriy"))
+
+      <div class_="mt-6">
+        (h2 ~classes:"text-white text-2xl" "Organizer")
+        <div class_="mt-4">
+          <a href="https://fplaunchpad.org" target="_blank" rel="noopener noreferrer" class_="inline-block">
+            <img
+              class_="object-contain h-24 bg-white px-6 py-3 rounded"
+              alt="FP Launchpad, IIT Madras logo"
+              src="/2027/organizers/fplaunchpad.png"
+              width="300"
+              height="96"
+            />
+          </a>
+          (<p class_="text-xl text-gray-300 mt-3">(string "Centre for Functional Systems Research and Education at IIT Madras")</p>)
+        </div>
+      </div>
+
+      <div class_="mt-12">
+        (h2 ~classes:"text-white text-2xl" "Program Committee")
+        (<p class_="text-xl my-4 text-gray-300">(string "Want to help? Contact any of the organizers!")</p>)
+        <div class_="flex flex-wrap gap-10 mt-8">
+          (Avatar.render (Data2027.People.get_by_slug "sabine"))
+          (Avatar.render (Data2027.People.get_by_slug "davesnx"))
+          (Avatar.render (Data2027.People.get_by_slug "dmitriy"))
+        </div>
       </div>
     </div>
   </div>
