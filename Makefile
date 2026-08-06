@@ -21,7 +21,7 @@ build: ## Build the project, including non installable libraries and executables
 
 .PHONE: assets
 assets:
-	mkdir -p output
+	mkdir -p output output/2024 output/2025 output/2027
 	cp -r asset/* output/
 	cp -r data/2024/media/* output/2024
 	cp -r data/2025/media/* output/2025
