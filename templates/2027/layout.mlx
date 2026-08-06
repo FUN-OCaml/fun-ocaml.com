@@ -1,6 +1,6 @@
 open JSX
 
-let description = "Join FUN OCaml 2027: a 2-day open source OCaml conference in Bengaluru, India with talks, hands-on workshops, and collaborative hacking. Organized by FP Launchpad India."
+let description = "Join FUN OCaml 2027: a 2-day open source OCaml conference in Bengaluru, India with talks, hands-on workshops, and collaborative hacking. Organized by FP Launchpad, IIT Madras."
 let social_media_preview_src = "https://fun-ocaml.com/2027/social-media-preview.png"
 
 let navigation_link ~href ~title =
@@ -90,8 +90,8 @@ let event_schema_script =
   ],
   "organizer": {
     "@type": "Organization",
-    "name": "FP Launchpad India",
-    "url": "https://fun-ocaml.com"
+    "name": "FP Launchpad",
+    "url": "https://fplaunchpad.org"
   },
   "performer": {
     "@type": "Organization",

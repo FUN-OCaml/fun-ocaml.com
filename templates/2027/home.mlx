@@ -33,7 +33,7 @@ let hero_section =
       <div class_="mt-2 text-2xl lg:text-3xl text-white font-montserrat">(string "Conference & Workshops")</div>
       <div class_="mt-4 text-7xl font-bold text-white font-montserrat">(string "BENGALURU")</div>
       (tag ~classes:"text-3xl mt-6" "January 25 & 26, 2027")
-      <div class_="mt-4 text-xl text-white font-montserrat">(string "Organized by FP Launchpad India")</div>
+      <div class_="mt-4 text-xl text-white font-montserrat">(string "Organized by FP Launchpad, IIT Madras")</div>
     </div>
   </div>
 
