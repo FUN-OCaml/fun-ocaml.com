@@ -4,6 +4,9 @@ let privacy =
   {|
 # Privacy Policy
 
+(* TODO: once the IIT Madras ticketing system goes live, add a section here
+   describing how registration information is processed by it. *)
+
 **Last updated:** December 15, 2025
 
 This Privacy Policy describes how Fun OCaml Conference ("we," "us," or "our") collects, uses, and protects your information when you visit our website [fun-ocaml.com](https://fun-ocaml.com) and its subdomains.

@@ -196,7 +196,7 @@ let sponsors_section =
       (<p class_="text-xl text-gray-600">(string "Sponsors will be announced soon.")</p>)
     </div>
     <div class_="text-center mt-6">
-    (button ~href:"mailto:info@sabineschmaltz.de?subject=Sponsoring%20FUN%20OCaml%202027&body=Hi%20Sabine,%0D%0A%0D%0Aplease%20give%20me%20an%20overview%20of%20sponsorship%20opportunities!" "Sponsor FUN OCaml?")
+    (button ~href:"mailto:organizer@fun-ocaml.com?subject=Sponsoring%20FUN%20OCaml%202027&body=Hi%20Sabine,%0D%0A%0D%0Aplease%20give%20me%20an%20overview%20of%20sponsorship%20opportunities!" "Sponsor FUN OCaml?")
     </div>
   </div>
 
@@ -207,7 +207,7 @@ let organizers_section =
 
       <div class_="mt-6">
         (h2 ~classes:"text-white text-2xl" "Host")
-        (<p class_="text-lg text-gray-300 mt-2">(string "FP Launchpad is the legal entity and host of FUN OCaml 2027. They handle the venue, catering, and on-site logistics.")</p>)
+        (<p class_="text-lg text-gray-300 mt-2">(string "FP Launchpad is the host of FUN OCaml 2027. They handle the venue, catering, and on-site logistics.")</p>)
         <div class_="mt-4">
           <a href="https://fplaunchpad.org" target="_blank" rel="noopener noreferrer" class_="inline-block">
             <img
