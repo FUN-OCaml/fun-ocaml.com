@@ -3,8 +3,8 @@ open JSX
 let youtube_url = "https://www.youtube.com/@FUNOCaml"
 let discord_url = "https://discord.gg/B9cM6DSWVW"
 
-(* TODO: replace with the 2027 CFP URL once it is set up. *)
-let cfp_url = "TODO_CFP_URL"
+let cfp_url = "https://cfp.fun-ocaml.com/fun-ocaml-2027-bengaluru/cfp"
+let cfp_close_date = "September 30, 2026"
 (* TODO: replace with the 2027 registration/ticketing URL once it is set up. *)
 let registration_url = "TODO_REGISTRATION_URL"
 
@@ -42,6 +42,12 @@ let hero_section =
       <div class_="mt-4 text-7xl font-bold text-white font-montserrat">(string "BENGALURU")</div>
       (tag ~classes:"text-3xl mt-6" "January 25 & 26, 2027")
       <div class_="mt-4 text-xl text-white font-montserrat">(string "Hosted by FP Launchpad, IIT Madras")</div>
+      <a class_="flex items-center gap-2 text-white underline hover:no-underline text-xl mt-6" href=(cfp_url) target="_blank" rel="noopener noreferrer">
+        (string ("The CFP is open until " ^ cfp_close_date))
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-6 h-6">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+        </svg>
+      </a>
     </div>
   </div>
 
