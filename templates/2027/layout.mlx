@@ -104,13 +104,6 @@ let event_schema_script =
     "name": "FUN OCaml Community"
   },
   "url": "https://fun-ocaml.com",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "INR",
-    "availability": "https://schema.org/PreOrder",
-    "url": "TODO_REGISTRATION_URL"
-  },
   "keywords": "OCaml, functional programming, conference, workshop, open source, programming languages, type safety, Bengaluru, Bangalore, India, FP Launchpad"
 }
     |} |> unsafe)
