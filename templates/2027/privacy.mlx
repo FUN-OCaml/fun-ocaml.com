@@ -4,10 +4,7 @@ let privacy =
   {|
 # Privacy Policy
 
-(* TODO: once the IIT Madras ticketing system goes live, add a section here
-   describing how registration information is processed by it. *)
-
-**Last updated:** December 15, 2025
+**Last updated:** September 4, 2026
 
 This Privacy Policy describes how Fun OCaml Conference ("we," "us," or "our") collects, uses, and protects your information when you visit our website [fun-ocaml.com](https://fun-ocaml.com) and its subdomains.
 
@@ -90,10 +87,13 @@ the data you provided will be made public.
 For technical reasons, when you use [cfp.fun-ocaml.com](https://cfp.fun-ocaml.com),
 a CSRF cookie, and, if you create an account, a session cookie will be set.
 
-## tickets.fun-ocaml.com
+## Registration (conf.code.iitm.ac.in)
 
-The conference organizer can see all data you enter. We use your personal information only
-for purposes directly related to organizing the event.
+Registration for FUN OCaml 2027 is handled by the conference platform of IIT Madras at [conf.code.iitm.ac.in](https://conf.code.iitm.ac.in/conf/Fun_OCaml_2027/login).
+
+When you register, the platform collects the information needed to manage your registration, such as your name and contact details. The conference organizers — including the FUN OCaml team and the local organising committee at FP Launchpad, IIT Madras — can see all data you enter. We use your personal information only for purposes directly related to organizing the event, such as managing registrations, catering, and on-site support.
+
+For technical reasons, using the registration platform requires a session cookie. The platform is operated by IIT Madras, so data you enter there is also processed under IIT Madras's own policies for its systems.
 
 ## Server Logs
 
