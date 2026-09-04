@@ -237,6 +237,17 @@ let organizers_section =
           (Avatar.render (Data2027.People.get_by_slug "dmitriy"))
         </div>
       </div>
+
+      <div class_="mt-12">
+        (h2 ~classes:"text-white text-2xl" "Local Organising Committee")
+        (<p class_="text-lg text-gray-300 mt-2">(string "The local organising committee from FP Launchpad takes care of the venue, catering, registrations, and on-site support at FUN OCaml 2027.")</p>)
+        <div class_="flex flex-wrap gap-10 mt-8">
+          (Avatar.render (Data2027.People.get_by_slug "kc"))
+          (Avatar.render (Data2027.People.get_by_slug "mathanan"))
+          (Avatar.render (Data2027.People.get_by_slug "kalaiselvi"))
+          (Avatar.render (Data2027.People.get_by_slug "ashutosh"))
+        </div>
+      </div>
     </div>
   </div>
 

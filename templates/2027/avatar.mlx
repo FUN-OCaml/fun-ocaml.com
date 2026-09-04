@@ -42,7 +42,7 @@ let render_social (social: Data2027.People.social) =
   <a href=(href) title=(title)>(icon "w-10 h-10")</a>
 
 let render ?tag_title (person : Data2027.People.t) =
-  <div class_="flex flex-col items-center text-lg">
+  <div class_="flex flex-col items-center text-center text-lg w-56">
     <img class_="bg-[#666] rounded-full w-48 h-48 object-cover" src=(person.img_src) alt=(person.name)/>
     (match tag_title with | Some tag_title -> tag ~classes:"px-4 mt-4" tag_title | None -> JSX.null)
     (<div class_="font-bold mt-2">(string person.name)</div>)

@@ -28,3 +28,27 @@
   bio: |
       serial twitter shitposter. Born to write OCaml, forced to write Rust full time. Primarily working on the video related stuff
   other_socials: []
+- slug: "kc"
+  name: KC Sivaramakrishnan
+  affiliation: "IIT Madras"
+  bio: |
+      Assistant Professor at IIT Madras and member of the FUN OCaml 2027 local organising committee.
+  other_socials: []
+- slug: "mathanan"
+  name: Mathanan Kailas
+  affiliation: "CyStar, IIT Madras"
+  bio: |
+      Director of Strategy & Operations at CyStar, IIT Madras and member of the FUN OCaml 2027 local organising committee.
+  other_socials: []
+- slug: "kalaiselvi"
+  name: Kalaiselvi K
+  affiliation: "CyStar, IIT Madras"
+  bio: |
+      Project Manager at CyStar, IIT Madras and member of the FUN OCaml 2027 local organising committee.
+  other_socials: []
+- slug: "ashutosh"
+  name: Ashutosh Pandey
+  affiliation: "AMD"
+  bio: |
+      Senior Software Engineer at AMD and member of the FUN OCaml 2027 local organising committee.
+  other_socials: []
