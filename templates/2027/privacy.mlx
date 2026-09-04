@@ -115,7 +115,7 @@ for other purposes.
     |> Cmarkit_html.of_doc ~safe:false
 
 let make () =
-  <Layout title=("Privacy Policy") description="Privacy Policy for Fun OCaml Conference. Learn how we collect, use, and protect your information in accordance with GDPR.">
+  <Layout title=("Privacy Policy") description="Privacy Policy for Fun OCaml Conference. Learn how we collect, use, and protect your information in accordance with GDPR." canonical=("https://fun-ocaml.com/privacy/")>
     ([
       <div class_="mx-auto container px-6 py-20 min-h-screen">
         <div class_="prose prose-xl">

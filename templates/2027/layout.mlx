@@ -1,7 +1,9 @@
 open JSX
 
 let description = "Join FUN OCaml 2027: a 2-day open source OCaml conference in Bengaluru, India with talks, hands-on workshops, and collaborative hacking. Organized by FP Launchpad, IIT Madras."
-let social_media_preview_src = "https://fun-ocaml.com/2027/social-media-preview.png"
+let social_media_preview_version = "2"
+let social_media_preview_src =
+  "https://fun-ocaml.com/2027/social-media-preview.png?v=" ^ social_media_preview_version
 
 let navigation_link ~href ~title =
   <a class_="px-4 py-2 lg:py-0 h-full items-center hover:text-primary_dark block" href=(href)>(string title)</a>
@@ -92,7 +94,7 @@ let event_schema_script =
     "hasMap": "https://www.google.com/maps/place/MLR+Convention+Centre/@12.8916901,77.5825598,1421m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3bae154742e61447:0xdee3855738bcac4f!8m2!3d12.8916901!4d77.5851347!16s%2Fg%2F1tj99fq3"
   },
   "image": [
-    "https://fun-ocaml.com/2027/social-media-preview.png"
+    "https://fun-ocaml.com/2027/social-media-preview.png?v=2"
   ],
   "organizer": {
     "@type": "Organization",
@@ -181,6 +183,7 @@ let footer children =
 let make ~title ?description:desc ?canonical:canon ?(include_event_schema=false) ~children () =
   let title = title ^ " - Fun OCaml 2027" in
   let page_description = match desc with Some d -> d | None -> description in
+  let page_url = match canon with Some url -> url | None -> "https://fun-ocaml.com" in
   <html lang="en">
     <head>
       <meta charset="utf-8"/>
@@ -209,12 +212,18 @@ let make ~title ?description:desc ?canonical:canon ?(include_event_schema=false)
       <meta property="og:title" content=(title)/>
       <meta property="og:description" content=(page_description)/>
       <meta property="og:image" content=(social_media_preview_src)/>
-      <meta property="og:site_name" content=(title)/>
-      <meta property="og:url" content="https://fun-ocaml.com"/>
+      <meta property="og:image:secure_url" content=(social_media_preview_src)/>
+      <meta property="og:image:type" content="image/png"/>
+      <meta property="og:image:width" content="964"/>
+      <meta property="og:image:height" content="800"/>
+      <meta property="og:image:alt" content="FUN OCaml 2027 conference branding and event details"/>
+      <meta property="og:site_name" content="FUN OCaml"/>
+      <meta property="og:url" content=(page_url)/>
       <meta name="twitter:card" content="summary_large_image"/>
       <meta name="twitter:title" content=(title)/>
       <meta name="twitter:description" content=(page_description)/>
       <meta name="twitter:image" content=(social_media_preview_src)/>
+      <meta name="twitter:image:alt" content="FUN OCaml 2027 conference branding and event details"/>
       
       (if include_event_schema then event_schema_script else null)
       
