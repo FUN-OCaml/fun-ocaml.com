@@ -1,0 +1,133 @@
+open JSX
+
+let privacy =
+  {|
+# Privacy Policy
+
+(* TODO: once the IIT Madras ticketing system goes live, add a section here
+   describing how registration information is processed by it. *)
+
+**Last updated:** December 15, 2025
+
+This Privacy Policy describes how Fun OCaml Conference ("we," "us," or "our") collects, uses, and protects your information when you visit our website [fun-ocaml.com](https://fun-ocaml.com) and its subdomains.
+
+## 1. Data Controller / Imprint
+
+The data controller responsible for your personal data is:
+
+**Sabine Schmaltz**
+Halbergstr. 4 c/o Halle4
+66121 Saarbruecken
+Germany
+
+Contact: privacy@fun-ocaml.com
+
+## 2. Data We Collect
+
+We collect and retain as little data about you as possible, and make the retention and use of your data as transparent and manageable for you as we can.
+
+### 2.1 Automatically Collected Data
+When you visit our website, we automatically collect certain technical information as described in the "Server Logs" section below.
+
+### 2.2 Analytics Data
+We use Ahrefs analytics to understand website usage and improve our services. Ahrefs may collect:
+- IP addresses (anonymized)
+- Browser type and version
+- Pages visited and time spent on pages
+- Referring websites
+- Device and screen information
+
+**Important:** Analytics is only loaded after you give your consent via our cookie banner. You can change your cookie preferences at any time using the "Cookie Settings" link in the footer.
+
+Ahrefs processes data in accordance with [Ahrefs' Privacy Policy](https://ahrefs.com/privacy).
+
+## 3. Legal Basis for Processing
+
+We process your personal data based on:
+- **Legitimate interests** for website functionality and security
+- **Consent** for analytics tracking
+- **Contract performance** for event registration and participation
+
+## 4. Data Security and Transfer
+
+We transmit all data using up-to-date transport layer encryption (TLS) between your browser and our servers.
+
+Our team has access to all data submitted for technical reasons. We will only access or use that data when necessary for support requests or security purposes.
+
+## 5. Your Rights Under GDPR
+
+As a data subject, you have the following rights:
+- **Right of access**: Request information about your personal data
+- **Right to rectification**: Correct inaccurate personal data
+- **Right to erasure**: Request deletion of your personal data
+- **Right to restrict processing**: Limit how we use your data
+- **Right to data portability**: Receive your data in a structured format
+- **Right to object**: Object to processing based on legitimate interests
+- **Right to withdraw consent**: Where processing is based on consent
+
+To exercise these rights, please contact us at privacy@fun-ocaml.com.
+
+## 6. Data Sharing
+
+As a visitor to the [fun-ocaml.com](https://fun-ocaml.com) website:
+
+* No personal information is shared with, sent to, or sold to third-parties (except for analytics services as disclosed above, and only with your consent)
+* No information is shared with advertising companies
+* No information is mined or harvested for personal and behavioral trends
+* No information is monetized
+
+## 7. Contact and Complaints
+
+If you have questions or concerns about this privacy policy or our data processing, please contact us at privacy@fun-ocaml.com.
+
+## cfp.fun-ocaml.com
+
+If you are a submitter or speaker, the conference organizer can see
+all data (except passwords) you enter during and after the Call for Participation.
+If the organizer accepts your submission and you confirm your attendance,
+the data you provided will be made public.
+
+For technical reasons, when you use [cfp.fun-ocaml.com](https://cfp.fun-ocaml.com),
+a CSRF cookie, and, if you create an account, a session cookie will be set.
+
+## tickets.fun-ocaml.com
+
+The conference organizer can see all data you enter. We use your personal information only
+for purposes directly related to organizing the event.
+
+## Server Logs
+
+When you access our website or individual pages, the browser on your device
+automatically sends information to the server of our website.
+The following information is stored in log files:
+
+* IP address of the requesting computer,
+* Date and time of access,
+* Name and URL of the retrieved file,
+* Website from which access is made (referrer URL),
+* browser used and, if applicable, the operating system of your computer,
+* Status codes and amount of data transferred,
+
+This data will be deleted after fourteen days unless it is no longer required
+for other purposes.
+      |}
+    |> Cmarkit.Doc.of_string ~strict:true
+    |> Cmarkit_html.of_doc ~safe:false
+
+let make () =
+  <Layout title=("Privacy Policy") description="Privacy Policy for Fun OCaml Conference. Learn how we collect, use, and protect your information in accordance with GDPR." canonical=("https://fun-ocaml.com/privacy/")>
+    ([
+      <div class_="mx-auto container px-6 py-20 min-h-screen">
+        <div class_="prose prose-xl">
+        <p>
+          (string "Privacy contact: ")
+          (Layout.email_link ~id:"privacy_email" ~user:"privacy" "fun-ocaml.com")
+        </p>
+        (privacy |> unsafe)
+        </div>
+        <div class_="mt-8">
+          <button type_="button" class_="inline-block bg-gradient-to-r from-primary_dark to-primary_light hover:from-black hover:to-black text-white font-semibold px-8 py-3 rounded-full" onclick="reopenCookieBanner()">(string "Cookie Settings")</button>
+        </div>
+      </div>
+    ])
+  </Layout>

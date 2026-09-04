@@ -1,0 +1,52 @@
+open JSX
+
+let make () =
+  <Layout title=("Travel Guide | FUN OCaml 2027 Bengaluru") canonical=("https://fun-ocaml.com/travel-guide/")
+    description=("Travel and accommodation guide for FUN OCaml 2027 in Bengaluru, India. Venue, airport, transit, hotels, food, and visa information.")>
+    ([
+      <nav class_="bg-[#1A202C] overflow-hidden max-w-screen text-white">
+        <div class_="container mx-auto px-6 py-4">
+          <a class_="text-white hover:text-primary_dark" href="/">(string "← Back to Conference")</a>
+        </div>
+      </nav>;
+
+      <div class_="container mx-auto px-6 py-20">
+        <div class_="max-w-4xl mx-auto">
+          <h1 class_="font-bold text-5xl text-primary_light mb-8">(string "Accommodation & Travel Guide")</h1>
+
+          <div class_="prose prose-lg max-w-none">
+            (unsafe {|
+<h2>Venue</h2>
+<p><strong>MLR Convention Centre</strong><br/>
+Cassia Block, Brigade Millennium Campus<br/>
+JP Nagar 7th Phase<br/>
+Bengaluru, Karnataka 560078, India</p>
+<p><a href="https://www.google.com/maps/place/MLR+Convention+Centre/@12.8916901,77.5825598,1421m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3bae154742e61447:0xdee3855738bcac4f!8m2!3d12.8916901!4d77.5851347!16s%2Fg%2F1tj99fq3" target="_blank" rel="noopener noreferrer">View on Google Maps →</a></p>
+
+<h2>Getting to Bengaluru</h2>
+<p><strong>Air:</strong> Kempegowda International Airport (BLR) is the nearest airport, approximately 45 km from the venue. Taxis and ride-hailing services (Uber, Ola) are readily available.</p>
+<p><strong>Rail:</strong> Bengaluru has multiple major railway stations with connections across India.</p>
+
+<h2>Getting Around</h2>
+<p><strong>Metro:</strong> Namma Metro connects major parts of the city. The nearest metro station to the venue will be confirmed.</p>
+<p><strong>Ride-hailing:</strong> Uber and Ola operate throughout Bengaluru.</p>
+<p><strong>Auto-rickshaws:</strong> Widely available; insist on meter usage or agree on a fare beforehand.</p>
+
+<h2>Accommodation</h2>
+<p>Recommended hotels near the venue in JP Nagar will be listed here once confirmed.</p>
+
+<h2>Food</h2>
+<p>Bengaluru has one of India's best food scenes, and the city is exceptionally vegetarian-friendly. Event catering will include <strong>ample vegetarian and vegan options</strong> at every meal. If you have specific dietary requirements or allergies, please let us know when registering so we can accommodate you.</p>
+<p>The area around the venue in JP Nagar has numerous restaurants serving South Indian, North Indian, and international cuisine, with many dedicated vegetarian and vegan establishments.</p>
+
+<h2>Visa</h2>
+<p>If you require a visa to travel to India, please apply well in advance. We can provide a letter of invitation for accepted speakers and registered attendees upon request. <a href="mailto:organizer@fun-ocaml.com">Contact us</a> if you need assistance.</p>
+
+<hr/>
+<p><em>This guide will be updated as we get closer to the event. For questions, contact us via the <a href="https://discord.gg/B9cM6DSWVW" target="_blank">FUN OCaml Discord</a>.</em></p>
+            |})
+          </div>
+        </div>
+      </div>
+    ])
+  </Layout>

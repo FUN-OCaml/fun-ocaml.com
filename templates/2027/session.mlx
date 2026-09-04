@@ -1,0 +1,179 @@
+open JSX
+
+let button ?(classes="") ~href title =
+  <a class_=("inline-block bg-gradient-to-r from-primary_dark to-primary_light hover:from-black hover:to-black text-white font-semibold px-8 py-3 rounded-full " ^ classes)
+    href=(href) target="_blank">(string title)</a>
+
+let h2 ?(classes="") title =
+  <h2 class_=("font-bold text-primary_light text-4xl " ^ classes)>(title |> String.uppercase_ascii |> string)</h2>
+
+let tag ?(classes="") title =
+   <div class_=(classes ^ " inline-flex font-montserrat text-white bg-primary_light px-4 py-2")>(string title)</div>
+
+let truncate_string max_len str =
+  let str = String.trim str in
+  if String.length str <= max_len then str
+  else
+    let truncated = String.sub str 0 max_len in
+    match String.rindex_opt truncated ' ' with
+    | Some i when i > max_len - 30 -> String.sub truncated 0 i ^ "..."
+    | _ -> truncated ^ "..."
+
+let render (s: Data2027.Sessions.t) =
+  let speaker_names = s.speakers |> List.map (fun (p: Data2027.People.t) -> p.name) |> String.concat ", " in
+  let prefix = Printf.sprintf "%s by %s. " s.title speaker_names in
+  let max_abstract_len = max 50 (155 - String.length prefix) in
+  let description = match s.meta_description with
+    | Some d -> truncate_string 155 (prefix ^ d)
+    | None -> prefix ^ (truncate_string max_abstract_len s.abstract_plain)
+  in
+  let canonical = Printf.sprintf "https://fun-ocaml.com/2027/%s/" s.slug in
+  <Layout title=(s.title) description=(description) canonical=(canonical)>
+    [
+      <div class_="container mx-auto px-6 py-12">
+        <div class_="max-w-4xl">
+          <h1 class_="font-bold text-4xl">(string s.title)</h1>
+          <div class_="mt-4">
+            (tag (match s.kind with | Workshop -> "Workshop" | Talk -> "Talk"))
+          </div>
+
+          (h2 ~classes:"mt-8" "Speakers")
+          <div class_="mt-6 flex flex-wrap gap-10">
+            (list (List.map Avatar.render s.speakers))
+          </div>
+
+          (h2 ~classes:"mt-12" "Abstract")
+          <div class_="mt-6 prose prose-lg">
+            (s.abstract |> unsafe)
+          </div>
+
+          (match (s.youtube_video, s.watch_ocaml_org_video) with
+           | (None, None) -> JSX.null
+           | _ ->
+             <div>
+               (h2 ~classes:"mt-12" "Video Recording")
+
+               (match s.youtube_video with
+                | None -> JSX.null
+                | Some video_url ->
+                  let video_id =
+                    let find_v_param url =
+                      match String.split_on_char '?' url with
+                      | _ :: query :: _ ->
+                        let params = String.split_on_char '&' query in
+                        let rec find_v = function
+                          | [] -> None
+                          | param :: rest ->
+                            (match String.split_on_char '=' param with
+                             | ["v"; value] -> Some value
+                             | _ -> find_v rest)
+                        in
+                        find_v params
+                      | _ -> None
+                    in
+                    match find_v_param video_url with
+                    | Some id -> id
+                    | None -> ""
+                  in
+                  if video_id <> "" then
+                    <div class_="mt-6">
+                      <div class_="relative aspect-video">
+                        <iframe
+                          class_="absolute inset-0 w-full h-full"
+                          src=("https://www.youtube-nocookie.com/embed/" ^ video_id ^ "?rel=0")
+                          title=("YouTube video: " ^ s.title)
+                          frameborder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowfullscreen=(true)>
+                        </iframe>
+                      </div>
+                    </div>
+                  else JSX.null)
+
+               <div class_="mt-6 space-y-3">
+                 (match s.youtube_video with
+                  | None -> JSX.null
+                  | Some video_url ->
+                    <a class_="text-primary_light hover:text-primary_dark flex items-center gap-2"
+                       href=(video_url) target="_blank" rel="noopener noreferrer">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-5 h-5">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
+                      </svg>
+                      (string "Watch on YouTube")
+                    </a>)
+                 (match s.watch_ocaml_org_video with
+                  | None -> JSX.null
+                  | Some video_url ->
+                    <a class_="text-primary_light hover:text-primary_dark flex items-center gap-2"
+                       href=(video_url) target="_blank" rel="noopener noreferrer">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-5 h-5">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
+                      </svg>
+                      (string "Watch on watch.ocaml.org")
+                    </a>)
+               </div>
+             </div>)
+
+          (match s.slides with
+           | None -> JSX.null
+           | Some (Data2027.Sessions.LocalFile filename) ->
+             <div>
+               (h2 ~classes:"mt-12" "Slides")
+               <div class_="mt-6">
+                 <a class_="text-primary_light hover:text-primary_dark flex items-center gap-2"
+                    href=("/2027/slides/" ^ filename) target="_blank">
+                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-5 h-5">
+                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                   </svg>
+                   (string ("Download slides (" ^ filename ^ ")"))
+                 </a>
+               </div>
+             </div>
+           | Some (Data2027.Sessions.ExternalUrl url) ->
+             <div>
+               (h2 ~classes:"mt-12" "Slides")
+               <div class_="mt-6">
+                 <a class_="text-primary_light hover:text-primary_dark flex items-center gap-2"
+                    href=(url) target="_blank" rel="noopener noreferrer">
+                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-5 h-5">
+                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+                   </svg>
+                   (string "View slides")
+                 </a>
+               </div>
+             </div>)
+
+          (match s.links with
+           | [] -> JSX.null
+           | links ->
+             <div>
+               (h2 ~classes:"mt-12" "Resources")
+               <div class_="mt-6">
+                 <ul class_="space-y-3">
+                   (list (List.map (fun (link : Data2027.Sessions.link) ->
+                     <li>
+                       <a class_="text-primary_light hover:text-primary_dark flex items-center gap-2"
+                          href=(link.url) target="_blank" rel="noopener noreferrer">
+                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-5 h-5">
+                           <path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+                         </svg>
+                         (string link.title)
+                       </a>
+                     </li>
+                   ) links))
+                 </ul>
+               </div>
+             </div>)
+
+          <div class_="mt-12 pt-8 border-t border-gray-200">
+            <a class_="text-primary_light hover:text-primary_dark flex items-center gap-2" href="/">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+              </svg>
+              (string "Back to Conference")
+            </a>
+          </div>
+        </div>
+      </div>
+    ]
+  </Layout>

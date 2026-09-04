@@ -16,8 +16,10 @@ let render_homepage () =
     let html = Templates2024.Home.make () |> JSX.render in
     write_file "output/2024/index.html" html;
     let html = Templates2025.Home.make () |> JSX.render in
+    write_file "output/2025/index.html" html;
+    let html = Templates2027.Home.make () |> JSX.render in
     write_file "output/index.html" html;
-    write_file "output/2025/index.html" html
+    write_file "output/2027/index.html" html
   with e ->
     Printf.printf "Error rendering homepage: %s\n" (Printexc.to_string e);
     raise e
@@ -40,9 +42,18 @@ let render_2025_session_page (s : Data2025.Sessions.t) =
       (Printexc.to_string e);
     raise e
 
+let render_2027_session_page (s : Data2027.Sessions.t) =
+  try
+    let html = Templates2027.Session.render s |> JSX.render in
+    write_file ("output/2027/" ^ s.slug ^ "/index.html") html
+  with e ->
+    Printf.printf "Error rendering session page for %s: %s\n" s.slug
+      (Printexc.to_string e);
+    raise e
+
 let render_privacy_policy () =
   try
-    let html = Templates2025.Privacy.make () |> JSX.render in
+    let html = Templates2027.Privacy.make () |> JSX.render in
     write_file "output/privacy/index.html" html
   with e ->
     Printf.printf "Error rendering privacy policy: %s\n" (Printexc.to_string e);
@@ -50,10 +61,18 @@ let render_privacy_policy () =
 
 let render_about_page () =
   try
-    let html = Templates2025.About.make () |> JSX.render in
+    let html = Templates2027.About.make () |> JSX.render in
     write_file "output/about/index.html" html
   with e ->
     Printf.printf "Error rendering about page: %s\n" (Printexc.to_string e);
+    raise e
+
+let render_travel_guide_page () =
+  try
+    let html = Templates2027.Travel_guide.make () |> JSX.render in
+    write_file "output/travel-guide/index.html" html
+  with e ->
+    Printf.printf "Error rendering travel guide: %s\n" (Printexc.to_string e);
     raise e
 
 let base_url = "https://fun-ocaml.com"
@@ -81,11 +100,15 @@ let render_sitemap () =
         make_url ~loc:"/" ~priority:1.0 ~changefreq:"weekly" ~lastmod:current_date;
         
         (* Event year pages *)
-        make_url ~loc:"/2024/" ~priority:0.9 ~changefreq:"monthly" ~lastmod:"2024-09-17";
-        make_url ~loc:"/2025/" ~priority:0.9 ~changefreq:"weekly" ~lastmod:current_date;
+        make_url ~loc:"/2024/" ~priority:0.6 ~changefreq:"yearly" ~lastmod:"2024-09-17";
+        make_url ~loc:"/2025/" ~priority:0.6 ~changefreq:"yearly" ~lastmod:"2025-12-15";
+        make_url ~loc:"/2027/" ~priority:0.9 ~changefreq:"weekly" ~lastmod:current_date;
         
         (* About page - high priority for SEO *)
         make_url ~loc:"/about/" ~priority:0.8 ~changefreq:"monthly" ~lastmod:current_date;
+        
+        (* Travel guide *)
+        make_url ~loc:"/travel-guide/" ~priority:0.7 ~changefreq:"monthly" ~lastmod:current_date;
         
         (* Privacy page - low priority *)
         make_url ~loc:"/privacy/" ~priority:0.3 ~changefreq:"yearly" ~lastmod:current_date;
@@ -98,11 +121,19 @@ let render_sitemap () =
                  ~priority:0.6
                  ~changefreq:"yearly"
                  ~lastmod:"2024-09-17"))
-      (* 2025 session pages - current, higher priority *)
+      (* 2025 session pages - archived, lower priority *)
       @ (Data2025.Sessions.all
         |> List.map (fun (s : Data2025.Sessions.t) ->
                make_url
                  ~loc:("/2025/" ^ s.slug ^ "/")
+                 ~priority:0.6
+                 ~changefreq:"yearly"
+                 ~lastmod:"2025-12-15"))
+      (* 2027 session pages - current, higher priority *)
+      @ (Data2027.Sessions.all
+        |> List.map (fun (s : Data2027.Sessions.t) ->
+               make_url
+                 ~loc:("/2027/" ^ s.slug ^ "/")
                  ~priority:0.7
                  ~changefreq:"monthly"
                  ~lastmod:current_date))
@@ -126,11 +157,14 @@ let () =
     render_homepage ();
     render_privacy_policy ();
     render_about_page ();
+    render_travel_guide_page ();
     render_sitemap ();
     Data2024.Sessions.all
     |> List.iter (fun (s : Data2024.Sessions.t) -> render_session_page s);
     Data2025.Sessions.all
-    |> List.iter (fun (s : Data2025.Sessions.t) -> render_2025_session_page s)
+    |> List.iter (fun (s : Data2025.Sessions.t) -> render_2025_session_page s);
+    Data2027.Sessions.all
+    |> List.iter (fun (s : Data2027.Sessions.t) -> render_2027_session_page s)
   with e ->
     Printf.printf "Fatal error: %s\n" (Printexc.to_string e);
     exit 1

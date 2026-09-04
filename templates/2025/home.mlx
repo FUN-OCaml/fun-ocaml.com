@@ -358,7 +358,7 @@ let recommended_events_section =
   </div>
 
 let make () =
-  <Layout title=("FUN OCaml 2025: OCaml Conference & Workshops | Warsaw Sept 15-16") canonical=("https://fun-ocaml.com/") include_event_schema=(true)>
+  <Layout title=("FUN OCaml 2025: OCaml Conference & Workshops | Warsaw Sept 15-16") canonical=("https://fun-ocaml.com/2025/") include_event_schema=(true)>
     ([
      hero_section;
      list program_section;
