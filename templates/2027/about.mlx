@@ -1,4 +1,3 @@
-open JSX
 
 let make () =
   <Layout title=("About FUN OCaml: Open Source OCaml Conference") canonical=("https://fun-ocaml.com/about/") 

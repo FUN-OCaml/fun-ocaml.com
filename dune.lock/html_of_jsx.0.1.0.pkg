@@ -1,0 +1,19 @@
+(version 0.1.0)
+
+(build
+ (all_platforms
+  ((action
+    (progn
+     (when %{pkg-self:dev} (run dune subst))
+     (run dune build -p %{pkg-self:name} -j %{jobs} @install))))))
+
+(depends
+ (all_platforms
+  (dune ocaml ppxlib pretty_expressive)))
+
+(source
+ (fetch
+  (url
+   https://github.com/davesnx/html_of_jsx/releases/download/0.1.0/html_of_jsx-0.1.0.tbz)
+  (checksum
+   sha512=b25ba1321a5413942bf781aa9a8cacdc92eb03c1099a4c564a061b32cc57bbae571465d123d98548aba1cc78c3bb79fbf415e29934a8318c15ab9ffc0ea8cceb)))

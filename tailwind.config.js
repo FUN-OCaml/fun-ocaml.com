@@ -1,7 +1,7 @@
 const defaultTheme = require("tailwindcss/defaultTheme")
 
 module.exports = {
-  content: ["**/*.mlx", "**/*.html"],
+  content: ["templates/**/*.mlx"],
   darkMode: 'class',
   theme: {
     screens: {

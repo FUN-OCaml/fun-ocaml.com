@@ -12,7 +12,7 @@ let navigation_button ~href ~title =
   <a class_="inline-flex font-montserrat text-white bg-primary_light px-4 py-2" href=(href)>(string title)</a>
 
 let social_link ~href ~label icon =
-  <a class_="text-gray-400 hover:text-white transition-colors" href=(href) target="_blank" rel="noopener noreferrer" aria_label=(label)>
+  <a class_="text-gray-400 hover:text-white transition-colors" href=(href) target=`_blank rel="noopener noreferrer" aria_label=(label)>
     (icon "w-6 h-6")
   </a>
 
@@ -26,12 +26,12 @@ let social_links =
 
 let hamburger_icon =
   <svg class_="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+    <path strokeLinecap=`round strokeLinejoin=`round strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
   </svg>
 
 let close_icon =
   <svg class_="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+    <path strokeLinecap=`round strokeLinejoin=`round strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
   </svg>
 
 let mobile_nav_script =
@@ -298,8 +298,8 @@ let make ~title ?description:desc ?canonical:canon ?(include_event_schema=false)
             </p>
           </div>
           <div class_="cookie-banner-buttons">
-            <button type_="button" class_="cookie-btn cookie-btn-decline" onclick="declineCookies()">(string "Decline")</button>
-            <button type_="button" class_="cookie-btn cookie-btn-accept" onclick="acceptCookies()">(string "Accept")</button>
+            <button type_=`button class_="cookie-btn cookie-btn-decline" onclick="declineCookies()">(string "Decline")</button>
+            <button type_=`button class_="cookie-btn cookie-btn-accept" onclick="acceptCookies()">(string "Accept")</button>
           </div>
         </div>
       </div>

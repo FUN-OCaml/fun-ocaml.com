@@ -7,7 +7,7 @@ let navigation_button ~href ~title =
   <a class_="inline-flex font-montserrat text-white bg-primary_light px-4 py-2" href=(href)>(string title)</a>
 
 let social_link ~href ~label icon =
-  <a class_="text-gray-400 hover:text-white transition-colors" href=(href) target="_blank" rel="noopener noreferrer" aria_label=(label)>
+  <a class_="text-gray-400 hover:text-white transition-colors" href=(href) target=`_blank rel="noopener noreferrer" aria_label=(label)>
     (icon "w-6 h-6")
   </a>
 
@@ -146,8 +146,8 @@ let make ~title ?description:desc ?canonical:canon ~children () =
             </p>
           </div>
           <div class_="cookie-banner-buttons">
-            <button type_="button" class_="cookie-btn cookie-btn-decline" onclick="declineCookies()">(string "Decline")</button>
-            <button type_="button" class_="cookie-btn cookie-btn-accept" onclick="acceptCookies()">(string "Accept")</button>
+            <button type_=`button class_="cookie-btn cookie-btn-decline" onclick="declineCookies()">(string "Decline")</button>
+            <button type_=`button class_="cookie-btn cookie-btn-accept" onclick="acceptCookies()">(string "Accept")</button>
           </div>
         </div>
       </div>

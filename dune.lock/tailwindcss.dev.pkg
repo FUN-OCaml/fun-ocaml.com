@@ -1,0 +1,24 @@
+(version dev)
+
+(install
+ (choice
+  ((((arch x86_64)
+     (os linux)))
+   (run cp bin/tailwindcss-linux-x64 %{bin}/tailwindcss))
+  ((((arch arm64)
+     (os linux)))
+   (run cp bin/tailwindcss-linux-arm64 %{bin}/tailwindcss))
+  ((((arch x86_64)
+     (os macos)))
+   (run cp bin/tailwindcss-macos-x64 %{bin}/tailwindcss))
+  ((((arch arm64)
+     (os macos)))
+   (run cp bin/tailwindcss-macos-arm64 %{bin}/tailwindcss))))
+
+(source
+ (fetch
+  (url
+   https://github.com/tmattio/opam-tailwindcss/archive/4c3007877d616c271205046ff492759c96fe7a76.tar.gz)
+  (checksum md5=aa853d9d3c4bf28cce66a2940efb5a39)))
+
+(dev)

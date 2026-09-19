@@ -11,7 +11,7 @@ let discord_url = "https://discord.gg/B9cM6DSWVW"
 
 let button ?(classes="") ~href title =
   <a class_=("inline-block bg-gradient-to-r from-primary_dark to-primary_light hover:from-black hover:to-black text-white font-semibold px-8 py-3 rounded-full " ^ classes)
-    href=(href) target="_blank">(string title)</a>
+    href=(href) target=`_blank>(string title)</a>
 
 let h2 ?(classes="") title =
   <h2 class_=("font-bold text-primary_light text-4xl " ^ classes)>(title |> String.uppercase_ascii |> string)</h2>
@@ -43,7 +43,7 @@ let hero_section =
       <a class_="flex items-center gap-2 text-white underline hover:no-underline text-xl mt-6" href=(registration_url)>
         (string ("Register for free here"))
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-6 h-6">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+          <path strokeLinecap=`round strokeLinejoin=`round d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
         </svg>
       </a>
       *)
@@ -52,7 +52,7 @@ let hero_section =
       <a class_="flex items-center gap-2 text-white underline hover:no-underline text-xl mt-6" href=(cfp_url)>
         (string ("Apply as a speaker / FUN OCaml CFP"))
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-6 h-6">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+          <path strokeLinecap=`round strokeLinejoin=`round d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
         </svg>
       </a>
       *)
@@ -273,7 +273,7 @@ let venue_section =
         (string "Digital Knowledge Village")<br/>
         (string "457 Puławska St.")<br/>
         (string "02-844 Warsaw")<br/>
-        <a href="https://maps.app.goo.gl/2ZgApqZhyt1EFYCn7" target="_blank">
+        <a href="https://maps.app.goo.gl/2ZgApqZhyt1EFYCn7" target=`_blank>
         (string "on Google Maps")
         </a>
       </div>
@@ -298,7 +298,7 @@ let sponsors_section =
       (list (
         Data2025.Sponsors.all
         |> List.map (fun (sponsor: Data2025.Sponsors.sponsor) ->
-          <a href=(sponsor.url) target="_blank" class_="mx-auto text-center">
+          <a href=(sponsor.url) target=`_blank class_="mx-auto text-center">
             <div class_="h-24 flex items-center">
                 <img
                     class_="object-contain max-h-24 mx-auto w-3xs max-w-full"
@@ -343,7 +343,7 @@ let recommended_events_section =
       (list (
         Data2025.RecommendedEvents.all
         |> List.map (fun (event: Data2025.RecommendedEvents.event) ->
-          <a href=(event.url) target="_blank" class_="mx-auto">
+          <a href=(event.url) target=`_blank class_="mx-auto">
             <img
               class_="object-contain h-24"
               alt=(event.name ^ " logo")

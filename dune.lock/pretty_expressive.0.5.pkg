@@ -1,0 +1,19 @@
+(version 0.5)
+
+(build
+ (all_platforms
+  ((action
+    (progn
+     (when %{pkg-self:dev} (run dune subst))
+     (run dune build -p %{pkg-self:name} -j %{jobs} @install))))))
+
+(depends
+ (all_platforms
+  (ocaml dune)))
+
+(source
+ (fetch
+  (url
+   https://github.com/sorawee/pretty-expressive-ocaml/releases/download/0.5/pretty_expressive-0.5.tbz)
+  (checksum
+   sha512=1cf8fb91761ce3adec91f7a14ece8ef4e25661e26b0be199759fe53cd11caf5609639cda9dc89f2dcf76c32cc35302fcb2022184e0cae1c020b0cd940892182e)))
