@@ -53,3 +53,8 @@ fmt: ## Format the codebase with ocamlformat
 .PHONY: watch
 watch: ## Watch for the filesystem and rebuild on every change
 	opam exec -- dune build @run -w --force --no-buffer
+
+.PHONY: deploy
+deploy: run ## Build and upload output/ to DEPLOY_TARGET (user@host:/path/)
+	@test -n "$(DEPLOY_TARGET)" || (echo "Set DEPLOY_TARGET=user@host:/path/to/webroot/" && exit 1)
+	rsync -av output/ $(DEPLOY_TARGET)
