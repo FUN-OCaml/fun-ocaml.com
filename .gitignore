@@ -4,3 +4,5 @@ output
 .DS_Store
 **/.DS_Store
 .spr.yml
+# Local deploy script with the server target
+deploy.sh
