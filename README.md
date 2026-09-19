@@ -4,14 +4,15 @@ Static site for the FUN OCaml conference, generated with OCaml (`.mlx` templates
 
 ## Build
 
-Requirements: opam, and the [Tailwind CSS standalone CLI](https://tailwindcss.com/blog/standalone-cli) (v3) on your `PATH` as `tailwindcss`.
+Requirements: [dune](https://dune.build) 3.24 or newer. Dependencies, including the OCaml compiler and the Tailwind CSS CLI, are locked in `dune.lock/` and fetched by dune on the first build. No opam needed.
 
 ```bash
-make deps   # first time: creates a local opam switch and installs dependencies
 make        # builds everything into output/
 ```
 
 `make` compiles the generator, builds the CSS, copies static assets and media, and renders all pages plus `sitemap.xml` into `output/`.
+
+After changing dependencies in `dune-project`, run `make lock` to re-solve them and commit the updated `dune.lock/`.
 
 ## Layout
 

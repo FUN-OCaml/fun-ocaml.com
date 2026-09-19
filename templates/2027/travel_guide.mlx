@@ -1,4 +1,3 @@
-open JSX
 
 let make () =
   <Layout title=("Travel Guide | FUN OCaml 2027 Bengaluru") canonical=("https://fun-ocaml.com/travel-guide/")

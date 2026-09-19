@@ -11,13 +11,17 @@ let write_file path content =
     Printf.printf "Error writing file %s: %s\n" path (Printexc.to_string e);
     raise e
 
+(* html_of_jsx 0.1.0's ppx pre-renders static markup and drops the doctype
+   that JSX.render would otherwise add before <html>. *)
+let render_page page = "<!DOCTYPE html>" ^ JSX.render page
+
 let render_homepage () =
   try
-    let html = Templates2024.Home.make () |> JSX.render in
+    let html = Templates2024.Home.make () |> render_page in
     write_file "output/2024/index.html" html;
-    let html = Templates2025.Home.make () |> JSX.render in
+    let html = Templates2025.Home.make () |> render_page in
     write_file "output/2025/index.html" html;
-    let html = Templates2027.Home.make () |> JSX.render in
+    let html = Templates2027.Home.make () |> render_page in
     write_file "output/index.html" html;
     write_file "output/2027/index.html" html
   with e ->
@@ -26,7 +30,7 @@ let render_homepage () =
 
 let render_session_page (s : Data2024.Sessions.t) =
   try
-    let html = Templates2024.Session.render s |> JSX.render in
+    let html = Templates2024.Session.render s |> render_page in
     write_file ("output/2024/" ^ s.slug ^ "/index.html") html
   with e ->
     Printf.printf "Error rendering session page for %s: %s\n" s.slug
@@ -35,7 +39,7 @@ let render_session_page (s : Data2024.Sessions.t) =
 
 let render_2025_session_page (s : Data2025.Sessions.t) =
   try
-    let html = Templates2025.Session.render s |> JSX.render in
+    let html = Templates2025.Session.render s |> render_page in
     write_file ("output/2025/" ^ s.slug ^ "/index.html") html
   with e ->
     Printf.printf "Error rendering session page for %s: %s\n" s.slug
@@ -44,7 +48,7 @@ let render_2025_session_page (s : Data2025.Sessions.t) =
 
 let render_2027_session_page (s : Data2027.Sessions.t) =
   try
-    let html = Templates2027.Session.render s |> JSX.render in
+    let html = Templates2027.Session.render s |> render_page in
     write_file ("output/2027/" ^ s.slug ^ "/index.html") html
   with e ->
     Printf.printf "Error rendering session page for %s: %s\n" s.slug
@@ -53,7 +57,7 @@ let render_2027_session_page (s : Data2027.Sessions.t) =
 
 let render_privacy_policy () =
   try
-    let html = Templates2027.Privacy.make () |> JSX.render in
+    let html = Templates2027.Privacy.make () |> render_page in
     write_file "output/privacy/index.html" html
   with e ->
     Printf.printf "Error rendering privacy policy: %s\n" (Printexc.to_string e);
@@ -61,7 +65,7 @@ let render_privacy_policy () =
 
 let render_about_page () =
   try
-    let html = Templates2027.About.make () |> JSX.render in
+    let html = Templates2027.About.make () |> render_page in
     write_file "output/about/index.html" html
   with e ->
     Printf.printf "Error rendering about page: %s\n" (Printexc.to_string e);
@@ -69,7 +73,7 @@ let render_about_page () =
 
 let render_travel_guide_page () =
   try
-    let html = Templates2027.Travel_guide.make () |> JSX.render in
+    let html = Templates2027.Travel_guide.make () |> render_page in
     write_file "output/travel-guide/index.html" html
   with e ->
     Printf.printf "Error rendering travel guide: %s\n" (Printexc.to_string e);

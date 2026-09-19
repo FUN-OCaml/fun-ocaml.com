@@ -1,0 +1,33 @@
+(version 0.11)
+
+(build
+ (all_platforms
+  ((action
+    (progn
+     (when %{pkg-self:dev} (run dune subst))
+     (run
+      dune
+      build
+      -p
+      %{pkg-self:name}
+      -j
+      %{jobs}
+      --promote-install-files=false
+      @install)
+     (run
+      dune
+      install
+      -p
+      %{pkg-self:name}
+      --create-install-files
+      %{pkg-self:name}))))))
+
+(depends
+ (all_platforms
+  (ocaml ppxlib dune)))
+
+(source
+ (fetch
+  (url https://github.com/ocaml-mlx/mlx/releases/download/0.11/mlx-0.11.tbz)
+  (checksum
+   sha512=a73d0b22f99709be9f0d2753372b43198a4e064a318f22ea68f37e965baa7a0b1b43f43b15e043f556c8d15e5475e31eb039472aa33aeceeee76ec68eca3e7fb)))
