@@ -21,7 +21,7 @@ Each edition is self-contained and stays compiled, so past years remain online a
 - `data/{year}/` – people, sessions, schedule and sponsors (YAML), parsed by `data{year}.ml`
 - `data/{year}/media/` – images and slides, published under `/{year}/`
 - `templates/{year}/` – page templates for that edition
-- `asset/` – static files copied as-is to the site root (favicons, `robots.txt`, `.well-known/`, per-year fonts and images)
+- `asset/` – static files copied as-is to the site root (favicons, `robots.txt`, per-year fonts and images)
 - `src/main.ml` – renders every page; the current edition is the one written to `output/index.html`
 
 ### Adding a new edition
@@ -47,8 +47,6 @@ Put full-resolution originals in `*-original/` directories next to the optimized
 make deploy DEPLOY_TARGET=user@host:/path/to/webroot/
 ```
 
-This builds the site and uploads `output/` to the web server (Caddy) with rsync. The production target is not part of this repo; maintainers keep it in a local, gitignored `deploy.sh`. Hidden files are included, so `.well-known/atproto-did` (the Bluesky handle check) gets deployed too. To check after deploying:
+This builds the site and uploads `output/` to the web server (Caddy) with rsync. The production target is not part of this repo; maintainers keep it in a local, gitignored `deploy.sh`.
 
-```bash
-curl https://fun-ocaml.com/.well-known/atproto-did
-```
+The Bluesky handle `@fun-ocaml.com` is verified by a DNS TXT record (`_atproto.fun-ocaml.com`), not by a file on the site.
