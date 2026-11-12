@@ -194,15 +194,18 @@ module Sponsors = struct
 end
 
 module Schedule = struct
-  type event = { event : string; speaker : string option; slug : string option }
-  [@@deriving of_yaml]
-
+  (* 2027 is single track on both days, so each row is one slot rather than
+     one column per room. [kind] is one of "talk", "keynote", "workshop" or
+     "break" and only affects styling. [slug] links to a session page once
+     the session exists in sessions.yml. [note] is a short extra line, e.g.
+     the time in another time zone. *)
   type schedule_row = {
     time : string;
-    great_hall : event option;
-    foyer : event option;
-    workshop_a : event option;
-    workshop_b : event option;
+    event : string;
+    speaker : string option;
+    slug : string option;
+    kind : string option;
+    note : string option;
   }
   [@@deriving of_yaml]
 

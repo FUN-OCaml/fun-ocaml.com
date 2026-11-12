@@ -3,8 +3,6 @@ open JSX
 let youtube_url = "https://www.youtube.com/@FUNOCaml"
 let discord_url = "https://discord.gg/B9cM6DSWVW"
 
-let cfp_url = "https://cfp.fun-ocaml.com/fun-ocaml-2027-bengaluru/cfp"
-let cfp_close_date = "October 7, 2026"
 let registration_url = "https://conf.code.iitm.ac.in/conf/Fun_OCaml_2027/login"
 
 let maps_url =
@@ -43,12 +41,6 @@ let hero_section =
       <div class_="mt-4 text-xl text-white font-montserrat">(string "Hosted by FP Launchpad, IIT Madras")</div>
       <a class_="flex items-center gap-2 text-white underline hover:no-underline text-xl mt-6" href=(registration_url) target=`_blank rel="noopener noreferrer">
         (string "Register as an attendee here")
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-6 h-6">
-          <path strokeLinecap=`round strokeLinejoin=`round d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-        </svg>
-      </a>
-      <a class_="flex items-center gap-2 text-white underline hover:no-underline text-xl mt-6" href=(cfp_url) target=`_blank rel="noopener noreferrer">
-        (string ("The CFP has been extended to " ^ cfp_close_date))
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class_="w-6 h-6">
           <path strokeLinecap=`round strokeLinejoin=`round d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
         </svg>
@@ -138,14 +130,89 @@ let community_section =
     </div>
   </div>
 
-let schedule_section =
+let render_schedule_event (row: Data2027.Schedule.schedule_row) =
+  let title =
+    match row.slug with
+    | Some slug ->
+      <a href=(Data2027.Sessions.url slug) class_="font-medium text-white underline hover:text-primary_light">(string row.event)</a>
+    | None ->
+      <div class_="font-medium">(string row.event)</div>
+  in
+  <div>
+    (match row.kind with
+     | Some "keynote" -> <div class_="text-xs font-bold tracking-widest uppercase text-primary_light">"Keynote"</div>
+     | Some "workshop" -> <div class_="text-xs font-bold tracking-widest uppercase text-primary_light">"Workshop"</div>
+     | _ -> JSX.null)
+    (title)
+    (match row.speaker with
+     | Some speaker -> <div class_="text-sm text-gray-300">(string speaker)</div>
+     | None -> JSX.null)
+    (match row.note with
+     | Some note ->
+       <div class_="mt-2">
+         <span class_="inline-flex items-center rounded-full bg-primary_light px-3 py-1 text-xs font-semibold text-white">(string note)</span>
+       </div>
+     | None -> JSX.null)
+  </div>
+
+let render_schedule_table (schedule: Data2027.Schedule.schedule_row list) =
+  <div class_="w-full overflow-x-auto">
+    <table class_="mt-8 table-auto divide-y divide-gray-200 w-full max-w-4xl mx-auto">
+      <thead>
+        <tr>
+          <th class_="text-left px-4 pb-2 w-40">"Time"</th>
+          <th class_="text-left px-4 pb-2">"Session"</th>
+        </tr>
+      </thead>
+      <tbody class_="divide-y divide-gray-200">
+        (list (
+          schedule
+          |> List.map (fun (row: Data2027.Schedule.schedule_row) ->
+            let row_classes =
+              match row.kind with
+              | Some "break" -> "text-gray-300 italic"
+              | Some "keynote" -> "bg-white/10"
+              | _ -> ""
+            in
+            <tr class_=(row_classes)>
+              <td class_="whitespace-nowrap font-medium px-4 py-3 align-top">(string row.time)</td>
+              <td class_="px-4 py-3">(render_schedule_event row)</td>
+            </tr>
+          )
+        ))
+      </tbody>
+    </table>
+  </div>
+
+let schedule_day_one_section =
   <div class_="bg-[url('/2027/img/blue-bg.svg')] bg-center bg-cover text-white">
     <div id="schedule" class_="container mx-auto px-6 py-20">
-      (h2 ~classes:"text-white" "Schedule")
-
-      <div class_="mt-6">
-        (string "TBD")
+      (h2 ~classes:"text-white text-center" "Day One")
+      <div class_="text-center">
+        (tag ~classes:"text-xl mt-4" "January 25 · Talks · 9:00–17:45")
       </div>
+      <p class_="mt-4 text-center text-gray-300">
+        "All times are local (IST, UTC+5:30). Talks are live-streamed on the "
+        <a href=(youtube_url) class_="underline">"FUN OCaml YouTube channel"</a>
+        "."
+      </p>
+
+      (render_schedule_table Data2027.Schedule.day_one.schedule)
+    </div>
+  </div>
+
+let schedule_day_two_section =
+  <div class_="bg-center bg-gradient-to-tr from-[#4A1500] to-[#8B4000] bg-cover text-white">
+    <div class_="container mx-auto px-6 py-20">
+      (h2 ~classes:"text-white text-center" "Day Two")
+      <div class_="text-center">
+        (tag ~classes:"text-xl mt-4" "January 26 · Workshops · 9:45–18:30")
+      </div>
+      <p class_="mt-4 text-center text-gray-300">
+        "Hands-on sessions in a single track. Bring your laptop!"
+      </p>
+
+      (render_schedule_table Data2027.Schedule.day_two.schedule)
     </div>
   </div>
 
@@ -257,7 +324,8 @@ let make () =
      hero_section;
      list program_section;
      community_section;
-     schedule_section;
+     schedule_day_one_section;
+     schedule_day_two_section;
       venue_section;
       travel_section;
       sponsors_section;
