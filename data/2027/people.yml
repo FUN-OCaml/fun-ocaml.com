@@ -52,3 +52,59 @@
   bio: |
       Senior Software Engineer at AMD and member of the FUN OCaml 2027 local organising committee.
   other_socials: []
+- slug: "senthilnathan"
+  name: "Senthilnathan"
+  affiliation: ""
+  bio: ""
+  other_socials: []
+- slug: "shreyas"
+  name: "Shreyas Mididoddi"
+  affiliation: ""
+  bio: ""
+  other_socials: []
+- slug: "frederic"
+  name: "Frédéric Lang"
+  affiliation: ""
+  bio: ""
+  other_socials: []
+- slug: "manas"
+  name: "Manas Jayanth"
+  affiliation: ""
+  bio: ""
+  other_socials: []
+- slug: "eduardo"
+  name: "Eduardo Rafael"
+  affiliation: ""
+  bio: ""
+  other_socials: []
+- slug: "deval"
+  name: "Deval Gupta"
+  affiliation: ""
+  bio: ""
+  other_socials: []
+- slug: "vishruth"
+  name: "Vishruth Thimmaiah"
+  affiliation: ""
+  bio: ""
+  other_socials: []
+- slug: "leandro"
+  name: "Leandro Ostera"
+  affiliation: ""
+  bio: ""
+  github: leostera
+  other_socials: []
+- slug: "chukwuma"
+  name: "Chukwuma Akunyili"
+  affiliation: ""
+  bio: ""
+  other_socials: []
+- slug: "xavier"
+  name: "Xavier Van de Woestyne"
+  affiliation: "Tarides"
+  bio: ""
+  other_socials: []
+- slug: "ayush"
+  name: "Ayush Shukla"
+  affiliation: ""
+  bio: ""
+  other_socials: []

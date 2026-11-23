@@ -1,1 +1,384 @@
-[]
+- slug: "illegal-inference-states"
+  title: "Making Illegal Inference States Unrepresentable in OCaml"
+  speakers: ["senthilnathan"]
+  kind: talk
+  abstract: |
+      LM inference runtimes have a surprising amount of state.
+
+      Requests move through waiting, scheduled, running, paused and finished states. KV-cache blocks are allocated, mapped, reused and eventually released. A lot of runtime correctness comes down to making sure these transitions happen in the right order.
+
+      I wanted to explore whether some of these invariants can be expressed directly in OCaml's type system instead of being enforced through runtime checks.
+
+      In this talk, I'll build a small model of an LLM inference scheduler in OCaml and use variants, modules and type-driven design to represent request and KV-cache lifecycles. We'll look at which invalid states can be made difficult or impossible to represent, where the approach starts becoming cumbersome, and what this means for systems where state-management bugs are expensive.
+
+      This is not an attempt to build a production inference engine in OCaml. It is an experiment in applying OCaml's type system to a systems problem usually implemented in languages such as Python, C++ or Rust.
+
+      I'll also compare the resulting design with patterns I've encountered while working on a small inference runtime in Rust and contributing to compiler projects.
+  links: []
+  slides: null
+  youtube_video: null
+  watch_ocaml_org_video: null
+
+- slug: "zcaml"
+  title: "ZCaml My Caml: Everything Everywhere All at Once"
+  speakers: ["shreyas"]
+  kind: talk
+  abstract: |
+      Distributing native programs across multiple platforms can mean dealing
+      with complex cross-toolchains, broken sysroots, bulky Docker setups,
+      libc incompatibilities, and so on. All that just to get your program
+      onto somebody else's machine.
+
+      Rust and Go make choosing a build target straightforward. We want that
+      kind of workflow for OCaml.
+
+      Getting there with OCaml takes a bit more work. Its native compiler
+      targets one platform per build. Target assumptions and C-toolchain
+      configuration are baked in at build time. The OCaml compiler has to run
+      on your host and generate code for your target. The runtime and libraries
+      need to be built for that target too. Then you need the right C toolchain
+      to put it all together.
+
+      Zig takes a lot of the pain away on the C side with its fantastic
+      cross-compilation support: a C compiler, assembler, linker, and built-in
+      libc support for many targets, without manually setting up a sysroot.
+      ZCaml brings that power to OCaml. For each supported host–target pair,
+      it ships an OCaml compiler configured to use `zig cc`, together with
+      Zig itself. The OCaml compiler runs on your host and generates code for
+      your target; Zig handles the C-toolchain side. No custom sysroots or
+      Docker setups just to cross-compile for those targets.
+
+      In this talk, we'll dig into the shared cross-compilation headaches,
+      OCaml's specific problems, and how ZCaml puts the pieces together. Then
+      we'll build the same OCaml CLI on x86-64 Linux for both x86-64 and AArch64
+      Linux and run it on both. We'll also look at what works today, what still
+      needs work, and how you can help. No prior Zig experience needed.
+  links: []
+  slides: null
+  youtube_video: null
+  watch_ocaml_org_video: null
+
+- slug: "owebview"
+  title: "Owebview – Cross-Platform Desktop Apps in OCaml, with a Web UI"
+  speakers: ["frederic"]
+  kind: talk
+  abstract: |
+      OCaml offers plenty of ways to compute something and rather few to put the
+      result in a window somebody can open. owebview takes the cheapest route
+      available: a native window hosting the web engine the machine already has —
+      WKWebView on macOS, WebKitGTK on Linux, WebView2 on Windows. Nothing is
+      bundled, so an application weighs a few megabytes instead of a hundred and
+      fifty, and the rendering is somebody else's problem.
+
+      This talk is about what that buys you, and what it costs.
+
+      **One window, two languages — or one.** `Webview.bind` publishes an OCaml
+      function to the page, which calls it and gets a promise back. Arguments and
+      results cross as JSON text, which sounds like a limitation and turns out to be
+      the useful kind of primitive: bring the serialisation library you already like
+      and a typed FFI is a dozen lines. The page can be JavaScript, or it can be
+      OCaml compiled by js_of_ocaml — at which point the whole application is one
+      language with a rendering engine in the middle. We will also look at the one
+      rule the bridge imposes, that the UI loop owns the main thread, and at what it
+      takes to run a real backend beside it.
+
+      **A window is not yet an application.** That is what `owebview.desktop` is for,
+      and most of what the 0.2 release adds: native menu bars whose items are OCaml
+      closures, with keyboard accelerators; modal dialogs on the platform's own
+      widgets — confirm, open a file, choose a directory, save as; the application
+      icon, and the application id, which is more subtle than it sounds the first
+      time a user runs your program under Wayland; and locating your assets, which
+      is not the same directory in a build tree, in an opam switch and inside a
+      macOS bundle.
+
+      **Under the window**, briefly, because it is the part that every guide to C
+      bindings already covers well: one OCaml API over three entirely different
+      native backends, chosen at build time by `dune-configurator`; C++ stubs that
+      `CAMLprim` will not save from name mangling; a vendored header that dune's
+      sandbox refuses to let you include until you ask.
+
+      **And out of it.** An OCaml desktop application can now be handed over two
+      ways: `opam pin` for anyone who has a switch, and a `.deb`, `.rpm`, `.dmg` or
+      Windows installer for everyone else. They are not the same artefact, and the
+      difference is not only in how it is delivered — an installer tells the desktop
+      what the program is, while a binary dropped into a switch has to say so
+      itself. That turns out to be where the desktop library earns its place.
+
+      ## What you will take away
+
+      - When a web UI is the right answer for a desktop application in OCaml, and
+        when it is not.
+      - How the bridge between OCaml and the page works, what can cross it, and how
+        to build something typed on top of a string.
+      - What `owebview.desktop` provides — menus, dialogs, application icon and id,
+        asset location — and the problem each one exists to solve.
+      - The two ways to put an OCaml GUI application in somebody's hands, and what
+        each of them expects your program to do for itself.
+
+      ## The example application
+
+      **Sun notes** is a note-taking application written entirely in OCaml — both
+      sides of it: a native window driven by owebview, and a page compiled with
+      js_of_ocaml and driven by ocaml-vdom. It serves throughout the talk as the
+      concrete thing being shipped, and every example is taken from it.
+
+      It is MIT-licensed and installable today on every platform discussed: a `.dmg`
+      for macOS, `.deb` and `.rpm` packages for Linux on x86-64 and ARM64, a Windows
+      installer — and, for anyone who already has an opam switch, a single `opam
+      pin` away.
+  links: []
+  slides: null
+  youtube_video: null
+  watch_ocaml_org_video: null
+
+- slug: "rethinking-the-toolchain"
+  title: "Rethinking the Toolchain"
+  speakers: ["manas"]
+  kind: talk
+  abstract: |
+      OCaml is the ideal choice for coding for both humans and agents. Compilers fast, typecheckers safe, better abstractions for functional programming than ones popular out there.
+
+      Yet, we still haven't seen enough adoption. I'm here to share my thoughts and some rather bold ideas on what I think are the challenges with the toolchain.
+
+      Some attempts I made so far: 1. Lemon 2. Fine tuned 8B Qwen model 3. Design docs for new toolchain
+  links: []
+  slides: null
+  youtube_video: null
+  watch_ocaml_org_video: null
+
+- slug: "linear-oxcaml"
+  title: "Linear OxCaml and the Power of Uniqueness"
+  speakers: ["eduardo"]
+  kind: talk
+  abstract: |
+      Clarifying what is linearity, how it relates to uniqueness, mutability and why it's the biggest foundational improvement to performance in OCaml.
+  links: []
+  slides: null
+  youtube_video: null
+  watch_ocaml_org_video: null
+
+- slug: "oxcaml-mlir"
+  title: "Compiling OxCaml with MLIR"
+  speakers: ["deval", "vishruth"]
+  kind: talk
+  abstract: |
+      OCaml has a fairly fixed path out of the type checker -> Typedtree, Lambda, Slambda, Flambda 2, Cmm, CFG, and finally assembly. At every stage, some information is lost. Lambda erases types, Cmm no longer distinguishes clearly between an OCaml value and a machine word, CFG turns structured control flow into a lower-level representation.
+
+      Flambda 2 is an excellent optimiser, but part of its job is recovering information that was discarded earlier in the pipeline. For example, a float may have been boxed because of an earlier representation decision, only for Flambda 2 to later figure out that it can be unboxed.
+
+      Moonshot is a fork of OxCaml that takes a different approach. Instead of going through Lambda, Cmm, and CFG, it translates the typed AST directly into a custom `ocaml` MLIR dialect. From there, it uses MLIR's existing lowering infrastructure to reach LLVM IR and eventually a native object file.
+
+      The main goal is performance. The idea is simple: if OCaml already knows something at the type checking stage, we should try to keep that information instead of throwing it away and recovering it later.
+
+      This talk is about what MLIR can bring to OCaml and OxCaml, and how we plan to get there.
+
+      OxCaml has already extended the type system with information about layouts, modes, and unboxed data. However, much of this information is eventually flattened when the compiler reaches Cmm. With an MLIR dialect, this information has a place to remain in the backend.
+
+      For example, floats can be represented in an unboxed form by construction instead of relying on a later optimisation pass to recover that fact. Auto-vectorisation, which `ocamlopt` currently does not provide, also becomes much more accessible through MLIR's `vector` and `affine` dialects. Immutability and non-aliasing can be represented as metadata that LLVM can use during optimisation.
+
+      It also changes how optimisation work can be developed. Instead of relying mainly on a large and complex whole-program optimiser, individual optimisations can be implemented as passes that are easier to understand, test, and contribute to.
+
+      I will go through the project milestone by milestone. We start with runtime and GC integration, followed by data representation, closures, and exceptions. Then we move towards compiling a real package end to end. After that comes a proper benchmark baseline against Flambda 2 and CFG. Only once those pieces are working do we move into the larger optimisation work that they enable.
+
+      I will cover published evidence showing that the same optimisation can sometimes run more effectively on a higher-level IR than on a lower-level one, the performance numbers we are targeting, and the correctness work that has to happen before any of those numbers matter.
+  links: []
+  slides: null
+  youtube_video: null
+  watch_ocaml_org_video: null
+
+- slug: "ocaml-my-caml"
+  title: "Making OCaml My Caml in Under 60B Tokens"
+  speakers: ["leandro"]
+  kind: talk
+  abstract: |
+      In this talk I'll share how I explored what OCaml could be by using agents to rebuild the entire OCaml ecosystem. Until then, feel free to play around with [RiotML](https://riot.ml) and [PkgsML](https://pkgs.ml)!
+
+      I hope to show how the use of evals, oracles, and a few tokens can help you take a crazy idea into a running, decent prototype incredibly quickly, and how this lets you make better decisions about the experiences we build.
+
+      Trigger Warning: your favorite project didn't make it and has been rewritten!
+  links: []
+  slides: null
+  youtube_video: null
+  watch_ocaml_org_video: null
+
+- slug: "chaufr"
+  title: "Chaufr: Running a Lagos Startup on OCaml and a $3.50/Month Server"
+  speakers: ["chukwuma"]
+  kind: talk
+  abstract: |
+      Chaufr is a ride and chauffeur marketplace for Lagos, Nigeria: riders can book a standard ride, or book a vetted chauffeur to drive *their own car* for a few hours. 
+      It is a real startup attempt, not a demo. Version 1 went to Y Combinator in January 2026 and was rejected. I rebuilt it from scratch, and version 2 launches publicly on 14 December 2026, timed for "Detty December", when the diaspora comes home and Lagos transport is at its most strained.
+
+      The whole stack is OCaml: Dream, dream-html and htmx for the web, Caqti on PostgreSQL, Lwt, Argon2 and OpenTelemetry. Outbound email goes through ocaml-smtpd, an Eio-based mail server I patched upstream while deploying it. Everything, database included, runs on one 1 vCPU / 1 GB UpCloud server that costs $3.50 a month.
+
+      Budget shaped every decision, so this talk is about how OCaml changes a startup's economics:
+
+      - **Deployment without containers.** v1 shipped as a Docker image through Azure Container Registry to a managed PostgreSQL. Deploys took 15+ minutes, and the registry and database used about $16/month. v2 ships a stripped 16 MB native binary over rsync to one server that also hosts PostgreSQL. A deploy, including a backup and migrations, takes 42 seconds, and the app idles at about 12 MB of memory.
+      - **Types as product rules.** The ride lifecycle is a variant where a completed trip cannot exist without a start time, and a session cookie stops working the moment its password changes.
+      - **Migrations as code.** SQL files are generated into OCaml modules and applied by a systemd oneshot, so the app can never start against an old schema.
+      - **War stories.** A blocking `Unix.sleep` inside an Eio fiber made verification emails arrive up to an hour late. A CAA DNS record blocked TLS. A bad deploy crash-looped 48 times.
+
+      I'll close with real numbers from the first six weeks after launch: hosting cost per booking, chauffeur sign-ups and retention, and what I'd do differently.
+
+      https://chaufr.invarware.com
+  links: []
+  slides: null
+  youtube_video: null
+  watch_ocaml_org_video: null
+
+- slug: "yocaml-workshop"
+  title: "Your OCaml's Blog Using YOCaml"
+  speakers: ["xavier"]
+  kind: workshop
+  abstract: |
+      YOCaml is a really fun website generator that’s becoming increasingly popular among the OCaml community! We’re very proud of it! In this workshop, we’ll show you how to build your own blog, one that’s easy to host, using YOCaml!
+      We’ll cover how to set up the project, how to use existing models, and then how to create your own data models!
+  links: []
+  slides: null
+  youtube_video: null
+  watch_ocaml_org_video: null
+
+- slug: "owebview-workshop"
+  title: "Owebview – Crafting Your Own Cross-Platform GUI App with Web Rendering"
+  speakers: ["frederic"]
+  kind: workshop
+  abstract: |
+      OCaml has several ways to put a window on screen. This workshop takes the one
+      that costs the least and gives the most back: let the operating system's own web
+      engine do the rendering, and keep every line you write in OCaml.
+
+      owebview wraps the `webview` C library — a native window hosting WKWebView on
+      macOS, WebKitGTK on Linux or WebView2 on Windows. Over two hours we will start
+      from a template that already builds and already opens a window, and end with a
+      desktop application you can install on your own machine, built entirely in OCaml
+      on both sides of the window.
+
+      No prior experience with C bindings, with JavaScript, or with front-end
+      frameworks is assumed. If you can write OCaml and use dune, you can follow.
+
+      ## What we will build
+
+      A game: Conway's Game of Life. A grid you can draw on, a generation loop you can
+      start and stop, and what turns a demo into an application — saving a game to a
+      file and opening it again.
+
+      The board and the rules live in the page; the native side only touches the
+      disk. That split is the point, and it is the one most owebview applications end
+      up with.
+
+      ## Outline
+
+      **1 · The template** *(~15 min)*
+      Build it, open the window, and see what is already there — including where the
+      binary looks for its page, which comes back in the last segment.
+
+      **2 · The back end** *(~25 min)*
+      The native side has one job: writing a game to disk and reading it back. Two
+      functions exposed to the page, and that is where we meet the bridge — what can
+      cross it, why every call is asynchronous, and how a JSON library turns it into
+      something you would willingly call from typed code.
+
+      **3 · Making it a desktop application** *(~25 min)*
+      A window is not yet an application. With `owebview.desktop`: a native menu bar
+      whose items are OCaml closures with keyboard shortcuts, the system's own
+      dialogs so that saving and opening ask the user where, and an application icon
+      for the dock or the taskbar.
+
+      **4 · The page in OCaml, with vdom** *(~30 min)*
+      Compile the page with js_of_ocaml and drive it with a virtual-DOM library, in
+      the Elm style. The game lives here: the board, the rules and the generation
+      loop, with the grid as a pure function of the board rather than a thing you
+      mutate. From here on both sides are OCaml and the JavaScript disappears.
+
+      **5 · Putting it in somebody's hands** *(~15 min)*
+      Two routes. `opam install` of your own project, which everyone in the room can
+      do in a couple of minutes, and which raises the question of where the assets
+      went. Then the platform's own installer, for the machine you brought, with the
+      scripts to take home. OCaml does not cross-compile, so everyone ships for their
+      own platform: this is where the room's differences become the lesson.
+
+      The remaining time is deliberate slack: setups differ, and segments 2 and 5 are
+      where they show.
+
+      ## Prerequisites
+
+      - OCaml 4.14 or later, opam and dune, on a laptop you can install software on.
+      - **Linux**: Fedora 43/44, Debian 12 or Ubuntu 22.04 at the earliest.
+      - **macOS**: nothing beyond the Xcode command line tools
+      - **Windows**: a mingw-w64 toolchain and the WebView2 SDK headers
+        (`nuget install Microsoft.Web.WebView2`).
+
+      The template and its setup instructions will be published ahead of time.
+
+      ## What you will take away
+
+      - A game you can play, install and hand to somebody, written entirely in OCaml
+        and running on your own machine.
+      - A clear picture of how an OCaml process and a web view talk to each other, and
+        what that costs.
+      - What `owebview.desktop` provides — menus, dialogs, application icon, asset
+        location — and when you reach for each.
+      - Both ways to ship the result: an opam-installable project, and the packaging
+        scripts for all four platform installers, ready to reuse.
+
+      ## Reference material
+
+      This workshop is the hands-on companion to the talk *Owebview — cross-platform
+      desktop apps in OCaml, with a web UI*; either stands on its own.
+  links: []
+  slides: null
+  youtube_video: null
+  watch_ocaml_org_video: null
+
+- slug: "hardcaml-workshop"
+  title: "HardCaml Ain't Hard"
+  speakers: ["ayush"]
+  kind: workshop
+  abstract: |
+      ## Workshop Overview
+
+      Hardware description languages like **Verilog** and **VHDL** have been around for decades, but the way we use them can still feel surprisingly old-school rather. They often come with limited type systems, low level abstractions, and testbenches that live separately from the hardware design itself.
+
+      This workshop takes a different approach with [**HardCaml**](https://hardcaml.org/getting-started), an embedded hardware description DSL built in **OCaml**.
+
+      The tentative slides can be viewed [here](https://drive.google.com/file/d/1HPOJTdnNCEGJLJh7pkv9usfVhQaYSNSF/view?usp=sharing).
+      (Alternatively you can copy this link - https://drive.google.com/file/d/1HPOJTdnNCEGJLJh7pkv9usfVhQaYSNSF/view?usp=sharing)
+
+      Instead of writing RTL in the traditional way, we’ll be using OCaml’s type system and abstractions to build **typed signal graphs**, simulate circuits directly, generate portable **Verilog**, and finally run the designs on a real **iCE40 HX5K FPGA** using the completely open-source **IceStorm** toolchain.
+
+      ## What We'll Build
+
+      We’ll work through three practical examples:
+
+      * **LED Blinker** : our introduction to clocks, signals, registers, and basic circuit structure
+      * **UART Echo** : sending and receiving serial data while exploring state machines and reusable hardware components
+      * **PWM Dimmer** : generating PWM signals to control LED brightness and putting our designs onto actual hardware
+
+      ## What We'll Cover
+
+      Along the way, we'll explore the core ideas behind HardCaml, including:
+
+      * Signals and signal widths
+      * Registers and clocked logic
+      * Circuit construction
+      * Native simulation
+      * The **Always DSL**
+      * Finite state machines
+      * Functor-based hardware reuse
+      * Expect-test based waveform regression
+      * Verilog generation
+      * The open-source FPGA workflow with **IceStorm**
+
+      You don't need previous FPGA or Verilog experience to follow along. 
+      **Some OCaml experience is trivially useful.**
+
+      The most important thing to understand is this:
+      > **You don't run OCaml on the FPGA. You use OCaml to design the hardware that the FPGA runs.**
+
+      HardCaml essentially lets us use the tools and ideas we already value in modern software engineering with strong types, abstraction, reuse, testing, and composition, and bring them into hardware design.
+
+      By the end of the workshop, you'll have gone from a complete synthesis of ideas from hardware, and using your OCaml to leverage it to build something.
+  links: []
+  slides: null
+  youtube_video: null
+  watch_ocaml_org_video: null
