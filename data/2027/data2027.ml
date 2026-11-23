@@ -33,7 +33,8 @@ module People = struct
 
   type t = {
     slug : string;
-    img_src : string;
+    img_src : string option;
+        (* [None] when there is no photo in media/avatars/ *)
     name : string;
     affiliation : string;
     bio : string;
@@ -43,7 +44,10 @@ module People = struct
   let of_metadata (m : metadata) : t =
     {
       slug = m.slug;
-      img_src = "/2027/avatars/" ^ m.slug ^ ".jpg";
+      img_src =
+        (if Sys.file_exists ("data/2027/media/avatars/" ^ m.slug ^ ".jpg") then
+           Some ("/2027/avatars/" ^ m.slug ^ ".jpg")
+         else None);
       name = m.name;
       affiliation = m.affiliation;
       bio = m.bio;
