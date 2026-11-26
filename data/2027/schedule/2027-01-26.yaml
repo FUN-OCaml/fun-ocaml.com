@@ -1,7 +1,7 @@
 date: "Tue, Jan 26, 2027"
 schedule:
     - time: "8:30 - 9:45"
-      event: "Registration & Breakfast"
+      event: "Breakfast"
       kind: "break"
     - time: "9:45 - 12:00"
       event: "Your OCaml's Blog Using YOCaml"
